@@ -1,0 +1,280 @@
+.back-circle {
+    font-size: 25px;
+    margin-left: 9px;
+}
+
+img.imgnewcls {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+img.imgnewcls1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+button.iconbtncls {
+    background: none;
+    // position: relative;
+    // bottom: 100px;
+    position: absolute;
+    bottom: 71%;
+    left: 0px;
+    font-size: 18px;
+}
+
+button.iconbtnclsnew {
+    position: absolute;
+    left: 10px;
+    background: no-repeat;
+    bottom: 71%;
+    // width: 96%;
+}
+
+img.proimg{
+    width: 94%;
+    height: 100px;
+    margin-top: 14px;
+    border: 1px solid #cbc1c1;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+img.proimgnew{
+    width: 94%;
+    height: 100px;
+    margin-top: 14px;
+    border: 1px solid #cbc1c1;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+img.progressThumbnail {
+    margin: auto;
+    max-width: 100px;
+    max-height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.thumbnailContainer {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: #e6e6e6;
+    position: relative;
+}
+
+.newdiv {
+    border: 1px solid #d1c9c9;
+    border-radius: 5px;
+}
+
+ion-input.myinputname{
+    border: 1px solid #b5b1b1;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input.myinputname{
+    border: 1px solid #b5b1b1;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    height: 50px;
+}
+
+h6.head {
+    margin-top: 2px;
+    color: #e9621a !important;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+ion-item.selectone{
+    border-style: none;
+    border: 1px solid #bbb8b8;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    --highlight-color-focused: white;
+}
+
+ion-input.myinput{
+    border: 1px solid #b5b1b1;
+    border-radius: 0px 4px 4px 0px;
+    font-size: 16px;
+    height: 50px;
+}
+
+ion-input.myinputsss {
+    border-radius: 4px 0px 0px 4px;
+    font-size: 16px;
+    width: 146%;
+    height: 50px;
+    border-bottom: 1px solid #b5b1b1;
+    border-left: 1px solid #b5b1b1;
+    border-top: 1px solid #b5b1b1;
+}
+i.fa.fa-eur {
+    font-size: 15px;
+    margin-left: 11px;
+}
+
+ion-label.labelcls.sc-ion-label-md-h.sc-ion-label-md-s.md.hydrated {
+    position: absolute;
+    top: 11px;
+    font-weight: 600;
+}
+
+span.paraspan {
+    font-size: 14px;
+    font-weight: 600;
+}
+.qty-buys {
+    display: inline-block;
+    width: 100%;
+    height: 58px;
+    border-top: 1px solid #00000017;
+    border-bottom: 1px solid #00000017;
+    box-shadow: 3px 2px 3px #80808059;
+    border-radius: 0 !important;
+    background: #f8f9fa;
+    // position: fixed;
+    position: relative;
+    z-index: 100;
+    bottom: 0px;
+}
+
+.addtocart-btn {
+    color: #ffff;
+    font-size: 16px;
+    font-weight: 500;
+    // width: 42.5%;
+    width: 100%;
+    height: 44px;
+    // position: fixed;
+    position: relative;
+    bottom: 5px;
+    border-radius: 5px;
+    // right: 54%;
+    background-color: #e9621a !important;
+}
+
+span.requiedcls {
+    font-size: 20px;
+    position: absolute;
+    left: 120px;
+    top: 16px;
+    color: red;
+}
+
+span.requiedcls2{
+    font-size: 20px;
+    position: absolute;
+    left: 157px;
+    top: 15px;
+    color: red; 
+}
+
+span.requiedcls3{
+    font-size: 20px;
+    position: absolute;
+    left: 39px;
+    top: 17px;
+    color: red;  
+}
+
+span.requiedcls4{
+    font-size: 20px;
+    position: absolute;
+    left: 52px;
+    top: 16px;
+    color: red; 
+}
+
+span.requiedcls5{
+    font-size: 20px;
+    position: absolute;
+    left: 85px;
+    top: 16px;
+    color: red; 
+}
+span.requiedcls6{
+    font-size: 20px;
+    position: absolute;
+    left: 90px;
+    top: 16px;
+    color: red; 
+}
+span.requiedcls7{
+    font-size: 20px;
+    position: absolute;
+    left: 70px;
+    top: 9px;
+    color: red; 
+}
+span.requiedcls8{
+    font-size: 20px;
+    position: absolute;
+    left: 145px;
+    top: 9px;
+    color: red; 
+}
+
+.selectType{
+    --highlight-color-focused: white;
+    border: 1px solid #b5b1b1;
+    border-radius: 4px;
+}
+.imagechoosecls{
+    border: 2px solid #343a4057;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+    background: #bbb8b824;
+}
+//user  css
+.contact_header{
+	display: flex;
+    justify-content: space-between;
+    p{
+    	margin:0;
+    }
+}
+
+.icon1{
+    font-size: 20px;
+    padding-left: 10px;
+    color: #8585ad;
+    margin: 0;
+}
+#kontaktid2 a >p{
+    display: flex;
+    justify-content: space-between;
+}
+#kontaktid2 a >p span{
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+}
+
+#kontaktid a >p{
+    display: flex;
+    justify-content: space-between;
+}
+ion-toggle{
+    --ion-color-base:#e9621a !important;
+}
+ion-toggle.toggle-checked::part(track) {
+    background-color: green;
+}

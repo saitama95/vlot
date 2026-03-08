@@ -1,0 +1,496 @@
+
+ 
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-row>
+      <ion-col size="12">
+          <ion-title>
+            <ion-header> <span> Anzeige aufgeben</span> <br> <span>verkaufen oder suchen</span> </ion-header>
+          </ion-title>
+      </ion-col>    
+    </ion-row> 
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- (ionScroll)="getscroll($event)"  [scrollEvents]="true" -->
+<ion-content>
+  <!-- <a (click)="gomarketPlaceForm('pages/marketpageform');"> -->
+    <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;">
+      <div class="newdiv">
+        <ion-row class="darkback">
+          <ion-col size="10">
+            <div class="textcls">Marktplatz</div>
+            <p style="font-size: 12px;">Verkauf alles was du nicht brauchst</p>
+          </ion-col>
+          <ion-col size="2">
+            <img src="assets/image/shoppingcart_new.png" class="iconimg">
+            <!-- <img src="assets/image/shopping-store1.png" class="iconimg"> -->
+          </ion-col>
+        </ion-row>
+      </div>
+     
+        <div style="padding: 4px;background-color: white;">
+          <ion-row>
+          
+            
+          <ion-col size="12" style="background-color: #ec6f2c !important;height: 37px;border-right: 1px solid #fff;border: 1px solid rgb(251 146 82);">
+            <div><p class="markethead">Anzeige Aufgeben</p></div>
+          </ion-col>
+
+            <ion-col size="6" class="markettab" [ngClass]="{ 'sell-type':isSelltypefree}" 
+            style="border-right: 1px solid #fff;">
+              <a (click)="gomarketPlaceForm('pages/marketpageform','free');">
+                <div class="marketheading">Privat <span class="pricetitsub">GRATIS</span> </div>
+                </a>
+              </ion-col>
+
+              <ion-col size="6"  class="markettab" [ngClass]="{ 'sell-type':isSelltypecommerical}">
+                <a (click)="gomarketPlaceForm('pages/marketpageform','commerical');">
+                <div class="marketheading">Händler <span class="pricetit">€ 0,-</span></div>
+                <!-- <del>1290</del> -->
+                <!-- <div class="markettextcl"><p> (exkl. USt), Laufzeit 60 Tage</p></div> -->
+              </a>
+              </ion-col>
+          </ion-row>
+        </div>
+    </ion-card>
+ 
+  
+  <!-- property part start-->
+  <ion-accordion-group>
+    <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;">
+      <div style="padding: 4px;">
+          <ion-accordion value="colorss"> 
+            <div class="newdivs" slot="header">
+              <ion-row style="background-color: #ebf0f57d;" class="darkback">
+                <ion-col size="8">
+                  <div class="textcls">Immobilien</div>
+                  <p style="font-size: 12px;">Vermieten, verpachten und verkaufen.</p>
+                </ion-col>
+                <ion-col size="2">
+                  <p class="gratis1">GRATIS</p>
+                </ion-col>
+                <ion-col size="2">
+                  <img src="assets/image/home_new.png" class="iconimg">
+                  <!-- <img src="assets/image/houseiconnew.png" class="iconimg"> -->
+                </ion-col>
+              </ion-row>
+              <ion-row style="background: #e8edf1;" class="greybackground"> 
+                <ion-col size="12" class="subbackground2">
+                  <p class="extrapara">ANZEIGE WÄHLEN</p>
+                  <i class="fa fa-caret-down" (click)="replaceIcon($event);"></i> 
+                  <p  class="extraparasub">Bis zum 31.12.2024 kannst du deine Anzeigen kostenlos veröffentlichen</p>
+                </ion-col>
+              </ion-row>
+            </div>
+            
+            <ion-list slot="content"  style="padding-top: 2px;">
+            
+              <a (click)="gotonextPage(1);" style="text-decoration: none;">
+                <ion-item-divider  style="border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Haus
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                
+                </ion-item-divider>
+              </a>
+              <a (click)="gotonextPage(2);" style="text-decoration: none;">
+                <ion-item-divider  class="greybackground"  style="background: #eef2f5;border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                  Wohnung
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>  
+              </a>
+
+              <a (click)="gotonextPage(3);" style="text-decoration: none;">
+                <ion-item-divider  style="border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Grundstücke
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>
+              </a>
+
+              <a (click)="gotonextPage(4);" style="text-decoration: none;">
+                <ion-item-divider   class="greybackground"  style="background: #eef2f5;border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Gewerbeimmobilien
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>
+              </a>
+            
+              <a (click)="gotonextPage(5);" style="text-decoration: none;">
+                <ion-item-divider style="border: none;" >
+                  <ion-label style="color: black;font-size: 15px;">
+                    Ferienimmobilien
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>
+              </a>
+
+              <a (click)="gotonextPage(6);" style="text-decoration: none;">
+                <ion-item-divider   class="greybackground"  style="background: #eef2f5;border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Sonstige Immobilien
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>
+              </a>
+
+            </ion-list>
+          </ion-accordion>
+      </div>
+    </ion-card>
+
+
+<!-- end property section -->
+
+
+ <!-- start auto/motor section  -->
+
+    <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;">
+      <div style="padding: 4px;">
+        
+          <ion-accordion value="colors2"> 
+            <div class="newdivs" slot="header">
+              <ion-row style="background-color: #ebf0f57d;" class="darkback">
+                <ion-col size="8">
+                  <div class="textcls">Auto, Motor & Boote, Ersatzteile & Zubehör</div>
+                  <!-- <p style="font-size: 12px;">Erste Gebrauchtwagen-Anzeige kostenlos!</p> -->
+                </ion-col>
+                <ion-col size="2">
+                  <p class="gratis1">GRATIS</p>
+                </ion-col>
+                <ion-col size="2">
+                  <img src="assets/image/electric-caricons.png" class="iconimg">
+                </ion-col>
+              </ion-row>
+              <ion-row style="background: #e8edf1;" class="greybackground"> 
+                <ion-col size="12" class="subbackground2">
+                  <p class="extrapara">ANZEIGE WÄHLEN</p>
+                  <i class="fa fa-caret-down" (click)="replaceIcon($event);"></i>
+                </ion-col>
+                <!-- <ion-col size="2">
+                   
+                </ion-col> -->
+              </ion-row>
+            </div>
+            
+            <ion-list slot="content"  style="padding-top: 2px;">
+            
+              <a  (click)="gotoAutomotorPage(38);" style="text-decoration: none;">
+                <ion-item-divider  style="border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Autos
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                  
+                </ion-item-divider>
+              </a>
+              <a (click)="gotoAutomotorPage(39);" style="text-decoration: none;">
+                <ion-item-divider  class="greybackground"  style="background: #eef2f5;border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                  Motorrad & Quad
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>  
+              </a>
+
+              <a (click)="gotoAutomotorPage(40);"  style="text-decoration: none;">
+                <ion-item-divider  style="border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Nutzfahrzeug & Pickup
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>
+              </a>
+
+              <a (click)="gotoAutomotorPage(41);"  style="text-decoration: none;">
+                <ion-item-divider   class="greybackground"  style="background: #eef2f5;border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Wohnwagen & Wohnmobil
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>
+              </a>
+
+              <a (click)="gotoTiresPage();"  style="text-decoration: none;">
+                <ion-item-divider style="border: none;" >
+                  <ion-label style="color: black;font-size: 15px;">
+                    Ersatzteile & Zubehör
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>
+              </a>
+
+              <a (click)="gomarketPlaceForm('pages/booteprivatform')"  style="text-decoration: none;">
+                <ion-item-divider style="border: none;" class="greybackground">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Boote
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>
+              </a>
+
+              <!-- <div style="padding: 4px;">
+                <ion-accordion-group>
+                  <ion-accordion value="colors">
+                      <ion-row  slot="header">
+                        <ion-col size="10.5" style="height: 46px;background: #dfe7ef96;">
+                          <div class="textcl" style="color:black;font-weight: 700;padding-left: 10px;">Boote</div>
+                        </ion-col>
+                        <ion-col size="1.5" style="height: 46px;background: #dfe7ef96;">
+                          
+                          <i class="fa fa-caret-down" style="color:#7c7777;margin: 12px 12px;font-size: 17px;" (click)="replaceIcon($event);"></i> 
+                        </ion-col>
+                      </ion-row>
+                  
+                    <ion-list slot="content">
+                    <a style="text-decoration: none;" (click)="gomarketPlaceForm('pages/booteprivatform','Privat');">
+                      <ion-item style="--border-style : none !important;border-bottom: 1px solid #d1c9c9a1;">
+                        <ion-label style="font-size: 14px;">Boote Private</ion-label>
+                        <ion-icon name="caret-forward-outline" style="color:#7c7777;font-size: 15px;"></ion-icon>
+                      </ion-item>
+                    </a>
+                    <a style="text-decoration: none;" (click)="gomarketPlaceForm('pages/commercialboatform','Händler');">
+                      <ion-item style="--border-style : none !important;">
+                        <ion-label style="font-size: 14px;">Boote gewerblich verkaufen</ion-label>
+                        <ion-icon name="caret-forward-outline" style="color:#7c7777;font-size: 15px;"></ion-icon>
+                      </ion-item>
+                    </a>
+                    </ion-list>
+                  </ion-accordion>
+                  </ion-accordion-group>
+              </div> -->
+            </ion-list>
+          </ion-accordion>
+        
+      </div>
+    </ion-card>
+</ion-accordion-group>
+
+  <!-- end auto/motor section -->
+
+  <!-- start pets form -->
+<!-- 
+  <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;">
+    <div style="padding: 4px;">
+      <div class="newdivs" slot="header">
+        <a (click)="openPetsForm();">
+          <ion-row style="background-color: #ebf0f57d;" class="darkback">
+            <ion-col size="8">
+              <div class="textcls">Haustiere</div>
+              <p style="font-size: 12px;">Haustiere verkaufen</p>
+            </ion-col>
+            <ion-col size="2">
+              <p class="gratis1">GRATIS</p>
+            </ion-col>
+            <ion-col size="2">
+              <img src="assets/image/paw_new.png" class="iconimg">
+
+            </ion-col>
+          </ion-row>
+        </a>
+      </div>
+    </div>
+  </ion-card> -->
+
+  <ion-accordion-group>
+    <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;">
+      <div style="padding: 4px;" id="fahrradErsId" (click)="adjustFrader()">
+        
+          <ion-accordion value="colors2"> 
+            <div class="newdivs" slot="header">
+              <ion-row style="background-color: #ebf0f57d;" class="darkback">
+                <ion-col size="8">
+                  <div class="textcls">Haustiere & Tierzubehör</div>
+                  <!-- <p style="font-size: 12px;">Fahrrad verkaufen</p> -->
+                </ion-col>
+                <ion-col size="2">
+                  <p class="gratis1">GRATIS</p>
+                </ion-col>
+                <ion-col size="2">
+                  <img src="assets/image/paw_new.png" class="iconimg">
+                </ion-col>
+              </ion-row>
+              <ion-row style="background: #e8edf1;" class="greybackground"> 
+                <ion-col size="12" class="subbackground2">
+                  <p class="extrapara">ANZEIGE WÄHLEN</p>
+                  <p  class="extraparasub">Bis zum 31.12.2024 kannst du deine Anzeigen kostenlos veröffentlichen</p>
+                  <i class="fa fa-caret-down" (click)="replaceIcon($event);"></i>
+                </ion-col>
+                <!-- <ion-col size="2">
+                   
+                </ion-col> -->
+              </ion-row>
+            </div>
+            
+            <ion-list slot="content"  style="padding-top: 2px;">
+            
+              <a  (click)="openPetsForm();" style="text-decoration: none;">
+                <ion-item-divider  style="border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Haustiere
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                  
+                </ion-item-divider>
+              </a>
+              <a (click)="openPetsAccessForm();" style="text-decoration: none;">
+                <ion-item-divider  class="greybackground"  style="background: #eef2f5;border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Tierzubehör 
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>  
+              </a>
+            </ion-list>
+          </ion-accordion>
+        
+      </div>
+    </ion-card>
+  </ion-accordion-group>
+
+
+  <ion-accordion-group>
+    <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;">
+      <div style="padding: 4px;" id="fahrradErsId" (click)="adjustFrader()">
+        
+          <ion-accordion value="colors2"> 
+            <div class="newdivs" slot="header">
+              <ion-row style="background-color: #ebf0f57d;" class="darkback">
+                <ion-col size="8">
+                  <div class="textcls">Fahrrad, Ersatzteile & Zubehör</div>
+                  <p style="font-size: 12px;">Fahrrad verkaufen</p>
+                </ion-col>
+                <ion-col size="2">
+                  <p class="gratis1">GRATIS</p>
+                </ion-col>
+                <ion-col size="2">
+                  <img src="assets/image/bicycle2.png" class="iconimg">
+                </ion-col>
+              </ion-row>
+              <ion-row style="background: #e8edf1;" class="greybackground"> 
+                <ion-col size="12" class="subbackground2">
+                  <p class="extrapara">ANZEIGE WÄHLEN</p>
+                  <i class="fa fa-caret-down" (click)="replaceIcon($event);"></i> 
+                </ion-col>
+              </ion-row>
+            </div>
+            
+            <ion-list slot="content"  style="padding-top: 2px;">
+            
+              <a  (click)="openBicycleForm();" style="text-decoration: none;">
+                <ion-item-divider  style="border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Fahrrad
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                  
+                </ion-item-divider>
+              </a>
+              <a (click)="gotoFahrradSparePage();" style="text-decoration: none;">
+                <ion-item-divider  class="greybackground"  style="background: #eef2f5;border: none;">
+                  <ion-label style="color: black;font-size: 15px;">
+                    Ersatzteile & Zubehör 
+                  </ion-label>
+                  <p class="gratis">GRATIS</p>
+                  <ion-icon name="caret-forward-outline" style="color: #999191;;position: absolute;right: 20px;font-size: 14px;"></ion-icon>
+                </ion-item-divider>  
+              </a>
+            </ion-list>
+          </ion-accordion>
+        
+      </div>
+    </ion-card>
+  </ion-accordion-group>
+
+
+  <!-- <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;">
+    <div style="padding: 4px;">
+      <div class="newdivs" slot="header">
+        <a (click)="openBicycleForm();">
+          <ion-row style="background-color: #ebf0f57d;">
+            <ion-col size="8">
+              <div class="textcls">Fahrrad</div>
+              <p style="font-size: 12px;">Fahrrad verkaufen</p>
+            </ion-col>
+            <ion-col size="2">
+              <p class="gratis1">GRATIS</p>
+            </ion-col>
+            <ion-col size="2">
+              <img src="assets/image/bicycle2.png" class="iconimg">
+            </ion-col>
+          </ion-row>
+        </a>
+      </div>
+    </div>
+  </ion-card> -->
+
+  <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;">
+    <div style="padding: 4px;">
+      <div class="newdivs" slot="header">
+        <a (click)="openEFahrzeugeForm();">
+          <ion-row style="background-color: #ebf0f57d;" class="darkback">
+            <ion-col size="8">
+              <div class="textcls">E-Fahrzeuge</div>
+              <!-- <p style="font-size: 12px;">Shops verkaufen</p> -->
+              <!-- <p style="font-size: 12px;"></p> -->
+            </ion-col>
+            <ion-col size="2">
+              <p class="gratis1">GRATIS</p>
+            </ion-col>
+            <ion-col size="2">
+              <img src="assets/image/e-fahrzeuge.png" class="iconimg">
+              <!-- <img src="assets/image/shopnew.png" class="iconimg"> -->
+            </ion-col>
+          </ion-row>
+        </a>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card style="border: 1px solid #d9d4d4;box-shadow: none; padding: 3px;display: none;">
+    <div style="padding: 4px;">
+      <div class="newdivs" slot="header">
+        <a (click)="openShopForm();">
+          <ion-row style="background-color: #ebf0f57d;" class="darkback">
+            <ion-col size="8">
+              <div class="textcls">Inserat für Shop aufgeben</div>
+              <!-- <p style="font-size: 12px;">Shops verkaufen</p> -->
+              <!-- <p style="font-size: 12px;"></p> -->
+            </ion-col>
+            <ion-col size="2">
+              <p class="gratis1">GRATIS</p>
+            </ion-col>
+            <ion-col size="2">
+              <img src="assets/image/shopping_new.png" class="iconimg">
+              <!-- <img src="assets/image/shopnew.png" class="iconimg"> -->
+            </ion-col>
+          </ion-row>
+        </a>
+      </div>
+    </div>
+  </ion-card>
+  <!-- end pets form -->
+</ion-content>
+ 

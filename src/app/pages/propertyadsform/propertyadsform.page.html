@@ -1,0 +1,411 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-row>
+      <ion-col size="2">
+        <a>
+          <div class="back-circle">
+            <img src="assets/image/left-arrow2.png">
+          </div>
+        </a>
+        </ion-col>
+        <ion-col size="10">
+        <ion-card-title style="font-size: 18px;font-weight: 500;color: white;padding: 7px;">Haus verkaufen oder suchen
+        </ion-card-title>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+ 
+    <app-addimage></app-addimage>   
+    <ion-row style="padding-right: 2px;">
+      <ion-col size="6" (click)="changepricemode('Anzeige')">
+        <div class="ichbtn" [style]="!ichcontainer ? active_ichbtn : ''">
+          Ich biete
+          <span>*</span>
+          <p [style]="!ichcontainer ? active_ichbtn_para : ''">Anzeige aufgeben</p>
+        </div>
+      </ion-col>
+      <ion-col size="6" (click)="changepricemode('KOSTENLOS')">
+        <div class="ichbtn" [style]="ichcontainer ? active_ichbtn : ''">
+          Ich suche
+          <span>*</span>
+          <p [style]="ichcontainer ? active_ichbtn_para : ''">KOSTENLOS</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <form  [formGroup]="myForm" (ngSubmit)="submit()">
+      <ion-row>
+        <ion-col size="12">
+          @if(houseselltitle?.value===''){
+            <span class="requiedcls">*</span>
+          }
+          <ion-input
+            type="text"
+            placeholder="Anzeigen-Titel"
+            autocapitalize="true"
+            class="myinputname"
+            formControlName="houseselltitle"
+            [class.input-error]="houseselltitle?.invalid && houseselltitle?.touched"
+          >
+          </ion-input>
+        </ion-col>
+          <ion-col size="12">
+          <h6 class="head">ADRESSE & ORT</h6>
+        </ion-col>
+         <ion-col size="12">
+          <ion-input 
+          formControlName="state"
+          placeholder="Straße" 
+          autocapitalize='true' 
+          class="myinputname"></ion-input>
+        </ion-col>
+         <ion-col size="12">
+          <ion-item class="selectone" 
+          [class.input-error-native]="country?.invalid && country?.touched">
+            <ion-label>Bitte Land auswählen 
+              @if(country?.value===''){
+                <span class="requiedcls2">*</span>
+              }
+              <span class="requiedcls2">*</span>
+            </ion-label>
+            <ion-select interface="popover" name="country"
+            
+            
+            formControlName="country">
+              @for (item of commonServices.getcountryData; track $index) {
+                <ion-select-option [value]="item.country_name">{{item.country_name}}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+         <ion-col size="4">
+          @if(pincode?.value===''){
+            <span class="requiedcls3">*</span>
+          }
+          <ion-input 
+          [class.input-error]="pincode?.invalid && pincode?.touched"
+          type="number" placeholder="PLZ" class="myinputname" 
+          formControlName="pincode"
+          
+          ></ion-input>
+        </ion-col>
+
+        <ion-col size="8">
+          <ion-item class="selectone" [class.input-error-native]="city?.invalid && city?.touched">
+            <ion-select interface="popover" formControlName="city">
+              <ion-select-option>Stadt 1</ion-select-option>
+              <ion-select-option>Stadt 2</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+         <ion-col size="12">
+          <div class="statediv">
+            <span></span>
+          </div>
+        </ion-col>
+         <ion-col size="12">
+          <h6 class="head">OBJEKTDATEN</h6>
+        </ion-col>
+
+      </ion-row>
+
+      @if(ichcontainer){
+        <ion-row class="betweeprice">
+        <ion-col size="6">
+          <p>von</p>
+          <ion-row>
+            <ion-col size="2" style="padding-top: 1px;">
+              <ion-input disabled class="myinputsss" id="vonpriceicon"><ion-icon name="logo-euro"></ion-icon></ion-input>
+            </ion-col>
+            <ion-col size="10" style="padding-top: 1px;">
+              <span class="requiedcls">*</span>
+              <ion-input type="number" placeholder="Kaufpreis" formControlName="vonValue"  class="myinput"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="6">
+          <p>bis</p>
+          <ion-row>
+            <ion-col size="2" style="padding-top: 1px;">
+              <ion-input disabled class="myinputsss" id="bispriceicon"><ion-icon name="logo-euro"></ion-icon></ion-input>
+            </ion-col>
+            <ion-col size="10" style="padding-top: 1px;">
+              <span class="requiedcls">*</span>
+              <ion-input type="number" placeholder="Kaufpreis" class="myinput" formControlName="bisValue"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      }
+      
+      
+      @if(!ichcontainer){
+        <ion-row>
+        <ion-col size="4" style="padding-top: 2px;padding-bottom: 1px;">
+          <ion-item class="selectone" id="pricetypselect">
+            <ion-label style="font-size: 12px;font-weight:700">Preistyp <span class="requiedcls4">*</span></ion-label>
+            <ion-select interface="popover" id="price_type">
+               @for (item of commonServices.Preistyp; track $index) {
+                <ion-select-option [value]="item.name">{{item.name}}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="1"  style="padding-top: 1px;">
+          <ion-input disabled class="myinputsss"><i class="fa fa-eur" aria-hidden="true"></i></ion-input>
+        </ion-col>
+        <ion-col size="4" id="pricediv" style="padding-top: 1px;">
+          <span id="newrequired5" class="requiedcls5">*</span>
+          <ion-input type="number" maxlength="8" placeholder="Kaufpreis" class="myinput" id="pricevalue"></ion-input>
+        </ion-col>
+        <ion-col size="3">
+          <label style="font-size:14px;color:green;"></label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-left: 7px;">
+        <ion-col size="8" style="border: 1px solid #b5b1b1;border-radius: 4px 0px 0px 4px;height: 44px;">
+          <span class="requiedcls6">*</span>
+          <ion-input placeholder="Wohnfläche" formControlName="wohnflache" type="number"></ion-input>
+        </ion-col>
+        <ion-col size="1" style="border-right: 1px solid #b5b1b1;height: 44px;border-bottom: 1px solid #b5b1b1;border-top: 1px solid #b5b1b1;border-radius: 0px 4px 4px 0px;">
+            <ion-label class="labelcls">m<sup>2</sup></ion-label>
+        </ion-col>
+      </ion-row>
+      }
+      
+      @if(ichcontainer){
+        <ion-row class="betweeprice">
+        <ion-col size="6">
+          <p>von</p>
+          <ion-row>
+            <ion-col size="10" style="padding-top: 1px;">
+              <span class="requiedcls" style="left: 123px;top: 8px;">*</span>
+              <ion-input type="number" placeholder="Wohnfläche" formControlName="vonwoh" class="myinput"></ion-input>
+            </ion-col>
+            <ion-col size="2" style="padding-top: 1px;">
+              <ion-input disabled class="myinputsss kmdes" id="vonpWohnfl"><span>m<sup>2</sup></span></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="6">
+          <p>bis</p>
+          <ion-row>
+            <ion-col size="10" style="padding-top: 1px;">
+              <span class="requiedcls" style="left: 123px;top: 8px;">*</span>
+              <ion-input type="number" placeholder="Wohnfläche" formControlName="biswoh"  class="myinput" id="biswoh"></ion-input>
+            </ion-col>
+            <ion-col size="2" style="padding-top: 1px;">
+              <ion-input disabled class="myinputsss kmdes" id="bisWohnfl"><span>m<sup>2</sup></span></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      }
+
+      <ion-row style="margin-left: 7px; margin-top: 5px;">
+        <ion-col size="8" style="border: 1px solid #b5b1b1;border-radius: 4px 0px 0px 4px;height: 44px;">
+           <ion-input placeholder="Grundfläche" type="number" formControlName="grundflache"></ion-input>
+        </ion-col>
+        <ion-col size="1" style="border-right: 1px solid #b5b1b1;height: 44px;border-bottom: 1px solid #b5b1b1;border-top: 1px solid #b5b1b1;border-radius: 0px 4px 4px 0px;">
+            <ion-label class="labelcls">m<sup>2</sup></ion-label>
+        </ion-col>
+      </ion-row>
+      
+    <app-radiofield
+      [label]="'Objekttyp'"
+      [(objekttyp)]="objekttypValue"
+      [isInvalid]="objekttyp.invalid && objekttyp.touched"
+      (objekttypChange)="myForm.patchValue({ objekttyp: $event })">
+    </app-radiofield>
+
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item class="selectone">
+            <ion-label>Zustand </ion-label>
+            <ion-select interface="popover" id="zustandid" formControlName="zustandid">
+              @for (item of commonServices.zustandOtp; track $index) {
+                <ion-select-option [value]="item.name">{{item.name}}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+         <ion-item style="--highlight-color-focused: white;border: 1px solid #b5b1b1;border-radius: 4px;">
+          <ion-label style="border-right: 1px solid #b5b1b1;padding-right: 11px;">Anzahl Zimmer</ion-label>
+          <ion-input 
+          placeholder="1,2,3....." 
+          type="number" 
+          formControlName="numberofrooms"></ion-input>
+         </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <app-textareafield
+        [description]="Objektbeschreibung.value"
+        [isInvalid]="Objektbeschreibung.invalid && Objektbeschreibung.touched"
+        (descriptionChange)="myForm.patchValue({ Objektbeschreibung: $event })">
+      </app-textareafield>
+
+      @if(!ichcontainer){
+      <ion-row>
+        <ion-col>
+          <div class="newdiv">
+            <a>
+              <ion-item>Lage und Sonstiges</ion-item>
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+      }
+     
+
+      <ion-row>
+        <ion-col>
+          <div class="newdiv">
+            <a>
+              <ion-item><ion-label>Verfügbarkeit </ion-label></ion-item>
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <!-- paste here -->
+    <app-radiofield
+      [label]="'bautyp'"
+      [(objekttyp)]="objekttypValue"
+      [isInvalid]="false"
+      (objekttypChange)="myForm.patchValue({ bautyp: $event })">
+    </app-radiofield>
+
+      <ion-row>
+        <ion-col size="12">
+          <h6 class="head">WEITERE ANGABEN</h6>
+        </ion-col>
+      </ion-row>
+
+
+      <app-checkboxfield
+        [label]="'Ausstattung'"
+        [arrdata]="this.commonServices.ausstattungList"
+        (selectionChange)="myForm.patchValue({ ausstattung: $event })"
+      />
+
+      <ion-row>
+        <ion-col>
+          <div class="newdiv" id="Freifidone">
+            <a>
+              <ion-item><ion-label>Freiflächen</ion-label></ion-item>
+            </a>
+          </div>
+          <div class="newdiv" id="Freifidtwo" style="display:none;padding: 5px 10px 5px 10px;">
+            <a>
+              <ion-label style="color: black;font-size: 15px;font-weight: 700;">Freiflächen: </ion-label>
+              <p style="font-size: 13px;"></p>
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <app-checkboxfield
+        [label]="'Böden'"
+        [arrdata]="this.commonServices.BodenData"
+        (selectionChange)="myForm.patchValue({ boden: $event })"
+      />
+
+
+      <app-checkboxfield
+        [label]="'Heizung'"
+        [arrdata]="this.commonServices.HeizungData"
+        (selectionChange)="myForm.patchValue({ heizung: $event })"
+      />
+
+      @if(!ichcontainer){
+      <ion-row>
+        <ion-col>
+          <div class="newdiv" id="energieid">
+            <a>
+              <ion-item><ion-label>Energieausweis</ion-label></ion-item>
+            </a>
+          </div>
+          <div class="newdiv" id="energieid2" style="display:none;padding: 5px 10px 5px 10px;">
+            <a>
+              <ion-label style="color: black;font-size: 15px;font-weight: 700;">Ihre Energiedaten: </ion-label>
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+
+       <ion-row>
+        <ion-col size="12">
+          <div class="newdiv" id="Sonstigeid">
+            <a>
+              <ion-item><ion-label>Sonstige Preise und Kosten</ion-label></ion-item>
+            </a>
+          </div>
+          <div class="newdiv" id="Sonstigeidtwo" style="display:none;padding: 5px 10px 5px 10px;">
+            <a></a>
+          </div>
+        </ion-col>
+
+         <ion-col size="12">
+          <div class="newdiv" id="linksid">
+            <a>
+              <ion-item><ion-label>Links zu Zusatzinformationen</ion-label></ion-item>
+            </a>
+          </div>
+          <div class="newdiv" id="linksid2" style="display:none;padding: 5px 10px 5px 10px;">
+            <a></a>
+          </div>
+        </ion-col>
+
+      </ion-row>
+      }
+      
+      <ion-row>
+        <ion-col size="12">
+         <ion-item class="selectType" id="shoplogoids">
+          <ion-label style="padding-right: 11px;">Logo hochladen </ion-label>
+            <div style="padding-left: 57px;padding-top: 9px;">
+              <p class="imagechoosecls">Dateien auswählen</p>
+            </div>
+         </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="border-bottom: 1px solid rgba(204, 199, 199, 0.74);">
+        <ion-col size="4"></ion-col>
+          <ion-col size="4">
+            <div class="thumbnailContainer">
+              <img src="" class="progressThumbnail">
+            </div>
+          </ion-col>
+          <ion-col size="4"></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+            <h6 class="head">KONTAKT</h6>
+        </ion-col>
+      </ion-row>
+
+      <app-user-contact/>
+
+      <ion-row>
+        <ion-col size="12">
+          <div class="qty-buys">
+            <ion-button type="submit" 
+            [disabled]="myForm.invalid">Weiter</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+      </form>
+</ion-content>

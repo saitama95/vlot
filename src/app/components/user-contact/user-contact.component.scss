@@ -1,0 +1,23 @@
+.contact_header{
+	display: flex;
+    justify-content: space-between;
+    p{
+    	margin:0;
+    }
+}
+.newdiv {
+    border: 1px solid #d1c9c9;
+    border-radius: 5px;
+}
+.icon1{
+    font-size: 20px;
+    padding-left: 10px;
+    color: #8585ad;
+    margin: 0;
+}
+ion-toggle{
+    --ion-color-base:#e9621a !important;
+}
+ion-toggle.toggle-checked::part(track) {
+    background-color: green;
+}

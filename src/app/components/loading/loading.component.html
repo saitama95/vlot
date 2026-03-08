@@ -1,0 +1,24 @@
+<div class="container1" *ngIf="arrdata.length==0">
+  <div class="loading">
+    <div class="img_loading">
+      <ion-skeleton-text [animated]="false"></ion-skeleton-text>
+    </div>
+    <p><ion-skeleton-text [animated]="false"></ion-skeleton-text></p>
+  </div>
+
+  <div class="loading">
+    <div class="img_loading">
+      <ion-skeleton-text [animated]="false"></ion-skeleton-text>
+    </div>
+    <p><ion-skeleton-text [animated]="false"></ion-skeleton-text></p>
+  </div>
+
+  <div class="loading">
+    <div class="img_loading">
+      <ion-skeleton-text [animated]="false"></ion-skeleton-text>
+    </div>
+    <p><ion-skeleton-text [animated]="false"></ion-skeleton-text></p>
+  </div>
+</div>
+
+<p style="text-align: center;" *ngIf="arrdata[0]=='null'">keine Daten</p>

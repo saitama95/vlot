@@ -1,0 +1,149 @@
+.back-circle {
+    font-size: 25px;
+    margin-left: 10px;
+}
+ion-card.md.hydrated {
+    box-shadow: none;
+    padding: 5px;
+    background: #d1ecf95c;
+    border: 1px solid #ebe7e7;
+}
+
+.newtitle{
+    padding-left: 8px;
+    color: #e9621a!important;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+span.pricetit {
+    // position: relative;
+    // bottom: 11px;
+    // right: 6px;
+    // font-size: 15px;
+    color: white;
+}
+//vertical tab
+
+.tab {
+    // float: left;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #c9e5f35c;
+    width: 95%;
+    height: 257px;
+    
+    margin-left: 10px;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 12px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+    background-image: url('https://verkaufalles.at/mobapp/image/checkicon.png');
+    background-repeat: no-repeat;
+    background-size: 26px;
+    background-position: 278px;
+  }
+  
+  /* Create an active/current "tab button" class */
+  .tab button.active {
+    background-color: #ddd;
+    background-image: url('https://verkaufalles.at/mobapp/image/checkicon.png');
+    background-repeat: no-repeat;
+    background-size: 26px;
+    background-position: 278px;
+  }
+
+  ion-title.titlecls {
+    font-size: 16px;
+    color: #e9621a!important;
+    padding: 7px 6px;
+    font-weight: 600;
+}
+  
+
+.tablinks{
+  position: relative;
+  padding: 12px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: white;
+}
+
+.tablinks ion-icon{
+  color:#999191;
+  position:absolute;
+  right:20px;
+  font-size:14px;
+}
+
+.tablinks.active{
+  background:#f1f1f1;
+  font-weight:600;
+}
+
+.tabcontent{
+  padding:10px;
+}
+
+.feature-list{
+  padding-left:26px;
+  font-size:15px;
+}
+
+.feature-list li{
+  color:black;
+}
+
+.no-decoration{
+  text-decoration:none;
+}
+
+.card-wrapper{
+  padding:4px;
+  background-color:white;
+}
+
+.sell-btn{
+  background-color:#e9621a;
+  height:50px;
+}
+
+.border-right{
+  border-right:1px solid #fff;
+}
+
+.textcl{
+  color:white;
+  font-weight:700;
+  padding-left:10px;
+  margin-top:2%;
+  font-size:24px;
+}
+
+.pricetit{
+  font-size:18px;
+}
+
+.sell-type{
+  opacity:0.9;
+}
+

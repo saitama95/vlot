@@ -1,0 +1,618 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-row>
+      <ion-col size="2">
+        <a (click)="goback();">
+          <div class="back-circle">
+            <img src="assets/image/left-arrow2.png">
+            <!-- <ion-icon name="arrow-back-outline"></ion-icon> -->
+          </div>
+        </a>
+        </ion-col>
+        <ion-col size="10">
+        <ion-card-title style="font-size: 18px;font-weight: 500;color: white;padding: 7px;">Anzeige aufgeben</ion-card-title>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+  </ion-header>
+<ion-content>
+
+  @if(selectedTab === 'haus'){
+    <div class="tabcontent">
+
+  <ion-card>
+    <p class="newtitle">Haus verkaufen oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('/pages/propertyadsform?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('/pages/propertyadsform?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+
+  <ion-card>
+
+    <p class="newtitle">Haus vermieten, verpachten oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('/pages/renthouse?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('/pages/renthouse?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+
+    </a>
+
+  </ion-card>
+
+    </div>
+  }
+  
+  @if(selectedTab === 'wohnung'){
+    <div class="tabcontent">
+
+  <ion-card>
+    <p class="newtitle">Wohnung verkaufen oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/wohnungverkaufen?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/wohnungverkaufen?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+
+    </a>
+  </ion-card>
+
+
+  <ion-card>
+    <p class="newtitle">Wohnung vermieten, verpachten oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/wohnungvermieten?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/wohnungvermieten?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+
+    </a>
+
+  </ion-card>
+
+</div>
+  }
+
+  @if(selectedTab === 'grundstuck'){
+   <div class="tabcontent">
+
+  <ion-card>
+    <p class="newtitle">Grundstück verkaufen oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/grundstuckverkaufen?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/grundstuckverkaufen?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+
+  <ion-card>
+
+    <p class="newtitle">Grundstück vermieten, verpachten oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/grundstuckverpachten?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/grundstuckverpachten?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+</div>
+  }
+
+  @if(selectedTab === 'gewer'){
+   <div class="tabcontent">
+
+  <ion-card>
+    <p class="newtitle">Gewerbeimmobilie verkaufen oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/sellgewerimmobile?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/sellgewerimmobile?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+
+  <ion-card>
+
+    <p class="newtitle">Gewerbeimmobilie vermieten, verpachten oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/rentgewerimmobile?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/rentgewerimmobile?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+</div>
+  }
+
+  @if(selectedTab === 'ferien'){
+  <div class="tabcontent">
+
+  <ion-card>
+    <p class="newtitle">Ferienimmobilie verkaufen oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/sellferienimmobilie?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/sellferienimmobilie?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+
+  <ion-card>
+
+    <p class="newtitle">Ferienimmobilie vermieten, verpachten oder suchen</p>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/rentferienimmobile?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/rentferienimmobile?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+</div>
+  }
+
+  @if(selectedTab === 'sonstige'){
+   <div class="tabcontent">
+
+  <ion-card>
+    <ion-title class="newtitle">Sonstige Immobilie verkaufen</ion-title>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/sellsonstigeform?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/sellsonstigeform?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+
+  <ion-card>
+
+    <ion-title class="newtitle">Sonstige Immobilie vermieten</ion-title>
+
+    <ul class="feature-list">
+      <li>Unbegrenzte Bildanzahl</li>
+      <li>30 Tage Laufzeit</li>
+    </ul>
+
+    <a class="no-decoration">
+      <div class="card-wrapper">
+        <ion-row>
+
+          <ion-col
+            size="6"
+            class="sell-btn border-right"
+            [ngClass]="{ 'sell-type': isSelltypeprivate }"
+            (click)="openFormPage('pages/rentsonstigeform?form_type=Privat')">
+
+            <div class="textcl">
+              Privat <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+          <ion-col
+            size="6"
+            class="sell-btn"
+            [ngClass]="{ 'sell-type': isSelltypeMakler }"
+            (click)="openFormPage('pages/rentsonstigeform?form_type=Makler')">
+
+            <div class="textcl">
+              Makler <span class="pricetit">€ 0,-</span>
+            </div>
+
+          </ion-col>
+
+        </ion-row>
+      </div>
+    </a>
+
+  </ion-card>
+
+</div>
+  }
+  
+  <ion-title class="titlecls">Weitere Immobilien</ion-title>
+<div class="tab">
+
+  <button class="tablinks"
+    [class.active]="selectedTab === 'haus'"
+    (click)="openTabs('haus')">
+    Haus
+    <ion-icon name="caret-forward-outline"></ion-icon>
+  </button>
+
+  <button class="tablinks"
+    [class.active]="selectedTab === 'wohnung'"
+    (click)="openTabs('wohnung')">
+    Wohnung
+    <ion-icon name="caret-forward-outline"></ion-icon>
+  </button>
+
+  <button class="tablinks"
+    [class.active]="selectedTab === 'grundstuck'"
+    (click)="openTabs('grundstuck')">
+    Grundstück
+    <ion-icon name="caret-forward-outline"></ion-icon>
+  </button>
+
+  <button class="tablinks"
+    [class.active]="selectedTab === 'gewer'"
+    (click)="openTabs('gewer')">
+    Gewerbeimmobilie
+    <ion-icon name="caret-forward-outline"></ion-icon>
+  </button>
+
+  <button class="tablinks"
+    [class.active]="selectedTab === 'ferien'"
+    (click)="openTabs('ferien')">
+    Ferienimmobilie
+    <ion-icon name="caret-forward-outline"></ion-icon>
+  </button>
+
+  <button class="tablinks"
+    [class.active]="selectedTab === 'sonstige'"
+    (click)="openTabs('sonstige')">
+    Sonstige Immobilien
+    <ion-icon name="caret-forward-outline"></ion-icon>
+  </button>
+
+</div>
+</ion-content>

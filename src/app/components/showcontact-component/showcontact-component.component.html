@@ -1,0 +1,154 @@
+<div class="shadow" *ngIf="selltype=='privat'">
+  <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;">
+    <p class="titlediv">Name & Kontaktdaten</p>
+    <ion-row>
+
+      <ion-col size="5" style="padding: 0px;">
+        <p style="font-weight: 500;margin-bottom: 2px;margin-left:7px;" *ngIf="details.user_name">Vorname</p>
+      </ion-col>
+      <ion-col size="7" style="padding: 0px;">
+        <p style="margin: 0;" *ngIf="details.user_name">{{details.user_name}}</p>
+      </ion-col>
+
+      <ion-col size="5" style="padding: 0px;">
+        <p style="font-weight: 500;margin-bottom: 2px;margin-left:7px;" *ngIf="details.nach_name">Nachname</p>
+      </ion-col>
+      <ion-col size="7" style="padding: 0px;">
+        @if(details.nach_name){
+            <p style="margin: 0;">{{details.nach_name}}</p>
+        }
+      </ion-col>
+      
+      <ion-col size="5" style="padding: 0px;">
+        @if(details.city){
+          <p style="font-weight: 500;margin-bottom: 2px;margin-left:7px;">Adresse</p>
+        }
+      </ion-col>
+      <ion-col size="7" style="padding: 0px;">
+        <p style="margin: 0;;text-transform: capitalize;" *ngIf="details.zipcode"><span *ngIf="details.street_address">{{details.street_address}}, </span>{{details.zipcode}} {{details.city}}, {{details.country}}
+        </p>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+
+<div class="shadow" *ngIf="selltype=='Gewerblich'">
+  <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;">
+    <p class="titlediv">Name & Kontaktdaten</p>
+    <ion-row>
+
+      <ion-col size="5" style="padding: 0px;">
+        <p style="font-weight: 500;margin-bottom: 2px;margin-left:7px;" *ngIf="details.user_name">Vorname</p>
+      </ion-col>
+      <ion-col size="7" style="padding: 0px;">
+        <p style="margin: 0;" *ngIf="details.user_name">{{details.user_name}}</p>
+      </ion-col>
+
+      <ion-col size="5" style="padding: 0px;">
+        <p style="font-weight: 500;margin-bottom: 2px;margin-left:7px;" *ngIf="details.nach_name">Nachname</p>
+      </ion-col>
+      <ion-col size="7" style="padding: 0px;">
+        <p style="margin: 0;" *ngIf="details.nach_name">{{details.nach_name}}</p>
+      </ion-col>
+      
+      <ion-col size="5" style="padding: 0px;">
+        <p style="font-weight: 500;margin-bottom: 2px;margin-left:7px;" *ngIf="details.zipcode">Adresse</p>
+      </ion-col>
+      <ion-col size="7" style="padding: 0px;">
+        <p style="margin: 0;;text-transform: capitalize;" *ngIf="details.zipcode"><span *ngIf="details.street_address">{{details.street_address}}, </span>{{details.zipcode}} {{details.city}}, {{details.country}}
+        </p>
+      </ion-col>
+
+      <ion-col size="5" style="padding: 0px;" *ngIf="details.firmname">
+        <p style="font-weight: 500;margin-bottom: 2px;margin-left:7px;" *ngIf="details.firmname">Firmenname</p>
+      </ion-col>
+      <ion-col size="7" style="padding: 0px;" *ngIf="details.firmname">
+        <p style="margin: 0;" *ngIf="details.firmname">{{details.firmname}}</p>
+      </ion-col>
+
+      <ion-col size="5" style="padding: 0px;" *ngIf="details.company_address">
+        <p style="font-weight: 500;margin-bottom: 2px;margin-left:7px;" *ngIf="details.company_address">Firmenadresse</p>
+      </ion-col>
+      <ion-col size="7" style="padding: 0px;" *ngIf="details.company_address">
+        <p style="margin: 0;" *ngIf="details.company_address">{{details.company_address}}</p>
+      </ion-col>
+
+
+      <ion-col size="12">
+       
+        <ion-row *ngIf="details.group2=='1' || details.group1=='1'">
+          <ion-col size="12" style="padding: 0px;">
+            <p class="titlediv2">Weitere Angaben</p>
+          </ion-col>
+          <ion-col size="12" style="padding:0;" *ngIf="details.group2=='1'">
+            <ion-row>
+              <ion-col size="5" style="padding: 0px;">
+                <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.email">Email</p>
+              </ion-col>
+              <ion-col size="7" style="padding: 0px;">
+                
+                <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.email">{{details.email}}</p>
+              </ion-col>
+              <ion-col size="5" style="padding: 0px;" *ngIf="website_link">
+                <p style="font-weight: 500;margin-bottom: 2px;">Website</p>
+              </ion-col>
+              <ion-col size="7" style="padding: 0px;" *ngIf="website_link">
+                <p style="font-weight: 500;margin-bottom: 2px;"><a href="https://{{website_link}}">https://{{website_link}}</a></p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="5" style="padding: 0;">
+            <div  *ngIf="details.group1=='1'">
+              <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.weiter_telefono">Telefonnummer 1: </p>
+              <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.weiter_telefono_second">Telefonnummer 2:</p>
+              <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.phone_no">Handy Nummer: </p>
+              <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.weiterfax">Fax: </p>
+            </div>
+            <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.weiter_immocard">Immocard-ID: </p>
+            <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.immocard_firm">Immocard-Firma-ID: </p>
+          </ion-col>
+          <ion-col size="7" style="padding: 0;">
+            <div  *ngIf="details.group1=='1'">
+              <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.weiter_telefono"> {{details.weiter_telefono}}</p>
+              <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.weiter_telefono_second">{{details.weiter_telefono_second}}</p>
+              <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.phone_no"> <a href="tel:{{details.phone_no}}"></a> {{handyNumber}}</p>
+              <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.weiterfax">{{details.weiterfax}}</p>
+            </div>
+            <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.weiter_immocard">{{details.weiter_immocard}}</p>
+            <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.immocard_firm">{{details.immocard_firm}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+   
+
+      <ion-col size="12" *ngIf="details.zusatzliche_name || details.zusatzliche_firmname || details.zusatzliche_homepage || details.zusatzliche_telefono || details.zusatzliche_telefonotwo || details.zusatzliche_fax || details.zusatzliche_ohenat || details.zusatzliche_firmid != 0">
+        <p class="titlediv2">Zusätzliche Kontaktperson</p>
+      </ion-col>
+
+      <ion-col size="5">
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_name">Name: </p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_firmname">Firmenname: </p>
+        
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_homepage">Homepage: </p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_telefono">Telefonnummer 1: </p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_telefonotwo">Telefonnummer 2: </p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_fax">Fax: </p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_ohenat">Immocard-ID: </p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_firmid">Immocard-Firma-ID: </p>
+      </ion-col>
+      <ion-col size="7">
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_name">{{details.zusatzliche_name}}</p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_firmname">{{details.zusatzliche_firmname}}</p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_homepage"><a href="https://{{homepage_link}}">https://{{homepage_link}}</a></p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_telefono">{{details.zusatzliche_telefono}}</p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_telefonotwo">{{details.zusatzliche_telefonotwo}}</p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_fax">{{details.zusatzliche_fax}}</p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_ohenat">{{details.zusatzliche_ohenat}}</p>
+        <p style="font-weight: 500;margin-bottom: 2px;" *ngIf="details.zusatzliche_firmid">{{details.zusatzliche_firmid}}</p>
+      </ion-col>
+
+
+    </ion-row>
+  </div>
+</div>

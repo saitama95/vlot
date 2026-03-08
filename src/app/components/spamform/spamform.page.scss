@@ -1,0 +1,56 @@
+input:checked{
+    background-color:#e87b40;
+}
+.header{
+    background:#e87b40;
+    padding: 20px 21px;
+    h4{
+        font-size: 16px;
+        margin: 0;
+        font-weight: 700;
+    }
+}
+label{
+    margin: 0;
+    font-weight: unset;
+    font-size: 13px;
+}
+.checkbox_css{
+    padding: 20px 10px;
+
+    div{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+    }
+}
+ion-textarea{
+    border: 1px solid #bbb7b7;
+}
+.action_btn{
+    width: 100%;
+    text-align: end;
+    button{
+        padding: 8px 10px;
+        color: white;
+    }
+    .cancelbtn{
+        margin-right:10px;
+        background-color: grey;
+    }
+    .savebtn{
+        background-color: #e87b40;
+    }
+}
+ion-col[size="12"]{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+@media screen and (max-width:380px){
+        .header h4{
+            font-size: 14px;
+        }
+        label{
+            font-size: 11px !important;
+        }
+      }

@@ -1,0 +1,103 @@
+.mt_10{
+    margin-top: 10px;
+}
+.qty-buys {
+    margin-top: 21px;
+    -webkit-box-shadow: -1px -15px 0px -1px rgba(245,245,245,1);
+    -moz-box-shadow: -1px -15px 0px -1px rgba(245,245,245,1);
+    box-shadow: -1px -15px 0px -1px rgba(245,245,245,1);
+    width: 100%;
+    border-top: 1px solid #00000017;
+    border-bottom: 1px solid #00000017;
+    box-shadow: 3px 2px 3px #80808059;
+    border-radius: 0 !important;
+    background: #f8f9fa;
+    // position: fixed;
+    // z-index: 999;
+    bottom: 0px;
+    .space_between{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        a{
+            display: block;
+            width: 32%;
+        }
+    }
+    .icon_lists{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+        margin: 0 auto;
+
+        .icons{
+            width: 30px;
+        }
+    }
+
+}
+
+.addtocart-btn {
+    color: #ffff;
+    font-size: 16px;
+    font-weight: 500;
+    height: 44px;
+    bottom: 5px;
+    border-radius: 5px;
+    background-color: #e87b40;
+    width: 32%;
+}
+.addtocart-btn1 {
+    color: #ffff;
+    font-size: 16px;
+    font-weight: 500;
+    height: 70px;
+    bottom: 5px;
+    // border-radius: 60px;
+    background-color: #e87b40 !important;
+    
+}
+button.gotocall-btn {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    width: 95%;
+    height: 44px;
+    border-radius: 5px;
+    bottom: 5px;
+    background-color: #e87b40 !important;
+}
+
+button.gotocart-btn {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    background-color: #e87b40;
+}
+.disabledbtn{
+    background-color: #e4ab8d !important; 
+}
+ion-col[size="12"] {
+    text-align: center;
+    h4{
+        text-align: center;
+        font-size: 15px;
+        margin: 0;
+        margin-bottom: 18px;
+        font-weight: 700;
+    }
+    .spam_btn{
+        border: 1px solid #dc3545;
+        border-radius: 5px;
+    }
+}
+.increasewidth{
+    width: 99%;
+}
+.remove{
+    display: none !important;
+}

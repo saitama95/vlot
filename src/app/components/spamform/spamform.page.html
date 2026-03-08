@@ -1,0 +1,26 @@
+<ion-content>
+  <div class="header">
+    <h4>Warum meldest du diese Anzeige?</h4>
+  </div>
+
+  <ion-row>
+    <ion-col size="12" class="checkbox_css">
+
+      <div *ngFor="let item of checkdata">
+        <label>{{item.title}}</label>
+        <ion-checkbox color="primary" value="{{item.title}}" (ionChange)="getItem($event,item.id,item.title)"></ion-checkbox>
+      </div>
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-textarea placeholder="Meldungsgrund" id="reason"></ion-textarea>
+    </ion-col>
+
+    <ion-col size="12">
+      <div class="action_btn">
+        <button class="cancelbtn" (click)="goBack()">Abbrechen</button>
+        <button class="savebtn" (click)="savespam()">Bestätigen</button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

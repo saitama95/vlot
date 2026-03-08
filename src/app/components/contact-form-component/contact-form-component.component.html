@@ -1,0 +1,101 @@
+<ion-row>
+  <ion-col size="12">
+      <h6 class="head">KONTAKT</h6>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col>
+    <div class="newdiv" style="padding: 5px 10px 5px 10px;" id="kontaktid" *ngIf="kontakidSection1">
+        <div class="contact_header">
+          <ion-label style="color: black;font-size: 15px;font-weight: 700;">Name & Kontaktdaten: </ion-label>
+          <p><ion-icon name="create" class="icon1" (click)="KontaktModal()"></ion-icon></p>
+        </div>
+
+        <p style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Vorname: </span> <span>{{first_name}}</span></p>
+        <p *ngIf="this.nachName" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Nachname: </span> <span>{{nachName}}</span></p>
+
+        <div *ngIf="selltype!='privat'">
+          <p *ngIf="this.firmenName" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Firmenname: </span> <span>{{firmenName}}</span></p>
+          <p *ngIf="this.company_address" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Firmenanschrift: </span> <span>{{company_address}}</span></p>
+        </div>
+      
+
+        <div>
+          <div class="space_between" *ngIf="this.mobile_number || this.weitereTelefono || this.weitereFax"> 
+            <p *ngIf="this.mobile_number" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Mobile </span> <span>{{mobile_number}}</span></p>
+            <ion-toggle aria-label="Success toggle"  color="success"  [checked]="groupcheck1" (ionChange)="addCheckboxgroup($event,'group1')" id="group1" class="group1"></ion-toggle>
+          </div>
+          <p  *ngIf="this.weitereTelefono"  style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Telefonnummer 1:</span> <span>{{weitereTelefono}}</span></p>
+          <p   *ngIf="this.weitereFax" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Fax: </span> <span>{{weitereFax}}</span></p>
+        </div>
+       
+        <div>
+          <div class="space_between"  *ngIf="this.user_email">
+            <p  *ngIf="this.user_email" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">E-Mail: </span> <span>{{user_email}}</span></p>
+            <ion-toggle  aria-label="Success toggle"  color="success" [checked]="groupcheck2" (ionChange)="addCheckboxgroup($event,'group2')"  id="group2" class="group2"></ion-toggle>
+          </div>
+          <p  *ngIf="this.weitereHomepage"  style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Website: </span> <span>{{weitereHomepage}}</span></p>
+          
+        </div>
+    </div>
+    <div class="newdiv" style="padding: 5px 10px 5px 10px;" id="kontaktid2" *ngIf="kontakidSection2">
+        <div class="contact_header">
+          <ion-label style="color: black;font-size: 15px;font-weight: 700;">Name & Kontaktdaten: </ion-label>
+          <p><ion-icon name="create" class="icon1" (click)="KontaktModal()"></ion-icon></p>
+        </div>
+        <p *ngIf="this.userName" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Vorname: </span> <span>{{userName}}</span></p>
+        <p *ngIf="this.nachName" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Nachname: </span> <span>{{nachName}}</span></p>
+
+        <div *ngIf="selltype!='privat'">
+          <p *ngIf="this.firmenName" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Firmenname: </span> <span>{{firmenName}}</span></p>
+          <p  *ngIf="this.company_address" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Firmenanschrift: </span> <span>{{this.company_address}}</span></p>
+        </div>
+       
+
+        <ion-label style="color: black;font-size: 15px;font-weight: 700;">Weitere Angaben: </ion-label>
+        <div>
+          <div class="space_between">
+            <p *ngIf="this.mobile_number" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Mobile No:</span> <span>{{mobile_number}}</span></p>
+            <ion-toggle  aria-label="Success toggle"  color="success" [checked]="false" (ionChange)="addCheckboxgroup($event,'group1')">Checked Toggle</ion-toggle>
+          </div>
+         
+          <p *ngIf="this.weitereTelefono" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Telefonnummer 1: </span> <span>{{weitereTelefono}}</span></p>
+          <p *ngIf="this.weitereTelefono2" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Telefonnummer 2: </span> <span>{{weitereTelefono2}}</span></p>
+          <p *ngIf="this.weitereFax" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Fax: </span> <span>{{weitereFax}}</span></p>
+        </div>
+        
+        <div> 
+          <div class="space_between" *ngIf="this.weitereHomepage || this.user_email" >
+            <p  *ngIf="this.user_email"  style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">E-Mail: </span> <span>{{this.user_email}}</span></p>
+
+          
+            <ion-toggle  aria-label="Success toggle"  color="success" [checked]="false" (ionChange)="addCheckboxgroup($event,'group2')">Checked Toggle</ion-toggle>
+
+          </div>
+          <p *ngIf="this.weitereHomepage" style="margin-bottom: 5px;margin-top: 5px;"><span style="font-weight: bold;">Website: </span> <span>{{this.weitereHomepage}}</span></p>
+        </div>
+
+        
+      
+        
+        <!-- More information -->
+
+            <p *ngIf="this.weitereImmocard" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Immocard-ID: </span> <span>{{weitereImmocard}}</span></p>
+            <p *ngIf="this.immocardFirma" style="margin-bottom: 15px;margin-top: 4px;"><span style="font-weight: bold;">Immocard-Firma-ID: </span> <span>{{immocardFirma}}</span></p>
+         <!-- end More information -->
+
+        <!-- Additional contact person -->
+        <ion-label style="color: black;font-size: 15px;font-weight: 700;" *ngIf="this.zusatzlicheName || this.zusatzlicheFirmname || this.zusatzlicheHomepage || this.zusatzlicheTelefono || this.zusatzlicheTelefono2 || this.zusatzlicheFax || this.zusatzlicheOhenat || this.zusatzlicheFirmid">Zusätzliche Kontaktperson: </ion-label>
+        <p *ngIf="this.zusatzlicheName" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Name: </span> <span>{{zusatzlicheName}}</span></p>
+        <p *ngIf="this.zusatzlicheFirmname" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Firmenname: </span> <span>{{zusatzlicheFirmname}}</span></p>
+        <p *ngIf="this.zusatzlicheHomepage" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Homepage: </span> <span>{{zusatzlicheHomepage}}</span></p>
+        <p *ngIf="this.zusatzlicheTelefono" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Telefonnummer 1: </span> <span>{{zusatzlicheTelefono}}</span></p>
+        <p *ngIf="this.zusatzlicheTelefono2" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Telefonnummer 2: </span> <span>{{zusatzlicheTelefono2}}</span></p>
+        <p *ngIf="this.zusatzlicheFax" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Fax: </span> <span>{{zusatzlicheFax}}</span></p>
+        <p *ngIf="this.weitereImmocard" style="margin-bottom: 5px;margin-top: 4px;"><span style="font-weight: bold;">Immocard-ID: </span> <span>{{weitereImmocard}}</span></p>
+        <p *ngIf="this.zusatzlicheFirmid" style="margin-bottom: 15px;margin-top: 4px;"><span style="font-weight: bold;">Immocard-Firma-ID: </span> <span>{{zusatzlicheFirmid}}</span></p>
+         <!-- end Additional contact person -->
+
+    </div>
+</ion-col>
+</ion-row>

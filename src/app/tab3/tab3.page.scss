@@ -1,0 +1,126 @@
+.textcls {
+    color: #e9621a !important;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+img.iconimg {
+    display: inline;
+    margin-top: 4px;
+    margin-bottom: auto;
+    // width: 85%;
+}
+
+.newdiv{
+    // background: #cdcdcd1c;
+    background-color: #ebf0f57d;
+    padding: 4px;
+    height: 65px;
+    margin-bottom: 3px;
+}
+
+.itemcls{
+    border: 1px solid #e9e1e1;
+    border-radius: 5px;
+}
+
+ion-icon.ion-accordion-toggle-icon {
+    font-size: 15px !important;
+    color: gray;
+}
+
+p.tagdiv {
+    color: white;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: #e9621a;
+    border-radius: 10px;
+    padding: 2px 11px 2px 11px;
+    font-size: 11px;
+
+}
+
+p.extrapara {
+    margin-bottom: 0px;
+    margin-top: 5px;
+    font-size: 13px;
+    color: black;
+    font-weight: 600;
+    text-align: center;
+}
+p.gratis {
+    background: #e9621a !important;
+    color: white;
+    padding: 2px 10px;
+    font-size: 10px;
+    margin-left: 30%;
+    border-radius: 12px;
+    position: absolute;right: 50px;
+}
+p.gratis1 {
+    background: #e9621a !important;
+    color: white;
+    padding: 2px 10px;
+    font-size: 10px;
+    /* margin-left: 30%; */
+    border-radius: 12px;
+    position: absolute;
+    right: 8px;
+    top: 13px;
+}
+.markethead{
+    font-size: 19px;
+    color: white;
+    font-weight: 700;
+    /* border: 1px solid rgb(251 146 82); */
+    /* padding-left: 10px; */
+    text-align: center;
+}
+.marketheading{
+    color:white;font-weight: 700;padding-left: 10px;font-size: 24px;
+}
+.markettextcl p{
+    color:white;font-size: 12px;padding-left: 10px;
+}
+@media screen and (max-width:380px){
+    .marketheading{
+        font-size: 20px;
+    }
+    .textcls{
+        font-size: 19px;
+    }
+}
+.markettab{
+    background-color:#e9621a;
+    height: 49px;
+}
+ion-header{
+    line-height: 20px;
+    text-align: center;
+}
+.pricetitsub{
+    font-size: 13px;
+    border-radius: 5px;
+    border: 2px solid white;
+    padding: 0 2px;
+    margin-left: 13px;
+}
+.greybackground .extraparasub{
+    line-height: 16px;
+    color: #ec6f2c;
+    font-size: 15px;
+    margin: 0;
+    text-align: center;
+}
+.subbackground2{
+    position: relative;
+    i{
+     color:#7c7777;
+     margin: 12px 25px;
+     font-size: 17px;
+     position: absolute;
+     top: -4px;
+     right: 0;
+    }
+}

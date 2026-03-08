@@ -1,0 +1,547 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-row>
+        <ion-col size="2">
+          <div class="logo-style" (click)="gotoMenu()">
+            <img src="assets/image/logoimage1.jpg" style="border-radius: 50px;">
+          </div>
+        </ion-col>
+        <ion-col size="10" class="left_text_header">
+          <ion-title>VerkaufAlles was du nicht mehr brauchst</ion-title>
+          <div (click)="gotoMyadsList()"> 
+            <p>Meine Inserate <span class="online"><ion-icon name="checkmark-circle"></ion-icon> {{onlineData}} Online</span> <span>|</span>  <span class="view"><ion-icon name="eye-outline"></ion-icon> {{viewdItem}} Aufrufe </span> </p>
+          </div>
+        </ion-col>
+      </ion-row>     
+  </ion-toolbar >
+  
+  <ion-toolbar>
+    <div class="tab tabheading">
+    
+        <button  class="tablinks" (click)="viewcategoryPage(1)"> 
+        
+          <img src="assets/image/shopping-cart2.png">
+          <p>MARKTPLATZ</p>
+        </button>
+   
+   
+        <button class="tablinks " (click)="viewcategoryPage(2)">
+          <img src="assets/image/homemenuicon.png">
+          <p>IMMOBILIE</p>
+        </button>
+       
+        <!-- tab2 close -->
+
+
+      <!-- tab3 start -->
+        <button class="tablinks" (click)="viewcategoryPage(3)">
+          <!-- <ion-icon name="car-sport-outline" style="font-size: 30px;"></ion-icon> -->
+          <img src="assets/image/newautomotoricon2.png"> 
+          <p class="autocate" style="font-size: 9px;">AUTO & MOTOR</p>
+        </button>
+      <!-- tab3 close -->
+
+      <!-- tab4 start -->
+        <button  class="tablinks" (click)="viewcategoryPage(4)" style="display: none;">
+          <!-- <ion-icon name="storefront-outline" style="font-size: 30px;"></ion-icon> -->
+          <img src="assets/image/shopping-cart12.png"> 
+          <p>SHOPS</p>
+        </button>
+      <!-- tab4 close -->
+      
+      <!-- tab5 start -->
+        <button class="tablinks " (click)="viewcategoryPage(5)">
+          <!-- <ion-icon name="paw-outline" style="font-size: 30px;"></ion-icon> -->
+          <img src="assets/image/pawprint12.png"> 
+          <p>HAUSTIERE</p>
+        </button>
+      <!-- tab5 close -->
+      </div> 
+  </ion-toolbar>
+</ion-header>
+<!-- <input type="text" value="{{notifyMessage}}"> -->
+<ion-content>
+  <div class="content-style">
+    <div style="margin-top: 0px;">
+      <ion-row>
+        <ion-col size="12" style="padding-top : 0px !important;padding-left: 0px !important;padding-right:0px;padding-bottom: 0px;">
+          <ion-card>
+            <img src="assets/image/frontbannernew.png" class="banner-back">
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="search_data">
+      <ion-row>
+        <ion-col size="12">
+          <div>
+            <input type="text"  (click)="gotToSearch()" placeholder="suchen...">
+            <ion-icon name="search-outline"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div>
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <h2 class="maincontent">
+              <ion-icon name="star"></ion-icon>
+              <p style="margin-top: -26px;padding-left: 28px">Marktplatz</p>
+            </h2>
+            
+            <div class="more_data">
+              <p (click)="OpenMarketPlaceProduct();" class="para1">ALLE ANZEIGEN</p>
+            </div>
+            <div style="border-bottom: 1px solid #e3dede;">
+              <ion-row>
+                <ion-col size="12">
+                  <app-loading
+                  [arrdata]="getmarketplaceProduct"
+                  #marketeplace
+                  >
+                  </app-loading>
+                  <swiper-container
+                      slides-per-view="2.2"
+                      space-between="10"
+                      loop="false"
+                     *ngIf="getmarketplaceProduct && getmarketplaceProduct.length > 0"
+                      init="true"
+                      #swiperContainer
+                    >
+                    <swiper-slide *ngFor="let marketprod of getmarketplaceProduct">
+                      <a
+                        (click)="openProductDetailPage(
+                          marketprod.id,
+                          marketprod.category_id,
+                          marketprod.form_type,
+                          marketprod.category_level,
+                          marketprod.subscatid
+                        )"
+                        class="product-link"
+                      >
+                        <img
+                          *ngIf="marketprod.product_img != ''; else noimage1"
+                          [src]="marketprod.product_img"
+                          class="random_images"
+                        />
+
+                        <ng-template #noimage1>
+                          <img
+                            [src]="'https://verkaufalles.at/mobapp/finalIcons/' + marketprod.form_type + '.png'"
+                            class="fallback-img"
+                          />
+                        </ng-template>
+
+                        <p class="slidecontent">
+                          {{ marketprod.title }}
+                        </p>
+
+                        <div *ngIf="!marketprod.von">
+                          <p class="main-icon" *ngIf="marketprod.price != 0; else pricetyp">
+                            <i class="fa fa-eur"></i>{{ marketprod.euro }}
+                          </p>
+
+                          <ng-template #pricetyp>
+                            <p class="main-icon" *ngIf="marketprod.pricetype == 'Auf Anfrage'">
+                              Preis auf Anfrage
+                            </p>
+                            <p class="main-icon" *ngIf="marketprod.pricetype == 'Zu verschenken'">
+                              Zu verschenken
+                            </p>
+                          </ng-template>
+                        </div>
+
+                        <div *ngIf="marketprod.von">
+                          <p class="main-icon">
+                            <i class="fa fa-eur"></i>
+                            {{ marketprod.evon }} - {{ marketprod.ebis }}
+                          </p>
+                        </div>
+                      </a>
+                    </swiper-slide>
+                  </swiper-container>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div style="margin-top: 5px;">
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <ion-skeleton-text [animated]="true" style="height: 256px;width: 100%;" *ngIf="imageData.length==0"></ion-skeleton-text>
+            <swiper-container
+              #bannerSwiper
+              slides-per-view="1"
+              loop="true"
+              speed="2000"
+              autoplay-delay="3000"
+              autoplay-disable-on-interaction="false"
+              pager="true"
+              pagination="true"
+              class="banner_con"
+            >
+              <swiper-slide *ngFor="let item of imageData">
+                <div>
+                  <a href="{{item.ad_link}}">
+                    <img [src]="item.image" />
+                  </a>
+                </div>
+              </swiper-slide>
+            </swiper-container>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+     <div style="margin-top: 5px;">
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <h2 class="maincontent">
+              <ion-icon name="star"></ion-icon>
+              <p style="margin-top: -26px;padding-left: 28px">Immobilien</p>
+            </h2>
+            
+            <div class="more_data">
+              <p (click)="OpenPropertyProduct();" class="para1">ALLE ANZEIGEN</p>
+            </div>
+            <div style="border-bottom: 1px solid #e3dede;">
+              <ion-row>
+                <ion-col size="12">
+                  <app-loading
+                  [arrdata]="getPropertyProdlist"
+                  #property
+                  >
+                  </app-loading>
+                 <swiper-container
+                    init="true"
+                    slides-per-view="2.2"
+                    space-between="10"
+                    loop="false"
+                    pagination="false"
+                    class="property-swiper"
+                    *ngIf="getPropertyProdlist.length > 0"
+                  >
+                    <swiper-slide *ngFor="let propertyProd of getPropertyProdlist">
+                      <a (click)="openPropertyProductDetailPage(propertyProd.id, propertyProd.subsubcatid)" class="product-link">
+                        <img 
+                          *ngIf="propertyProd.product_img != ''; else noimage2" 
+                          [src]="propertyProd.product_img" 
+                          class="random_images"
+                          alt="Product"
+                        >
+                        <ng-template #noimage2>
+                          <img 
+                            [src]="'https://verkaufalles.at/mobapp/finalIcons/' + propertyProd.form_type + '.png'" 
+                            class="fallback-img"
+                            alt="Fallback"
+                          >
+                        </ng-template>
+                        
+                        <p class="slidecontent">{{ propertyProd.title_name }}</p>
+
+                        <div *ngIf="!propertyProd.von">
+                          <p class="main-icon" *ngIf="propertyProd.price != 0; else pricetyp">
+                            <i class="fa fa-eur"></i>{{ propertyProd.euro }}
+                          </p>
+                          <ng-template #pricetyp>
+                            <p class="main-icon" *ngIf="propertyProd.pricetyp == 'Auf Anfrage'">Preis auf Anfrage</p>
+                            <p class="main-icon" *ngIf="propertyProd.pricetyp == 'Zu verschenken'">Zu verschenken</p>
+                          </ng-template>
+                        </div>
+                        
+                        <div *ngIf="propertyProd.von">
+                          <p class="main-icon">
+                            <i class="fa fa-eur"></i>{{ propertyProd.evon }} - {{ propertyProd.ebis }}
+                          </p>
+                        </div>  
+                      </a>
+                    </swiper-slide>                    
+                  </swiper-container>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+   
+    <div style="margin-top: 5px;">
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <h2 class="maincontent">
+              <ion-icon name="star"></ion-icon>
+              <p style="margin-top: -26px;padding-left: 28px">Haustiere</p>
+            </h2>
+            
+            <div class="more_data">
+              <p (click)="OpenPetPage();" class="para1">ALLE ANZEIGEN</p>
+            </div>
+            <div style="border-bottom: 1px solid #e3dede;">
+              <ion-row>
+                <ion-col size="12">
+                  <app-loading
+                  [arrdata]="petdataarr"
+                  #petarr
+                  >
+                  </app-loading>
+                <swiper-container
+                  init="true"
+                  slides-per-view="2.2"
+                  space-between="10"
+                  loop="false"
+                  pagination="false"
+                  class="pets-swiper"
+                  *ngIf="petdataarr.length > 0"
+                >
+                  <swiper-slide *ngFor="let petItem of petdataarr">
+                    <a (click)="openpetdetails(petItem.id, petItem.subcatid)" class="product-link">
+                      <img 
+                        *ngIf="petItem.image != ''; else noimage2" 
+                        [src]="petItem.image" 
+                        class="random_images"
+                        alt="Pet"
+                      >
+                      <ng-template #noimage2>
+                        <img 
+                          [src]="'https://verkaufalles.at/mobapp/finalIcons/' + petItem.form_type + '.png'" 
+                          class="fallback-img"
+                          alt="Fallback"
+                        >
+                      </ng-template>
+                      
+                      <p class="slidecontent">{{ petItem.title_name }}</p>
+
+                      <div *ngIf="!petItem.von">
+                        <p class="main-icon" *ngIf="petItem.price != 0; else pricetyp">
+                          <i class="fa fa-eur"></i>{{ petItem.euro }}
+                        </p>
+                        <ng-template #pricetyp>
+                          <p class="main-icon" *ngIf="petItem.pricetyp == 'Auf Anfrage'">Preis auf Anfrage</p>
+                          <p class="main-icon" *ngIf="petItem.pricetyp == 'Zu verschenken'">Zu verschenken</p>
+                        </ng-template>
+                      </div>
+                      
+                      <div *ngIf="petItem.von">
+                        <p class="main-icon">
+                          <i class="fa fa-eur"></i>{{ petItem.evon }} - {{ petItem.ebis }}
+                        </p>
+                      </div>  
+                    </a>
+                  </swiper-slide>                    
+                </swiper-container>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+    <div style="margin-top: 5px;">
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <h2 class="maincontent">
+              <ion-icon name="star"></ion-icon>
+              <p style="margin-top: -26px;padding-left: 28px">Auto & Motor</p>
+            </h2>
+            
+            <div class="more_data">
+              <p (click)="OpenautoPage();" class="para1">ALLE ANZEIGEN</p>
+            </div>
+            <div style="border-bottom: 1px solid #e3dede;">
+              <ion-row>
+                <ion-col size="12">
+                  <app-loading
+                  [arrdata]="automotararr"
+                  #petarr
+                  >
+                  </app-loading>
+                     <swiper-container
+                      init="true"
+                      slides-per-view="2.2"
+                      space-between="10"
+                      loop="false"
+                      pagination="false"
+                      class="section-swiper auto-swiper"
+                      *ngIf="automotararr.length > 0"
+                    >
+                      <swiper-slide *ngFor="let autoItem of automotararr">
+                        <a (click)="openautomotardetailpage(autoItem.id, autoItem.subsubcatid)" class="product-link">
+                          <img 
+                            *ngIf="autoItem.image != ''; else noimage2" 
+                            [src]="autoItem.image" 
+                            class="random_images product-image"
+                            alt="Auto"
+                          >
+                          <ng-template #noimage2>
+                            <img 
+                              [src]="'https://verkaufalles.at/mobapp/finalIcons/' + autoItem.form_type + '.png'" 
+                              class="fallback-img"
+                              alt="Fallback"
+                            >
+                          </ng-template>
+                          
+                          <p class="slidecontent product-title">{{ autoItem.marke }} | {{ autoItem.modal }}</p>
+                          
+                          <div *ngIf="!autoItem.von">
+                            <p class="main-icon product-price" *ngIf="autoItem.price != 0; else pricetyp">
+                              <i class="fa fa-eur"></i>{{ autoItem.euro }}
+                            </p>
+                            <ng-template #pricetyp>
+                              <p class="main-icon product-price" *ngIf="autoItem.pricetyp == 'Auf Anfrage'">Preis auf Anfrage</p>
+                              <p class="main-icon product-price" *ngIf="autoItem.pricetyp == 'Zu verschenken'">Zu verschenken</p>
+                            </ng-template>
+                          </div>
+                          
+                          <div *ngIf="autoItem.von">
+                            <p class="main-icon product-price">
+                              <i class="fa fa-eur"></i>{{ autoItem.evon }} - {{ autoItem.ebis }}
+                            </p>
+                          </div>  
+                        </a>
+                      </swiper-slide>                    
+                    </swiper-container>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+    <div style="margin-top: 5px;" *ngIf="getwishlistData" class="whishlistsec">
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <h2 class="maincontent">
+              <ion-icon name="star"></ion-icon>
+              <p style="margin-top: -26px;padding-left: 28px">Meine Merkliste</p>
+            </h2>
+            
+            <div class="more_data">
+              <p (click)="openWishlistAllProducts();" class="para1">ALLE ANZEIGEN</p>
+            </div>
+            <div style="border-bottom: 1px solid #e3dede;">
+              <ion-row>
+                <ion-col size="12">
+                  <app-loading
+                  [arrdata]="getwishlistData"
+                  #petarr
+                  >
+                  </app-loading>
+                    <swiper-container
+                     
+                      init="true"
+                      slides-per-view="2.2"
+                      space-between="10"
+                      loop="false"
+                      pagination="false"
+                      class="section-swiper wishlist-swiper"
+                      *ngIf="getwishlistData.length > 0"
+                    >
+                      <swiper-slide *ngFor="let wishlistItem of getwishlistData">
+                        <a 
+                          (click)="Gotodescription(
+                            wishlistItem.proid,
+                            wishlistItem.subcatid,
+                            wishlistItem.subsubcatid,
+                            wishlistItem.form_type,
+                            wishlistItem.category_id,
+                            wishlistItem.category_level
+                          )" 
+                          class="product-link wishlist-link"
+                        >
+                          <img 
+                            [src]="wishlistItem.product_img" 
+                            class="random_images product-image" 
+                            *ngIf="wishlistItem.product_img != ''; else noimage2"
+                            alt="Wishlist item"
+                          >
+                          
+                          <ng-template #noimage2>
+                            <!-- For subcatid != 71 -->
+                            <img 
+                              *ngIf="wishlistItem.subcatid != 71"
+                              [src]="'https://verkaufalles.at/mobapp/finalIcons/' + wishlistItem.form_type + '.png'" 
+                              class="random_images product-image fallback-image"
+                              alt="Fallback"
+                            >
+
+                            <!-- For subcatid == 71 -->
+                            <img 
+                              *ngIf="wishlistItem.subcatid == 71"
+                              [src]="'https://verkaufalles.at/mobapp/finalIcons/' + wishlistItem.subcatid + '.png'" 
+                              class="random_images product-image fallback-image"
+                              alt="Fallback"
+                            >
+                          </ng-template>
+
+                          <p class="slidecontent product-title">{{ wishlistItem.title_name }}</p>
+                          
+                          <div *ngIf="!wishlistItem.von">
+                            <p class="main-icon product-price" *ngIf="wishlistItem.price != 0; else pricetyp">
+                              <i class="fa fa-eur"></i>{{ wishlistItem.euro }}
+                            </p>
+                            <ng-template #pricetyp>
+                              <p class="main-icon product-price" *ngIf="wishlistItem.pricetyp == 'Auf Anfrage'">
+                                Preis auf Anfrage
+                              </p>
+                              <p class="main-icon product-price" *ngIf="wishlistItem.pricetyp == 'Zu verschenken'">
+                                Zu verschenken
+                              </p>
+                            </ng-template>
+                          </div>
+                          
+                          <div *ngIf="wishlistItem.von">
+                            <p class="main-icon product-price">
+                              <i class="fa fa-eur"></i>{{ wishlistItem.evon }} - {{ wishlistItem.ebis }}
+                            </p>
+                          </div>
+                        </a>
+                      </swiper-slide>                    
+                    </swiper-container>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- long banner ads -->
+    <section class="ads long_ads pt-20">
+      <div class="ads_contain">
+        <a href="#">
+          <!-- <img color='red' src="assets/image/static_banner.jpeg"> -->
+          <img color='red' src="assets/image/h6.jpeg">
+          <p class="text1">Premium Ads</p>
+          <p class="text2">Click here</p>
+        </a>
+      </div>
+    </section>
+  <!-- end long banner ads -->
+  <!-- [routerLink]="['/pages/contactpage']" -->
+    <ion-row class="pt-20">
+      <ion-col size="12" class="footer_lat" (click)="gotoInformationPage()">
+        <ion-card>
+          <ion-card-header>
+            <h5>Information, Hilfe & Kontakt</h5>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

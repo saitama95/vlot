@@ -1,0 +1,26 @@
+ion-title.titlecls {
+    font-size: 14px;
+    color: #e9621a !important;
+    padding: 7px 6px;
+    font-weight: 600;
+}
+
+ion-textarea{
+    width: 100% !important;
+}
+ion-textarea.text-des {
+    border: 1px solid gray;
+    border-radius: 4px;
+    // height: 500px;
+    padding: 5px;
+    background: #d9dfe25c;
+    font-size: 16px;
+}
+.ion-color-secondary {
+  --ion-color-base: #e9621a !important;
+}
+
+.newdiv {
+    border: 1px solid #d1c9c9;
+    border-radius: 5px;
+}

@@ -1,0 +1,52 @@
+$color1:rgb(230 65 0)!important;
+$color2:#019101;
+$color3:grey;
+
+.logo{
+    margin-top: 50px;
+    text-align: center;
+    // img{
+    //     width: 65%;
+       
+    // }
+}
+.offlinelogo{
+    text-align: center;
+    margin-top: 45px;
+    img{
+        width: 55%;
+    }
+}
+.head1{
+    text-align: center;
+    font-size: 23px;
+    font-weight: 500;
+    padding: 0 4px;
+}
+.head2{
+    text-align: center;
+    font-size: 18px;
+}
+
+.submitbtn button{
+    width: 48%;
+    background-color: $color1;
+    color: white;
+    padding: 14px 5px;
+    border-radius: 22px;
+    font-size: large;
+}
+ion-button{
+    margin: 0 auto;
+    --background:#e9621a;
+     width: 48%;
+}
+
+@media screen and (max-width:380px){
+    .head1{
+        font-size: 22px;
+    }
+    .head2{
+        font-size: 17px;
+    }
+}

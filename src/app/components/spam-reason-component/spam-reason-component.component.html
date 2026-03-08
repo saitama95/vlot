@@ -1,0 +1,59 @@
+<ion-row class="qty-buys">
+    <ion-col size="12" style="margin-top: 40px;">
+      <div class="space_between">
+
+        <button class="addtocart-btn" type="button"  
+        [class.remove]="selltype=='privat'"
+        id="phonebtn"  
+        [disabled]="phonebtn" 
+        (click)="callNow(handyNumber);"><i class="fa fa-phone"></i>&nbsp; Anrufen </button>
+
+        <button (click)="checkLogin(productdetails.user_id)" class="addtocart-btn" type="button" 
+        [class.increasewidth]="selltype === 'privat'"
+        id=""><i class="fa fa-comments-o"></i>&nbsp; Nachricht </button>
+
+        <!-- <button (click)="checkLogin()" class="addtocart-btn disabledbtn" type="button" 
+        [class.increasewidth]="selltype === 'privat'"
+        id="" disabled><i class="fa fa-comments-o"></i>&nbsp; Nachricht </button> -->
+
+
+        <a (click)="sendemail(productdetails.email)" [class.remove]="selltype=='privat'">
+          <button class="gotocart-btn"   [class.remove]="selltype=='privat'"  [disabled]="emailbtn" type="button" id="buynow" style="color:white" >
+          <i class="fa fa-envelope-o"></i> &nbsp; E-Mail</button>
+        </a>
+      </div>
+  </ion-col>
+
+    <ion-col size="12" class="mt_10">
+      <p style="text-align: center;">Nr. {{productdetails.nrId}}</p>
+      <div class="icon_lists">
+        <div class="icons">
+          <a (click)="shareProd('facebook')" > <img src="assets/shareIcon/facebook.png" alt=""></a>
+        </div>
+        <div class="icons">
+          <a (click)="shareProd('messenger')" ><img src="assets/shareIcon/messenger.png" alt=""></a>
+        </div>
+        <div class="icons">
+          <a (click)="shareProd('handy1')" ><img src="assets/shareIcon/whatsapp.png" alt=""></a>
+        </div>
+        <div class="icons">
+          <a (click)="shareProd('handy2')"><img src="assets/shareIcon/sms.png" alt=""></a>
+        </div>
+        <div class="icons">
+          <a (click)="sendemail(productdetails.email)">
+            <img src="assets/shareIcon/mail.png" alt="">
+          </a>
+        </div>
+        <div class="icons" (click)="shareLink()">
+          <img src="assets/shareIcon/share.png" alt="">
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col size="12">
+      <h4>INSERAT MIT FREUNDEN TEILEN</h4>
+      <button type="button" class="spam_btn" id="addtocart" (click)="spamData();" >Inserat melden</button>
+    </ion-col>
+</ion-row>
+
+
