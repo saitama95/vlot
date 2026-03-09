@@ -1,6 +1,7 @@
 
 export const environment:any = {
   production: false,
+  rootURL:'https://verkaufalles.at/api',
   recaptcha: {
     siteKey : '6LcQwJAfAAAAALRam1-RaGNjiUvoNgJH8rnwpc9O',
   },

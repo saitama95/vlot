@@ -23,7 +23,6 @@ export class CheckboxfieldComponent  implements OnInit {
   }
 
  SaveDatas(): void {
-  console.log(this.selectedItems);
     this.selectionChange.emit(this.selectedItems);  // ✅ emit to parent
     this.modal.dismiss(this.selectedItems, 'confirm');
   }

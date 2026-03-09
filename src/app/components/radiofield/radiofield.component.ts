@@ -10,6 +10,7 @@ import { ObjekttypComponent } from '../modal/objekttyp/objekttyp.component';
 })
 export class RadiofieldComponent  implements OnInit {
 
+  @Input() arrData:any[] = [];
   @Input() label="";
   @Input() objekttyp: any = '';
   @Output() objekttypChange = new EventEmitter<string>();  
@@ -22,12 +23,14 @@ export class RadiofieldComponent  implements OnInit {
     const modal = await this.modalController.create({
       component: ObjekttypComponent,
       componentProps: {
-        data: this.objekttyp
+        data: this.objekttyp,
+        arrdata:this.arrData
       }
     });
 
     await modal.present();
     const { data, role } = await modal.onWillDismiss<{ selectedValue: string }>();
+    console.log(data);
     if (data) {
       this.objekttyp = data;          
       this.objekttypChange.emit(this.objekttyp); 

@@ -1,0 +1,55 @@
+.close-icon {
+  font-size: 25px;
+  color: #fff;
+  margin-right: 15px;
+}
+
+.field-row {
+  border: 1px solid #80808045;
+  margin: 5px;
+  box-shadow: 1px 1px #8080801a;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.greybackground {
+  background: #d9dfe25c;
+}
+
+.divclass {
+  padding: 10px;
+  position: relative;
+}
+
+.checkbox-right {
+  position: absolute;
+  right: 24px;
+}
+
+.input-wrapper {
+  border: 1px solid #80808052;
+  border-radius: 4px 0 0 4px;
+  height: 44px;
+  background: #d9dfe25c;
+}
+
+.labelnew {
+  display: flex;
+  justify-content: center;
+}
+
+.unit-label {
+  position: relative;
+  top: 10px;
+}
+
+.submit-col {
+  text-align: center;
+}
+
+.wrap-label {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+}
+

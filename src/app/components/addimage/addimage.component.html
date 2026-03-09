@@ -1,28 +1,80 @@
- <ion-row>
-    <ion-col size="6">
-      <ion-card>
-        <div>
-          <a><img src="assets/image/photogallery.png" class="imgnewcls"></a>
-          <p style="text-align: center;">Bilder hinzufügen</p>
-        </div>
-      </ion-card>
-    </ion-col>
-    <ion-col size="6">
-      <ion-card>
-        <div>
-          <a><img src="assets/image/photocamera.png" class="imgnewcls1"></a>
-          <p style="text-align: center;">Bilder anklicken</p>
-        </div>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  
-   <p id="showimageloaded" style="display:none;">Bild wird geladen...</p>
+<ion-row>
+  <ion-col size="6">
+    <ion-card button (click)="pickFromGallery()">
+      <div style="text-align:center; padding:16px;">
+        <img src="assets/image/photogallery.png" class="imgnewcls">
+        <p>Bilder hinzufügen</p>
+      </div>
+    </ion-card>
+  </ion-col>
 
-    <ion-row style="border-bottom: 1px solid rgba(204, 199, 199, 0.74);">
-      <ion-col size="4">
-          <div class="thumbnailContainer" id="imgviewid">
-           <img src="" class="progressThumbnail">
+  <ion-col size="6">
+    <ion-card button (click)="takePhoto()">
+      <div style="text-align:center; padding:16px;">
+        <img src="assets/image/photocamera.png" class="imgnewcls1">
+        <p>Bilder anklicken</p>
+      </div>
+    </ion-card>
+  </ion-col>
+</ion-row>
+
+@if(images.length > 0) {
+  <ion-row>
+    <ion-col>
+      <div class="image-scroll-container">
+        @for (img of images; track $index) {
+          <div class="image-item-container">
+
+            @if(img.loading) {
+              <div class="image-overlay loading-overlay">
+                <ion-spinner name="crescent" color="light"></ion-spinner>
+              </div>
+            }
+
+            @if(img.uploaded) {
+              <div class="image-overlay success-overlay">
+                <ion-icon name="checkmark-circle" color="light" class="overlay-icon"></ion-icon>
+              </div>
+            }
+
+            @if(img.error) {
+              <div class="image-overlay error-overlay">
+                <ion-icon name="alert-circle" color="light" class="overlay-icon"></ion-icon>
+              </div>
+            }
+
+            <!-- remove button — hidden while loading -->
+            @if(!img.loading) {
+              <ion-icon
+                name="close-circle"
+                color="danger"
+                class="remove-button"
+                (click)="removeImage($index)">
+              </ion-icon>
+            }
+
+            <img [src]="img.url" class="image-thumbnail" alt="Preview">
           </div>
-      </ion-col>
+        }
+      </div>
+    </ion-col>
   </ion-row>
+
+  <!-- Upload button -->
+  <ion-row>
+    <ion-col>
+      <ion-button 
+        expand="block" 
+        color="primary" 
+        [disabled]="isUploading" 
+        (click)="uploadAll()"
+        class="upload-button">
+        @if(isUploading) {
+          <ion-spinner name="crescent" slot="start"></ion-spinner>
+        }
+        {{ isUploading ? 'Uploading...' : 'Upload (' + pendingCount + ')' }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+}
+

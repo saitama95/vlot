@@ -1,0 +1,173 @@
+.close-icon      { font-size: 25px; color: #fff; margin-right: 15px; }
+.form-wrap       { margin: 0 5px; }
+.label-top       { margin-top: 5px; }
+.euro-icon       { text-align: center; font-size: 14px; }
+.submit-col      { text-align: center; }
+.mb-row          { margin-bottom: 10px; }
+.no-pad          { padding: 0; }
+.border-right    { border-right: 1px solid gray; }
+
+.radius-top-left    { border-radius: 3px 0 0 0; }
+.radius-top-right   { border-radius: 0 3px 0 0; }
+.radius-bottom-left { border-radius: 0 0 0 3px; }
+.radius-bottom-right{ border-radius: 0 0 3px 0; }
+.radius-top         { border-radius: 4px 4px 0 0; }
+
+.display-wrap   { padding: 8px 12px; }
+.section-title  { font-size: 15px; font-weight: 700; color: black; margin: 6px 0 2px 0; }
+.display-row    { font-size: 13px; color: black; margin: 2px 0; }
+.display-label  { font-weight: 600; }
+.euro-val       { 
+    float: inline-end;
+ }
+.zusatz-gap     { margin-top: 10px; }
+
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
+.display-row  { font-size: 13px; color: black; margin: 2px 0; }
+.display-label{ font-weight: 600; }
+
+
+h6.head {
+    margin-top: 5px;
+    color: #e9621a !important;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.mycol{
+    border: 1px solid #33333342;
+    background: #d9dfe25c;
+    height: 45px;
+    // border-radius: 4px 0px 0px 4px;
+}
+
+.mycol2{
+    border: 1px solid #33333342;
+    background: #d9dfe25c;
+    height: 45px;
+    // border-radius: 0px 4px 4px 0px;
+}
+
+ion-textarea.text-des {
+    border: 1px solid gray;
+    border-radius: 4px;
+    // height: 500px;
+    padding: 5px;
+    background: #d9dfe25c;
+    font-size: 16px;
+}
+
+.ion-color-secondary {
+    --ion-color-base: #e9621a !important;;
+}
+
+//toggle button
+
+.toggle {
+    --width: 67px;
+    --height: 32px;
+    position: relative;
+    display: inline-block;
+    width: var(--width);
+    height: var(--height);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: var(--height);
+    cursor: pointer;
+  }
+  .toggle input {
+    display: none;
+  }
+  .toggle .slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--height);
+    background-color: #ccc;
+    transition: all 0.4s ease-in-out;
+  }
+  .toggle .slider::before {
+    content: '';
+    position: absolute;
+    width: calc(var(--height));
+    height: calc(var(--height));
+    border-radius: calc(var(--height) / 2);
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease-in-out;
+  }
+  .toggle input:checked+.slider {
+    background-color: #e9621a;
+  }
+  .toggle input:checked+.slider::before {
+    transform: translateX(calc(var(--width) - var(--height)));
+  }
+  .toggle .labels {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-family: sans-serif;
+    transition: all 0.4s ease-in-out;
+  }
+  .toggle .labels::after {
+    content: attr(data-off);
+    position: absolute;
+    right: 5px;
+    color: #4d4d4d;
+    opacity: 1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease-in-out;
+  }
+  .toggle .labels::before {
+    content: attr(data-on);
+    position: absolute;
+    left: 5px;
+    color: #ffffff;
+    opacity: 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease-in-out;
+  }
+  .toggle input:checked~.labels::after {
+    opacity: 0;
+  }
+  .toggle input:checked~.labels::before {
+    opacity: 1;
+  }
+  .Maklercss{
+    display: flex;
+    height: 100%;
+    div:first-child{
+      border-right: 1px solid;
+    }
+  }
+  input {
+    position: relative;
+    top: 0;
+    border: 1px solid #999;
+    z-index: 1;
+}
+.fakePlaceholder{
+    color: #7D838A;
+    position: absolute;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    pointer-events: none;
+    left: 0;
+    z-index: 1;
+    padding-left: 10px;
+}
+input:valid {
+    background-color: #FFFFFF;
+    z-index: 2;
+}

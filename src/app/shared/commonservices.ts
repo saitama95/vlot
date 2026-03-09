@@ -65,4 +65,69 @@ export class Commonservices {
     {name : 'Sonstige'}, 
     {name : 'Kontrollierte Wohnraumlüftung'},
   ];
+
+  BautypData = [
+    {'name' : 'Altbau', "id" : 1},
+    {'name' : 'Neubau', "id" : 2}
+  ];
+
+   objecttypedata = [
+    {
+    "id" : 1,
+    "name" : 'Almhütte/Berghütte'
+    },
+    {
+      "id" : 2,
+      "name" : 'Bauernhaus'
+    },
+    {
+      "id" : 3,
+      "name" : 'Bungalow'
+    },
+    {
+      "id" : 4,
+      "name" : 'Doppelhaushälfte'
+    },
+    {
+      "id" : 5,
+      "name" : 'Einfamilienhaus'
+    },
+    {
+      "id" : 6,
+      "name" : 'Gartenhaus'
+    },
+    {
+      "id" : 7,
+      "name" : 'Genossenschaftshaus'
+    },
+    {
+      "id" : 8,
+      "name" : 'Landhaus'
+    },
+    {
+      "id" : 10,
+      "name" : 'Mehrfamilienhaus'
+    },
+    {
+      "id" : 11,
+      "name" : 'Reihenhaus'
+    },
+    {
+      "id" : 12,
+      "name" : 'Rohbau'
+    },
+    {
+      "id" : 13,
+      "name" : 'Schloss/Burg/Chalet'
+    },
+    {
+      "id" : 14,
+      "name" : 'Villa'
+    },
+    {
+      "id" : 15,
+      "name" : 'Sonstige'
+    }
+    
+];
 }

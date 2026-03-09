@@ -12,7 +12,7 @@
 <ion-content>
   <ion-list>
     <ion-radio-group allow-empty-selection="true" name="radio-group" value="{{data}}"  (ionChange)="radioGroupChange($event)" #radioGroup>
-      @for (item of objecttypedata; track $index) {
+      @for (item of arrdata; track $index) {
         <ion-item>
           <ion-label>{{item.name}}</ion-label>
           <ion-radio slot="end" name="radiobtn" value="{{item.name}}"></ion-radio>

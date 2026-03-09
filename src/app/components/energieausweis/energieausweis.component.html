@@ -1,0 +1,74 @@
+<ion-row>
+  <ion-col (click)="openModal()">
+    <div class="newdiv">
+      <ion-item>
+        <ion-label>
+          <p class="title_label" [class.fw]="displayValue">{{ label }}</p>
+          @if(displayValue) {
+            <div class="valuechec">
+              <p class="energie-title">Ihre Energiedaten:</p>
+              @for(part of displayParts; track $index) {
+                <p class="energie-row">
+                  <span class="energie-label">{{ part.label }}:</span> {{ part.val }}
+                </p>
+              }
+            </div>
+          }
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-col>
+</ion-row>
+
+<ion-modal #modal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="primary" (click)="goback()">
+          <ion-icon name="close" style="font-size: 25px;color: #ffff;;
+      margin-right: 15px;"></ion-icon>
+        </ion-buttons>
+        <ion-title>{{ label }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <form class="form-wrap" [formGroup]="energieForm" (ngSubmit)="submitEnergiedata()">
+
+        <ion-row>
+          <ion-col><h6 class="head">Energieausweis</h6></ion-col>
+        </ion-row>
+
+        @for(field of formFields; track $index) {
+          <ion-row class="mb-2">
+            <ion-col size="5" class="mycol">
+              <div class="labels"><ion-label>{{ field.label }}</ion-label></div>
+            </ion-col>
+            <ion-col size="7" class="mycol2">
+              <div class="inputcls">
+                <ion-input
+                  [placeholder]="field.placeholder"
+                  [type]="field.type"
+                  [formControlName]="field.control">
+                </ion-input>
+              </div>
+            </ion-col>
+          </ion-row>
+        }
+
+        <ion-row>
+          <ion-col class="submit-col textcenter">
+            <ion-button color="secondary" type="submit">Weiter</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <p class="notice">Bundesgesetz über die Pflicht zur Vorlage eines Energieausweises beim Verkauf und bei der In-Bestand-Gabe von Gebäuden und Nutzungsobjekten (Energieausweis-Vorlage-Gesetz 2012 - EAVG 2012). Sowohl gewerblich wie auch privat verpflichtend. Für das unvollständige Ausfüllen der Felder übernimmt VerkaufAlles keine Verantwortung.</p>
+          </ion-col>
+        </ion-row>
+
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -13,3 +13,87 @@ img.imgnewcls1 {
     margin-top: 25px;
     margin-bottom: 25px;
 }
+
+// Add this to your component's SCSS file
+
+.image-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 8px;
+  
+  // Hide scrollbar for cleaner look (optional)
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+}
+
+.image-item-container {
+  position: relative;
+  flex: 0 0 auto;
+  width: 80px;
+  height: 80px;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.loading-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.success-overlay {
+  background: rgba(0, 200, 0, 0.4);
+}
+
+.error-overlay {
+  background: rgba(200, 0, 0, 0.4);
+}
+
+.overlay-icon {
+  font-size: 32px;
+}
+
+.remove-button {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  font-size: 22px;
+  z-index: 30;
+  cursor: pointer;
+  
+  // Optional hover effect
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+}
+
+.image-thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.upload-button {
+  // Any additional button styles if needed
+  margin-top: 8px;
+  
+  // Disabled state styling
+  &[disabled] {
+    opacity: 0.7;
+  }
+}

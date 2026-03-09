@@ -1,0 +1,64 @@
+<ion-row>
+  <ion-col size="12" (click)="openModal()">
+    <div class="newdiv">
+      @if(displayParts.length) {
+        <div class="display-wrap">
+          @for(part of displayParts; track $index) {
+            <p class="display-label">{{ part.label }}:</p>
+            <p class="display-val">{{ part.val }}</p>
+          }
+        </div>
+      } @else {
+        <ion-item><ion-label>{{ label }}</ion-label></ion-item>
+      }
+    </div>
+  </ion-col>
+</ion-row>
+
+<ion-modal #modal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="start" (click)="goback()">
+          <ion-icon name="close" class="header-icon icon-left"></ion-icon>
+        </ion-buttons>
+        <ion-buttons slot="primary" (click)="submitData()">
+          <ion-icon name="checkmark" class="header-icon icon-right"></ion-icon>
+        </ion-buttons>
+        <ion-title class="header_title">Links zu Zusatzinformationen</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <form class="form-wrap" [formGroup]="linkmodalForm" (ngSubmit)="submitData()">
+        <span class="hint-text">Hier können Links zu externen Seiten angegeben werden, die weitere Infos bereitstellen, wie zum Beispiel Links zu Videos deiner Immobilie.</span>
+
+        @for(field of linkFields; track $index) {
+          <ion-row>
+            <ion-col>
+              <h6 class="head">{{ field.title }}<ng-container *ngIf="field.sup"><sup>{{ field.sup }}</sup></ng-container></h6>
+              <ion-textarea
+                rows="4"
+                cols="20"
+                class="text-des"
+                [formControlName]="field.control"
+                placeholder="www.xyz.at"
+                (ionInput)="validateUrl($event, field.control)">
+              </ion-textarea>
+              @if(urlErrors[field.control]) {
+                <span class="error-msg">Bitte geben Sie eine gültige URL mit http und https ein..</span>
+              }
+            </ion-col>
+          </ion-row>
+        }
+
+        <ion-row>
+          <ion-col class="submit-col">
+            <ion-button color="secondary" type="submit">Weiter</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-content>
+
+  </ng-template>
+  </ion-modal>
