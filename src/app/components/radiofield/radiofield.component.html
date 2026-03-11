@@ -1,7 +1,7 @@
 <ion-row>
   <ion-col>
-    <div class="newdiv" [class.input-error]="isInvalid">
-      <ion-item button detail="false" (click)="openObjekttyp()">
+    <div class="newdiv" [class.input-error]="isInvalid" >
+      <ion-item button detail="false" (click)="openObjekttyp()" class="item_form">
         <ion-label>
           {{label}}
           @if(isInvalid){

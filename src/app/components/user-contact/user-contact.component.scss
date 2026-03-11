@@ -21,3 +21,139 @@ ion-toggle{
 ion-toggle.toggle-checked::part(track) {
     background-color: green;
 }
+
+.form-wrap      { margin: 0 5px; }
+.hint-text      { font-size: 12px; color: gray; }
+.header-icon    { font-size: 25px; color: #fff; }
+.icon-left      { margin-left: 15px; }
+.icon-right     { margin-right: 15px; }
+.submit-col     { text-align: center; }
+.full-width     { width: 100%; }
+.select-height  { height: 45px; }
+.label-top      { position: relative; top: 8px; }
+.text-right     { text-align: right; }
+.mb-row         { margin-bottom: 12px; }
+.display-wrap   { padding: 5px 10px; }
+.section-title  { color: black; font-size: 15px; font-weight: 700; }
+.display-row    { margin-bottom: 5px; margin-top: 5px; }
+.display-label  { font-weight: bold; }
+
+.header_title{
+    font-size:18px;
+    text-align: center;
+}
+@media screen and (max-width:360px) {
+    .header_title{
+        font-size: 16px;
+        text-align: center;
+    } 
+}
+.notZeroCon{
+    position: relative;
+    ion-input{
+        padding-left: 70px !important;
+    }
+    .notZero{
+        position: absolute;
+        top: 24%;
+        left: 4%;
+        margin: 0;
+    }
+}
+h6.head {
+    margin-top: 5px;
+    color: #e9621a !important;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.mycol{
+    border: 1px solid #33333342;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 4px 4px 0px 0px;
+    // border-radius: 4px 0px 0px 4px;
+}
+.mycols{
+    border: 1px solid #33333342;
+    height: 45px;
+    background: #d9dfe25c;
+   
+    // border-radius: 4px 0px 0px 4px;
+}
+.mycols3{
+    border: 1px solid #33333342;
+    background: #d9dfe25c;
+    margin-top: 6px;
+    height: 49px;
+   
+    // border-radius: 4px 0px 0px 4px;
+}
+
+.mycol2{
+    // border: 1px solid #33333342;
+    // background: #d9dfe25c;
+    // height: 45px;
+    border: 1px solid #33333342;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.mycolcls{
+    border: 1px solid #33333342;
+    height: 45px;
+    background: #d9dfe25c;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.mycolclas2{
+    border: 1px solid #33333342;
+    height: 45px;
+    background: #d9dfe25c;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.ion-color-secondary {
+    --ion-color-base: #e9621a !important;;
+}
+.phoneCode{
+    background-color: #d9dfe25c;
+    // margin-right: unset;
+    // margin-inline-end: 0px;
+}
+ion-select.md.in-item.hydrated {
+    margin-left: 0px;
+}
+// ion-item.selectone{
+//     border-style: none;
+//     border: 1px solid #bbb8b8;
+//     border-radius: 4px;
+//     background: #d9dfe25c;
+// }
+ion-item.selectone{
+    border-style: none;
+    border: 1px solid #bbb8b8;
+    border-radius: 4px;
+    background: #d9dfe25c;
+}
+// .icon1 {
+//     padding-left: 10px;
+//     color: #8585ad;
+//     margin-right: 10px;
+// }
+div.inputcls1{
+    background: #d9dfe25c;
+}
+ion-ripple-effect{
+    background: #d9dfe25c;
+}
+
+.alert-wrapper {
+    top: 0; /* Position the popover at the top of the screen */
+  }
+
+.alert-wrapper .alert-content {
+    max-height: 80%; /* Set the maximum height as needed */
+}

@@ -17,20 +17,22 @@
 </ion-header>
 <ion-content>
  
-    <app-addimage></app-addimage>   
-    <ion-row style="padding-right: 2px;">
+  <app-addimage>
+  </app-addimage>
+     
+   <ion-row style="padding-right: 2px;">
       <ion-col size="6" (click)="changepricemode('Anzeige')">
-        <div class="ichbtn" [style]="!ichcontainer ? active_ichbtn : ''">
+        <div class="ichbtn" [style]="ichcontainer ? active_ichbtn : ''">
           Ich biete
           <span>*</span>
-          <p [style]="!ichcontainer ? active_ichbtn_para : ''">Anzeige aufgeben</p>
+          <p [style]="ichcontainer ? active_ichbtn_para : ''">Anzeige aufgeben</p>
         </div>
       </ion-col>
       <ion-col size="6" (click)="changepricemode('KOSTENLOS')">
-        <div class="ichbtn" [style]="ichcontainer ? active_ichbtn : ''">
+        <div class="ichbtn" [style]="!ichcontainer ? active_ichbtn : ''">
           Ich suche
           <span>*</span>
-          <p [style]="ichcontainer ? active_ichbtn_para : ''">KOSTENLOS</p>
+          <p [style]="!ichcontainer ? active_ichbtn_para : ''">KOSTENLOS</p>
         </div>
       </ion-col>
     </ion-row>
@@ -38,7 +40,7 @@
     <form  [formGroup]="myForm" (ngSubmit)="submit()">
       <ion-row>
         <ion-col size="12">
-          @if(houseselltitle?.value===''){
+          @if(title_name?.value===''){
             <span class="requiedcls">*</span>
           }
           <ion-input
@@ -46,8 +48,8 @@
             placeholder="Anzeigen-Titel"
             autocapitalize="true"
             class="myinputname"
-            formControlName="houseselltitle"
-            [class.input-error]="houseselltitle?.invalid && houseselltitle?.touched"
+            formControlName="title_name"
+            [class.input-error]="title_name?.invalid && title_name?.touched"
           >
           </ion-input>
         </ion-col>
@@ -64,7 +66,7 @@
           </ion-col>
 
          <ion-col size="12">
-          <ion-item class="selectone" 
+          <ion-item class="item_form" 
           [class.input-error-native]="country?.invalid && country?.touched">
             <ion-label>Bitte Land auswählen 
               @if(country?.value===''){
@@ -84,23 +86,28 @@
         
        <app-pin-cityarea [form]="myForm"></app-pin-cityarea>
 
-       <ion-row>
+      <ion-row>
         <ion-col size="12">
             <h6 class="head">OBJEKTDATEN</h6>
         </ion-col>
       </ion-row>
 
-      @if(ichcontainer){
+      @if(!ichcontainer){
         <ion-row class="betweeprice">
         <ion-col size="6">
           <p>von</p>
-          <ion-row>
+          <ion-row >
             <ion-col size="2" class="">
-              <ion-input disabled class="myinputsss" id="vonpriceicon"><ion-icon name="logo-euro"></ion-icon></ion-input>
+              <ion-input readonly="true" value="€" class="myinputsss form_euro" 
+              >
+              </ion-input>
             </ion-col>
-            <ion-col size="10" class="">
-              <span class="requiedcls">*</span>
-              <ion-input type="number" placeholder="Kaufpreis" formControlName="vonValue"  class="myinput"></ion-input>
+            <ion-col size="10">
+               @if(!vonValue?.value) {
+                  <span class="requiedcls5">*</span>
+                }
+              <ion-input type="number" placeholder="Kaufpreis" formControlName="vonValue"  
+              class="myinput" [class.input-error]="vonValue?.invalid && vonValue?.touched"></ion-input>
             </ion-col>
           </ion-row>
         </ion-col>
@@ -108,11 +115,16 @@
           <p>bis</p>
           <ion-row>
             <ion-col size="2" class="">
-              <ion-input disabled class="myinputsss" id="bispriceicon"><ion-icon name="logo-euro"></ion-icon></ion-input>
+              <ion-input readonly="true"  value="€" class="myinputsss form_euro" >
+              </ion-input>
             </ion-col>
             <ion-col size="10" class="">
-              <span class="requiedcls">*</span>
-              <ion-input type="number" placeholder="Kaufpreis" class="myinput" formControlName="bisValue"></ion-input>
+               @if(!bisValue?.value) {
+                  <span class="requiedcls">*</span>
+                }
+              <ion-input type="number"
+              [class.input-error]="bisValue?.invalid && bisValue?.touched"
+              placeholder="Kaufpreis" class="myinput" formControlName="bisValue"></ion-input>
             </ion-col>
           </ion-row>
         </ion-col>
@@ -120,12 +132,17 @@
       }
       
       
-      @if(!ichcontainer){
+      @if(ichcontainer){
         <ion-row>
         <ion-col size="4" style="padding-top: 2px;padding-bottom: 1px;">
-          <ion-item class="selectone" id="pricetypselect">
-            <ion-label style="font-size: 12px;font-weight:700">Preistyp <span class="requiedcls4">*</span></ion-label>
-            <ion-select interface="popover" id="price_type">
+          <ion-item class="item_form" [style.border]="price_type?.invalid && price_type?.touched ? '1px solid red' : ''">
+            <ion-label style="font-size: 12px;font-weight:700">Preistyp 
+              @if(!price_type?.value) {
+              <span class="requiedcls4">*</span>
+              }
+            </ion-label>
+            <ion-select interface="popover" formControlName="price_type" 
+            >
                @for (item of commonServices.Preistyp; track $index) {
                 <ion-select-option [value]="item.name">{{item.name}}</ion-select-option>
               }
@@ -136,8 +153,13 @@
           <ion-input disabled class="myinputsss"><i class="fa fa-eur" aria-hidden="true"></i></ion-input>
         </ion-col>
         <ion-col size="4" id="pricediv" class="">
-          <span id="newrequired5" class="requiedcls5">*</span>
-          <ion-input type="number" maxlength="8" placeholder="Kaufpreis" class="myinput" id="pricevalue"></ion-input>
+            @if(!price?.value) {
+              <span class="requiedcls5">*</span>
+            }
+          <ion-input type="number" maxlength="8" 
+          placeholder="Kaufpreis" class="myinput" formControlName="price"
+          [class.input-error]="price?.invalid && price?.touched"
+          ></ion-input>
         </ion-col>
         <ion-col size="3">
           <label style="font-size:14px;color:green;"></label>
@@ -145,39 +167,57 @@
       </ion-row>
 
       <ion-row style="margin-left: 7px;">
-        <ion-col size="8" style="border: 1px solid #b5b1b1;border-radius: 4px 0px 0px 4px;height: 44px;">
-          <span class="requiedcls6">*</span>
-          <ion-input placeholder="Wohnfläche" formControlName="wohnflache" type="number"></ion-input>
+        <ion-col size="8" 
+        [style.border]="wohnflache?.invalid && wohnflache?.touched ? '1px solid red' : '1px solid #b5b1b1'"
+        style="border-radius: 4px 0px 0px 4px;height: 44px;">
+          @if(!wohnflache?.value){
+            <span class="requiedcls6">*</span>
+          }
+          <ion-input placeholder="Wohnfläche" 
+          formControlName="wohnflache" type="number"></ion-input>
         </ion-col>
-        <ion-col size="1" style="border-right: 1px solid #b5b1b1;height: 44px;border-bottom: 1px solid #b5b1b1;border-top: 1px solid #b5b1b1;border-radius: 0px 4px 4px 0px;">
+        <ion-col size="1" 
+        style="border-right: 1px solid #b5b1b1;height: 44px;
+        border-bottom: 1px solid #b5b1b1;border-top: 1px solid #b5b1b1;border-radius: 0px 4px 4px 0px;">
             <ion-label class="labelcls">m<sup>2</sup></ion-label>
         </ion-col>
       </ion-row>
       }
       
-      @if(ichcontainer){
+      @if(!ichcontainer){
         <ion-row class="betweeprice">
         <ion-col size="6">
           <p>von</p>
           <ion-row>
-            <ion-col size="10" class="">
-              <span class="requiedcls">*</span>
-              <ion-input type="number" placeholder="Wohnfläche" formControlName="vonwoh" class="myinput"></ion-input>
+            <ion-col size="8" class="form_group pr0">
+               @if(!vonwoh?.value){
+                <span class="astritke">*</span>
+                }
+              <ion-input type="number" 
+              [class.input-error]="vonwoh?.invalid && vonwoh?.touched"
+              placeholder="Wohnfläche" 
+              formControlName="vonwoh" class="myinput"></ion-input>
             </ion-col>
-            <ion-col size="2" class="">
-              <ion-input disabled class="myinputsss kmdes" id="vonpWohnfl"><span>m<sup>2</sup></span></ion-input>
+            <ion-col size="3" class="pl0">
+              <ion-input readonly="true" class="m2con" value="m²">
+              </ion-input>
             </ion-col>
           </ion-row>
         </ion-col>
         <ion-col size="6">
           <p>bis</p>
           <ion-row>
-            <ion-col size="10" class="">
-              <span class="requiedcls">*</span>
-              <ion-input type="number" placeholder="Wohnfläche" formControlName="biswoh"  class="myinput" id="biswoh"></ion-input>
+            <ion-col size="8" class="form_group pr0">
+               @if(!biswoh?.value){
+                <span class="astritke">*</span>
+                }
+              <ion-input type="number" 
+              [class.input-error]="biswoh?.invalid && biswoh?.touched"
+              placeholder="Wohnfläche" formControlName="biswoh"  class="myinput"></ion-input>
             </ion-col>
-            <ion-col size="2" class="">
-              <ion-input disabled class="myinputsss kmdes" id="bisWohnfl"><span>m<sup>2</sup></span></ion-input>
+            <ion-col size="3" class="pl0">
+              <ion-input readonly="true" class="m2con" value="m²">
+              </ion-input>
             </ion-col>
           </ion-row>
         </ion-col>
@@ -188,7 +228,7 @@
         <ion-col size="8" style="border: 1px solid #b5b1b1;border-radius: 4px 0px 0px 4px;height: 44px;">
            <ion-input placeholder="Grundfläche" type="number" formControlName="grundflache"></ion-input>
         </ion-col>
-        <ion-col size="1" style="border-right: 1px solid #b5b1b1;height: 44px;border-bottom: 1px solid #b5b1b1;border-top: 1px solid #b5b1b1;border-radius: 0px 4px 4px 0px;">
+        <ion-col size="1" class="mete12">
             <ion-label class="labelcls">m<sup>2</sup></ion-label>
         </ion-col>
       </ion-row>
@@ -204,9 +244,9 @@
 
       <ion-row>
         <ion-col size="12">
-          <ion-item class="selectone">
+          <ion-item class="item_form">
             <ion-label>Zustand </ion-label>
-            <ion-select interface="popover" id="zustandid" formControlName="zustandid">
+            <ion-select interface="popover"  formControlName="zustand">
               @for (item of commonServices.zustandOtp; track $index) {
                 <ion-select-option [value]="item.name">{{item.name}}</ion-select-option>
               }
@@ -217,12 +257,12 @@
 
       <ion-row>
         <ion-col>
-         <ion-item style="--highlight-color-focused: white;border: 1px solid #b5b1b1;border-radius: 4px;">
+         <ion-item class="item_form">
           <ion-label style="border-right: 1px solid #b5b1b1;padding-right: 11px;">Anzahl Zimmer</ion-label>
           <ion-input 
           placeholder="1,2,3....." 
           type="number" 
-          formControlName="numberofrooms"></ion-input>
+          formControlName="no_of_rooms"></ion-input>
          </ion-item>
         </ion-col>
       </ion-row>
@@ -233,7 +273,7 @@
         (descriptionChange)="myForm.patchValue({ Objektbeschreibung: $event })">
       </app-textareafield>
 
-      @if(!ichcontainer){
+      @if(ichcontainer){
         <app-lageundsonstigues
           [label]="'Lage und Sonstiges'"
           (formSubmit)="onLageSubmit($event)">
@@ -286,7 +326,7 @@
         (selectionChange)="myForm.patchValue({ heizung: $event.join(', ') })"
       />
 
-      @if(!ichcontainer){
+      @if(ichcontainer){
 
         <app-energieausweis
           [label]="'Energieausweis'"
@@ -309,7 +349,7 @@
       
       <ion-row>
         <ion-col size="12">
-         <ion-item class="selectType" id="shoplogoids">
+         <ion-item class="selectone" id="shoplogoids">
           <ion-label style="padding-right: 11px;">Logo hochladen </ion-label>
             <div style="padding-left: 57px;padding-top: 9px;">
               <p class="imagechoosecls">Dateien auswählen</p>
@@ -334,13 +374,20 @@
         </ion-col>
       </ion-row>
 
-      <app-user-contact/>
+     <app-user-contact
+      [selltype]="'privat'"
+      (formSubmit)="onContactSubmit($event)">
+    </app-user-contact>
 
       <ion-row>
         <ion-col size="12">
           <div class="qty-buys">
-            <ion-button type="submit" 
-            [disabled]="myForm.invalid">Weiter</ion-button>
+            <ion-button 
+            expand="full"
+            type="submit" 
+            [disabled]="myForm.invalid || loading">
+            {{ loading ? 'Laden' :'Weiter' }}
+            </ion-button>
           </div>
         </ion-col>
       </ion-row>

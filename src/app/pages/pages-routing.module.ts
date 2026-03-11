@@ -22,6 +22,10 @@ const routes: Routes = [
   },  {
     path: 'propertyadsform',
     loadChildren: () => import('./propertyadsform/propertyadsform.module').then( m => m.PropertyadsformPageModule)
+  },
+  {
+    path: 'finalsubmit',
+    loadChildren: () => import('./finalsubmit/finalsubmit.module').then( m => m.FinalsubmitPageModule)
   }
 
 ];

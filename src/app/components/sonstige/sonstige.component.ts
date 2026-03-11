@@ -35,7 +35,7 @@ export class SonstigeComponent  implements OnInit {
     this.Sonstige = this.fb.group({
       Maklerprovision:   [''],
       Ablose:            [''],
-      Wohnbauförderung:  [false],
+      wohnbauf_val:      [false],
       Betriebskosten:    [''],
       Betriebskosten_exkl: [''],
       Heizkosten:        [''],

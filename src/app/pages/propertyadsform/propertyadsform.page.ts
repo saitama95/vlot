@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
+import { AddimageComponent } from 'src/app/components/addimage/addimage.component';
+import { VerAPI } from 'src/app/services/ver-api';
 import { Commonservices } from 'src/app/shared/commonservices';
 
 @Component({
@@ -10,32 +13,93 @@ import { Commonservices } from 'src/app/shared/commonservices';
 })
 export class PropertyadsformPage implements OnInit {
   
+  @ViewChild('addImageRef') addImageRef!: AddimageComponent;
+
   active_ichbtn="background: #1eb41e;"
   active_ichbtn_para="background: rgb(233, 98, 26);border: 1px solid rgb(233, 98, 26);font-size: 12px;color: #fff;font-weight: 600;margin: auto;width: 80%;";
   warningbtn = "Anzeige";
-  ichcontainer=true;
-  selltype:string="";
-
+  ichcontainer = true; 
+  selltype:string="Makler";
+  loading=false;
   myForm!: FormGroup;
+  user_id=2;
+  form_type="";
+  main_cat_id=2;
+  subcatid=3
+  subsubcatid=4;
+
+   submit() {
+      let data = {
+        ...this.myForm.value,
+        user_id:this.user_id,
+        main_cat_id:this.main_cat_id,
+        subcatid:this.subcatid,
+        subsubcatid:this.subsubcatid,
+        form_type:this.form_type
+      }
+      this.loading = true;
+      this.verapi.posthausselldata(data)
+      .pipe(
+        finalize(() => {      
+          this.loading = false;
+        })
+      )
+      .subscribe({ 
+        next: (response:any) => {
+            if(response?.status){
+              this.addImageRef.proId  = response.id;
+              this.addImageRef.form_type = this.form_type;
+              this.addImageRef.user_id = this.user_id;
+              this.addImageRef.uploadAll();
+            }
+        },
+        error: (err) => {
+          console.error('Error:', err);
+        }
+      });
+  }
+
    constructor(
     private fb: FormBuilder,
     protected commonServices:Commonservices,
+    private verapi:VerAPI
     ) {
+    
+  }
+
+  
+  ngOnInit() {
+    this.initForm();
+    this.changepricemode('Anzeige')
+  }
+
+  initForm(){
     this.myForm = this.fb.group({
-      houseselltitle: ['', Validators.required],
-      street_add: [''],
-      country: ['', Validators.required],
-      pincode: ['', [Validators.required, Validators.minLength(8)]],
+      title_name: ['', Validators.required],
+      country: ['',Validators.required],
+      pincode: ['',Validators.required],
       city: ['', Validators.required],
       statename:[''],
+      district:[''],
       street_address: [''],
       grundflache:[''],
-      wohnflache:['',Validators.required],
-      numberofrooms:['',Validators.required],
-      zustandid:['',Validators.required],  
-      price_type:[''],
+      no_of_rooms:['',Validators.required],
+      zustand:['',Validators.required],  
+
+      wohnflache: ['', Validators.required],
+      price_type: ['', Validators.required],
+      price:      ['', Validators.required],
+      hwb:[''],
+      hwb_energie:[''],
+      fgee:[''],
+      fgee_energie:[''],
+
+      tourLink: [''],
+      objektInfo: [''],
+      ZustandLink: [''],
+      Verkaf: [''],
+
       objekttyp:['',Validators.required],
-      Objektbeschreibung:['',Validators.required],
       heizung:[''],
       boden:[''],
       ausstattung:[''],
@@ -43,22 +107,19 @@ export class PropertyadsformPage implements OnInit {
       lage:[''],
       sonstiges:[''],
       availabilitymodalData:[''],
-
+      Objektbeschreibung:['',Validators.required],
       balkonvalue:[''],
       dachterrassevalue:[''],
       gartenvalue:[''],
       loggiavalue:[''],
       terrassevalue:[''],
       wintergartenvalue:[''],
-
-      hwb:[''],
-      hwb_energie:[''],
-      fgee:[''],
-      fgee_energie:[''],
+      
+     
 
       maklerprovision:[''],
       ablose:[''],
-      wohnbauförderung:[''],
+      wohnbauf_val:[''],
       betriebskosten:[''],
       betriebskosten_exkl:[''],
       heizkosten:[''],
@@ -67,22 +128,47 @@ export class PropertyadsformPage implements OnInit {
       monatliche_mwst:[''],
       zusatzinformation:[''],
 
-      tourLink: [''],
-      objektInfo: [''],
-      Zustand: [''],
-      Verkaf: [''],
+   
+
+      user_name:             [''],
+      nachname:              [''],
+      firmenname:            [''],
+      email:                 [''],
+      weitere_homepage:      [''],
+      handynumber:           [''],
+      weitere_telefono:      [''],
+      weitere_telefono2:     [''],
+      weitere_fax:           [''],
+      weitere_immocard:      [''],
+      immocard_firma:        [''],
+      zusatzliche_name:      [''],
+      zusatzliche_firmname:  [''],
+      zusatzliche_homepage:  [''],
+      zusatzliche_telefono:  [''],
+      zusatzliche_telefono2: [''],
+      zusatzliche_fax:       [''],
+      zusatzliche_ohenat:    [''],
+      zusatzliche_firmid:    [''],
     });
   }
 
-  get houseselltitle() { return this.myForm.get('houseselltitle'); }
+get price_type()  { return this.myForm.get('price_type'); }
+get price()       { return this.myForm.get('price'); }
+// KOSTENLOS getters
+get vonwoh()   { return this.myForm.get('vonwoh'); }
+get biswoh()   { return this.myForm.get('biswoh'); }
+get vonValue() { return this.myForm.get('vonValue'); }
+get bisValue() { return this.myForm.get('bisValue'); }
+
+  get title_name() { return this.myForm.get('title_name'); }
   get country() { return this.myForm.get('country'); }
   get pincode() { return this.myForm.get('pincode'); }
   get city() { return this.myForm.get('city'); }
   get wohnflache() { return this.myForm.get('wohnflache'); }
-  get numberofrooms() { return this.myForm.get('numberofrooms'); }
+  get no_of_rooms() { return this.myForm.get('no_of_rooms'); }
   get objekttyp() { return this.myForm.get('objekttyp')!; }
   get Objektbeschreibung() { return this.myForm.get('Objektbeschreibung')!; }
-
+  
   get ObjektbeschreibungValue(): string {
      return this.Objektbeschreibung?.value ?? ''; 
   }
@@ -138,7 +224,7 @@ export class PropertyadsformPage implements OnInit {
     this.myForm.patchValue({
       maklerprovision:     data.Maklerprovision,
       ablose:              data.Ablose,
-      wohnbauförderung:    data.Wohnbauförderung,
+      wohnbauf_val:        data.wohnbauf_val,
       betriebskosten:      data.Betriebskosten,
       betriebskosten_exkl: data.Betriebskosten_exkl,
       heizkosten:          data.Heizkosten,
@@ -149,29 +235,64 @@ export class PropertyadsformPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.changepricemode('Anzeige')
-  }
+  onContactSubmit(data: any) {
+  this.myForm.patchValue({
+    user_name:             data.user_name,
+    nachname:              data.nachname,
+    firmenname:            data.firmenname,
+    email:                 data.email,
+    weitere_homepage:      data.weitere_homepage,
+    handynumber:           data.handynumber,
+    weitere_telefono:      data.weitere_telefono,
+    weitere_telefono2:     data.weitere_telefono2,
+    weitere_fax:           data.weitere_fax,
+    weitere_immocard:      data.weitere_immocard,
+    immocard_firma:        data.immocard_firma,
+    zusatzliche_name:      data.zusatzliche_name,
+    zusatzliche_firmname:  data.zusatzliche_firmname,
+    zusatzliche_homepage:  data.zusatzliche_homepage,
+    zusatzliche_telefono:  data.zusatzliche_telefono,
+    zusatzliche_telefono2: data.zusatzliche_telefono2,
+    zusatzliche_fax:       data.zusatzliche_fax,
+    zusatzliche_ohenat:    data.zusatzliche_ohenat,
+    zusatzliche_firmid:    data.zusatzliche_firmid,
+  });
+}
+
 
     
-  changepricemode(type:any){
-     this.ichcontainer = !this.ichcontainer;
-    if(type=='Anzeige'){
-      console.log('remove')
+    changepricemode(type: string) {
+      if (type === 'Anzeige' && !this.ichcontainer) {
+        this.ichcontainer = true;
+        // remove KOSTENLOS fields
         this.myForm.removeControl('vonwoh');
         this.myForm.removeControl('biswoh');
         this.myForm.removeControl('vonValue');
-        this.myForm.removeControl('bisValue');    
-    }else{
-      console.log('add')
-        this.myForm.addControl('vonwoh', this.fb.control(''));
-        this.myForm.addControl('biswoh', this.fb.control(''));
-        this.myForm.addControl('vonValue', this.fb.control(''));
-        this.myForm.addControl('bisValue', this.fb.control(''));
-    }
-  }
+        this.myForm.removeControl('bisValue');
+        // add Anzeige fields
+        this.myForm.addControl('wohnflache', this.fb.control('', Validators.required));
+        this.myForm.addControl('price_type', this.fb.control('', Validators.required));
+        this.myForm.addControl('price',      this.fb.control('', Validators.required));
 
-  submit(){
-    console.log(this.myForm.value);
-  }
+      
+
+
+      } else if (type === 'KOSTENLOS' && this.ichcontainer) {
+        this.ichcontainer = false;
+        // remove Anzeige fields
+        this.myForm.removeControl('wohnflache');
+        this.myForm.removeControl('price_type');
+        this.myForm.removeControl('price');
+        
+        // add KOSTENLOS fields
+        this.myForm.addControl('vonwoh',   this.fb.control('', Validators.required));
+        this.myForm.addControl('biswoh',   this.fb.control('', Validators.required));
+        this.myForm.addControl('vonValue', this.fb.control('', Validators.required));
+        this.myForm.addControl('bisValue', this.fb.control('', Validators.required));
+
+      }
+    }
+
+  
+ 
 }

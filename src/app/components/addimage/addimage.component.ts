@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { HttpClient } from '@angular/common/http';
 import { Capacitor } from '@capacitor/core';
+import { VerAPI } from 'src/app/services/ver-api';
 
 interface ImageItem {
   url: string;
@@ -20,25 +21,27 @@ interface ImageItem {
 })
 export class AddimageComponent implements OnInit {
 
-  @Input() proId: string = '1';
+  proId: string = '0';
 
   images: ImageItem[] = [];
   isUploading: boolean = false;
 
-  private apiUrl = 'http://127.0.0.1:8000/api/upload';
-  private getImage = 'http:'
+    form_type="";
+    user_id:any=0;
 
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'http://127.0.0.1:8000/api/upload';
+
+  constructor( private verapi:VerAPI) {}
 
   ngOnInit(): void {
-    this.getImages()
+    //this.getImages()
   }
 
   getImages(){
-      this.http.get(`http://127.0.0.1:8000/api/images?proid=${this.proId}`).
-      subscribe((res:any)=>{
-        console.log(res);
-      })
+      // this.http.get(`http://127.0.0.1:8000/api/images?proid=${this.proId}`).
+      // subscribe((res:any)=>{
+      //   console.log(res);
+      // })
   }
 
   async pickFromGallery(): Promise<void> {
@@ -109,9 +112,10 @@ export class AddimageComponent implements OnInit {
         const formData = new FormData();
         formData.append('image', img.blob!, img.name);
         formData.append('proid', this.proId);
-
+        formData.append('user_id', this.user_id);
+        formData.append('form_type', this.form_type);
         await new Promise<void>((resolve, reject) => {
-          this.http.post(this.apiUrl, formData).subscribe({
+          this.verapi.uploadPropertyImage(formData).subscribe({
             next: (res) => { console.log('Uploaded:', res); resolve(); },
             error: (err) => { console.error('Upload error:', err); reject(err); }
           });

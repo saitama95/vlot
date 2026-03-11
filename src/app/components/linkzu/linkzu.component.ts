@@ -31,7 +31,7 @@ export class LinkzuComponent  implements OnInit {
     this.linkmodalForm = this.fb.group({
       tour_link:   [''],
       objekt_info: [''],
-      zustand:     [''],
+      ZustandLink:     [''],
       verkaf:      [''],
     });
   }
