@@ -3,7 +3,7 @@
     <ion-row>
       <ion-col size="2">
         <a>
-          <div class="back-circle">
+          <div class="back-circle" (click)="goBack()">
             <img src="assets/image/left-arrow2.png">
           </div>
         </a>
@@ -16,9 +16,13 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
- 
-  <app-addimage>
-  </app-addimage>
+
+<app-addimage
+  [proId]="proId"
+  [form_type]="form_type"
+  [user_id]="user_id"
+  [startUpload]="startUpload">
+</app-addimage>
      
    <ion-row style="padding-right: 2px;">
       <ion-col size="6" (click)="changepricemode('Anzeige')">
@@ -72,7 +76,6 @@
               @if(country?.value===''){
                 <span class="requiedcls2">*</span>
               }
-              <span class="requiedcls2">*</span>
             </ion-label>
             <ion-select interface="popover" name="country"
             formControlName="country">
@@ -237,7 +240,6 @@
       [label]="'Objekttyp'"
       [arrData]="commonServices.objecttypedata"
       [objekttyp]="objekttypValue"
-      [isInvalid]="objekttyp.invalid && objekttyp.touched"
       (objekttypChange)="myForm.patchValue({ objekttyp: $event })">
     </app-radiofield>
 
@@ -302,6 +304,7 @@
 
 
       <app-checkboxfield
+        #ausstattungRef
         [label]="'Ausstattung'"
         [arrdata]="this.commonServices.ausstattungList"
         (selectionChange)="myForm.patchValue({ ausstattung: $event.join(', ') })"
@@ -314,6 +317,7 @@
         
 
       <app-checkboxfield
+         #bodenRef
         [label]="'Böden'"
         [arrdata]="this.commonServices.BodenData"
         (selectionChange)="myForm.patchValue({ boden:$event.join(', ')})"
@@ -321,6 +325,7 @@
 
 
       <app-checkboxfield
+        #heizungRef
         [label]="'Heizung'"
         [arrdata]="this.commonServices.HeizungData"
         (selectionChange)="myForm.patchValue({ heizung: $event.join(', ') })"
@@ -347,26 +352,16 @@
       </app-linkzu>
       }
       
-      <ion-row>
-        <ion-col size="12">
-         <ion-item class="selectone" id="shoplogoids">
-          <ion-label style="padding-right: 11px;">Logo hochladen </ion-label>
-            <div style="padding-left: 57px;padding-top: 9px;">
-              <p class="imagechoosecls">Dateien auswählen</p>
-            </div>
-         </ion-item>
-        </ion-col>
-      </ion-row>
 
-      <ion-row style="border-bottom: 1px solid rgba(204, 199, 199, 0.74);">
-        <ion-col size="4"></ion-col>
-          <ion-col size="4">
-            <div class="thumbnailContainer">
-              <img src="" class="progressThumbnail">
-            </div>
-          </ion-col>
-          <ion-col size="4"></ion-col>
-      </ion-row>
+     <app-logocomponent
+      [proId]="proId"
+      [user_id]="user_id"
+      [form_type]="form_type"
+      [table_name]="'propertyhausproducts'"
+      [startUploadLogo]="startUploadLogo"
+      >
+    </app-logocomponent>
+    
 
       <ion-row>
         <ion-col size="12">

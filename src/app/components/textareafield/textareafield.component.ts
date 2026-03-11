@@ -30,6 +30,9 @@ export class TextareafieldComponent  implements OnInit {
     this.modal.dismiss(this.description, 'confirm');
   }
 
+  reset(){
+      this.description="";
+  }
   goback(){
       if(!this.description){
         this.isInvalid=true;

@@ -5,12 +5,21 @@ import { inject, Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class VerAPI {
-    private http = inject(HttpClient);
-    private API_URL = 'http://127.0.0.1:8000/api';
-    private API_URL1 = 'http://localhost/chatApp/public/api_path';
-    private API_URL2 = 'http://localhost/reion/public/ver/mobapp';
+     private http = inject(HttpClient);
+    //private API_URL = 'http://localhost/ver';
+     private API_URL = 'http://dkapoor-001-site40.rtempurl.com';
+
+
     posthausselldata(data:any){
-      return this.http.post(`${this.API_URL}/posthausselldata`,data,{ headers: { 'Content-Type': 'application/json' } })
+      return this.http.post(`${this.API_URL}/api/propertyform/posthausselldata.php`,data,{ headers: { 'Content-Type': 'application/json' } })
+    }
+
+    posthausselllistview(proid:any,userid:any){
+       return this.http.get(`${this.API_URL}/api/propertyproducts/gethaussellproductdetails.php?proid=${proid}&user_id=${userid}`);
+    }
+
+    posthausselldatadetail(proid:any,userid:any){
+        return this.http.get(`${this.API_URL}/api/propertyproducts/gethaussellproductdetails.php?proid=${proid}&user_id=${userid}`);
     }
 
     getPhoneCode(){
@@ -18,7 +27,19 @@ export class VerAPI {
     }
 
     uploadPropertyImage(data:any){
-      return this.http.post(`${this.API_URL}/upload`,data)
+      return this.http.post(`${this.API_URL}/mobapp/posthausselldataimages.php`,data)
     }
-    
+
+    updateLogo(data:any){
+        return this.http.post(`${this.API_URL}/mobapp/logoupdate.php`,data)
+    }
+
+    getCategories(maincatid:number){
+      return this.http.get(`https://verkaufalles.at/api/categories/getcategories.php?maincatid=${maincatid}`);
+    }
+
+    getSubCategories(subcatid:number,maincatid:number){
+      return this.http.get(`https://verkaufalles.at/api/categories/getsubsubcatbyid.php?subcatid=${subcatid}&maincatid=${maincatid}`);
+      
+    }
 }

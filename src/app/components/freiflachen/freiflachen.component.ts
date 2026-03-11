@@ -86,6 +86,11 @@ export class FreiflachenComponent implements OnInit {
   this.modal.dismiss(null, 'confirm');
 }
 
+    reset(){
+      this.FreiflachenForm.reset();
+      this.displayValue=""
+    }
+
     onCheckChange(event: any, key: string) {
       this.checkedState[key] = event.detail.checked;
     }

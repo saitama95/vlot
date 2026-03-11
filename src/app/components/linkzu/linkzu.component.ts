@@ -21,7 +21,7 @@ export class LinkzuComponent  implements OnInit {
   linkFields = [
     { title: '360', sup: 'o', control: 'tour_link',   label: 'TOUR LINK'          },
     { title: 'OBJEKTINFORMATIONEN', sup: null, control: 'objekt_info', label: 'OBJEKTINFORMATIONEN' },
-    { title: 'ZUSTANDSBERICHT',     sup: null, control: 'zustand',     label: 'ZUSTANDSBERICHT'     },
+    { title: 'ZUSTANDSBERICHT',     sup: null, control: 'ZustandLink',     label: 'ZUSTANDSBERICHT'     },
     { title: 'VERKAUFSBERICHT',     sup: null, control: 'verkaf',      label: 'VERKAUFSBERICHT'     },
   ];
 
@@ -62,12 +62,15 @@ export class LinkzuComponent  implements OnInit {
   this.displayParts = [
     { label: '360° Tour Link',      val: value.tour_link   },
     { label: 'Objektinformationen', val: value.objekt_info },
-    { label: 'Zustandsbericht',     val: value.zustand     },
+    { label: 'Zustandsbericht',     val: value.ZustandLink     },
     { label: 'Verkaufsbericht',     val: value.verkaf      },
   ].filter(p => p.val !== '' && p.val != null);
 
   this.formSubmit.emit(value);
   this.goback();
 }
-
+  reset(){
+    this.linkmodalForm.reset();
+    this.displayParts=[];
+  }
 }

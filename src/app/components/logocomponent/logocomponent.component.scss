@@ -1,0 +1,60 @@
+.imagechoosecls{
+    border: 2px solid #343a4057;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+    background: #bbb8b824;
+    cursor: pointer;  font-size: 14px;
+}
+.thumbnailContainer {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: #e6e6e6;
+    position: relative;
+}
+img.progressThumbnail {
+    margin: auto;
+    max-width: 100px;
+    max-height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.file-choose-wrap  { padding-left: 57px; padding-top: 9px; }
+.hidden-input      { display: none; }
+.preview-row       { border-bottom: 1px solid rgba(204, 199, 199, 0.74); }
+
+.thumbnailContainer {
+  position: relative;
+  text-align: center;
+}
+
+.progressThumbnail {
+  width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.remove-icon {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 22px;
+  color: red;
+  cursor: pointer;
+}
+
+.uploading-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.7);
+  border-radius: 6px;
+}

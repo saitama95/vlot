@@ -61,4 +61,10 @@ export class EnergieausweisComponent  implements OnInit {
     this.modal.dismiss(null, 'confirm');
   }
 
+
+  reset(){
+      this.energieForm.reset();
+      this.displayValue=""
+    }
+
 }

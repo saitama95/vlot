@@ -38,11 +38,32 @@
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
+
 :root {
    --ion-safe-area-top: env(safe-area-inset-top);
   --ion-safe-area-bottom: env(safe-area-inset-bottom);
   --ion-safe-area-left: env(safe-area-inset-left);
   --ion-safe-area-right: env(safe-area-inset-right);
+    --primary-color: #fb9252;
+}
+
+
+:host {
+  --primary-color: #fb9252;
+  --primary-dark: #c9621a;
+  --primary-light: #f9a85d;
+  --accent-green: #4caf50;
+  --accent-blue: #2196f3;
+  --text-dark: #222222;
+  --text-medium: #555555;
+  --text-light: #888888;
+  --bg-page: #f2f2f2;
+  --bg-card: #ffffff;
+  --border-color: #e3dede;
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.12);
+  --radius-card: 10px;
+  --radius-img: 8px;
 }
 
 .pl0{
@@ -50,6 +71,9 @@
 }
 .pr0{
     padding-right: 0;
+}
+.p0{
+    padding: 0;
 }
 
 .ion-color-primary {
@@ -839,6 +863,10 @@ ion-textarea{
     border: 1px solid #b5b1b1 !important;
     border-radius: 4px !important;
 }
-ion-input{
-    --highlight-color-focused:none;
+ion-item.selectone{
+    border-style: none;
+    border: 1px solid #bbb8b8;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    --highlight-color-focused: white;
 }

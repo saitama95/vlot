@@ -1,8 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 import { finalize } from 'rxjs';
-import { AddimageComponent } from 'src/app/components/addimage/addimage.component';
+import { CheckboxfieldComponent } from 'src/app/components/checkboxfield/checkboxfield.component';
+import { EnergieausweisComponent } from 'src/app/components/energieausweis/energieausweis.component';
+import { FreiflachenComponent } from 'src/app/components/freiflachen/freiflachen.component';
+import { LageundsonstiguesComponent } from 'src/app/components/lageundsonstigues/lageundsonstigues.component';
+import { LinkzuComponent } from 'src/app/components/linkzu/linkzu.component';
+import { SonstigeComponent } from 'src/app/components/sonstige/sonstige.component';
+import { TextareafieldComponent } from 'src/app/components/textareafield/textareafield.component';
+import { UserContactComponent } from 'src/app/components/user-contact/user-contact.component';
+import { VerfugbarkeitComponent } from 'src/app/components/verfugbarkeit/verfugbarkeit.component';
 import { VerAPI } from 'src/app/services/ver-api';
+import { ClearForm } from 'src/app/shared/clear-form';
 import { Commonservices } from 'src/app/shared/commonservices';
 
 @Component({
@@ -13,10 +23,26 @@ import { Commonservices } from 'src/app/shared/commonservices';
 })
 export class PropertyadsformPage implements OnInit {
   
-  @ViewChild('addImageRef') addImageRef!: AddimageComponent;
+  //  Use a Subject to communicate reset (best practice when component is inside @if):
+  // for this { static: false }
 
+  @ViewChild(LageundsonstiguesComponent,{ static: false }) lageRef!: LageundsonstiguesComponent;
+  @ViewChild(FreiflachenComponent) freiflach!: FreiflachenComponent;
+  @ViewChild(EnergieausweisComponent,{ static: false }) energie!: EnergieausweisComponent;
+  @ViewChild(VerfugbarkeitComponent) verfugcom!: VerfugbarkeitComponent;
+  @ViewChild(TextareafieldComponent) textareacom!: TextareafieldComponent;
+  @ViewChild(LinkzuComponent,{ static: false }) linkzu!: LinkzuComponent;
+  @ViewChild(SonstigeComponent,{ static: false }) sonstige!: SonstigeComponent;
+  
+  @ViewChild('heizungRef')    heizungRef!:    CheckboxfieldComponent;
+  @ViewChild('bodenRef')      bodenRef!:      CheckboxfieldComponent;
+  @ViewChild('ausstattungRef') ausstattungRef!: CheckboxfieldComponent;
+  @ViewChild(UserContactComponent) usercontact!: UserContactComponent;
+
+  
   active_ichbtn="background: #1eb41e;"
   active_ichbtn_para="background: rgb(233, 98, 26);border: 1px solid rgb(233, 98, 26);font-size: 12px;color: #fff;font-weight: 600;margin: auto;width: 80%;";
+
   warningbtn = "Anzeige";
   ichcontainer = true; 
   selltype:string="Makler";
@@ -27,6 +53,9 @@ export class PropertyadsformPage implements OnInit {
   main_cat_id=2;
   subcatid=3
   subsubcatid=4;
+  proId:string='';
+  startUpload=false;
+  startUploadLogo=false;
 
    submit() {
       let data = {
@@ -47,10 +76,31 @@ export class PropertyadsformPage implements OnInit {
       .subscribe({ 
         next: (response:any) => {
             if(response?.status){
-              this.addImageRef.proId  = response.id;
-              this.addImageRef.form_type = this.form_type;
-              this.addImageRef.user_id = this.user_id;
-              this.addImageRef.uploadAll();
+              this.proId     = response.id;    
+              this.form_type = this.form_type;
+              this.user_id   = this.user_id;
+              
+               this.startUpload     = false;
+                this.startUploadLogo = false;
+
+                setTimeout(() => {
+                  this.startUpload     = true;
+                  this.startUploadLogo = true;
+                }, 0);
+
+              this.freiflach.reset();
+              this.lageRef?.resetForm();
+              this.energie?.reset();
+              this.verfugcom.reset();
+              this.textareacom.reset();
+              this.linkzu?.reset();
+              this.sonstige?.reset();
+              this.heizungRef?.reset();
+              this.bodenRef?.reset();
+              this.ausstattungRef?.reset();
+              this.usercontact.reset();
+              this.myForm.reset();
+              this.commonServices.showSuccess(response?.msg);
             }
         },
         error: (err) => {
@@ -62,12 +112,16 @@ export class PropertyadsformPage implements OnInit {
    constructor(
     private fb: FormBuilder,
     protected commonServices:Commonservices,
-    private verapi:VerAPI
+    private verapi:VerAPI,
+    protected reset:ClearForm,
+    private navCtrl : NavController,
     ) {
     
   }
 
-  
+  goBack(){
+    this.navCtrl.back();
+  }
   ngOnInit() {
     this.initForm();
     this.changepricemode('Anzeige')
@@ -83,8 +137,8 @@ export class PropertyadsformPage implements OnInit {
       district:[''],
       street_address: [''],
       grundflache:[''],
-      no_of_rooms:['',Validators.required],
-      zustand:['',Validators.required],  
+      no_of_rooms:['',],
+      zustand:[''],  
 
       wohnflache: ['', Validators.required],
       price_type: ['', Validators.required],
@@ -99,7 +153,7 @@ export class PropertyadsformPage implements OnInit {
       ZustandLink: [''],
       Verkaf: [''],
 
-      objekttyp:['',Validators.required],
+      objekttyp:[''],
       heizung:[''],
       boden:[''],
       ausstattung:[''],
@@ -210,10 +264,10 @@ get bisValue() { return this.myForm.get('bisValue'); }
     this.myForm.patchValue({
       tourLink:   data.tour_link,
       objektInfo: data.objekt_info,
-      Zustand:    data.zustand,
+      ZustandLink:    data.ZustandLink,
       Verkaf:     data.verkaf,
     });
-    console.log(this.myForm);
+    
   }
 
   onEnergieSubmit(data: { hwb: string; hwb_energie: string; fgee: string; fgee_energie: string }) {

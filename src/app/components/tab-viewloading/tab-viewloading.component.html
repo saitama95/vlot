@@ -1,0 +1,81 @@
+@if(marketplace && arrdata.length === 0) {
+  <ion-row>
+    <ion-col size="3">
+      <div class="left_image">
+        @for(item of leftarr; track $index) {
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        }
+      </div>
+    </ion-col>
+    <ion-col size="9">
+      <div class="search">
+        @if(searchbar) {
+          <ion-skeleton-text class="searchbar" [animated]="true"></ion-skeleton-text>
+        }
+        <p class="heading"><ion-skeleton-text [animated]="true"></ion-skeleton-text></p>
+        <ion-row class="item_mar">
+          @for(item of itemMar; track $index) {
+            <ion-col size="6">
+              <ion-skeleton-text [animated]="false"></ion-skeleton-text>
+            </ion-col>
+          }
+        </ion-row>
+      </div>
+    </ion-col>
+  </ion-row>
+}
+
+@if(property && arrdata.length === 0) {
+  <ion-row>
+    <ion-col size="3">
+      <div class="left_image">
+        @for(item of leftarr; track $index) {
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        }
+      </div>
+    </ion-col>
+    <ion-col size="9">
+      <div class="searchProper">
+        <p class="headingP">
+          <ion-skeleton-text [animated]="true" style="width:40%; margin-top:29px;"></ion-skeleton-text>
+        </p>
+        <p class="headingP">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </p>
+        <ion-row class="item_marP">
+          <ion-col size="12">
+            <ion-skeleton-text [animated]="false"></ion-skeleton-text>
+            <ion-skeleton-text [animated]="false" style="margin-top:31px;"></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-col>
+  </ion-row>
+}
+
+@if(pets && arrdata.length === 0) {
+  <ion-row>
+    <ion-col size="3">
+      <div class="left_image">
+        @for(item of leftarr; track $index) {
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        }
+      </div>
+    </ion-col>
+    <ion-col size="9">
+      <div class="search">
+        @if(searchbar) {
+          <ion-skeleton-text class="searchbar" [animated]="true"></ion-skeleton-text>
+        }
+        <p class="heading"><ion-skeleton-text [animated]="true"></ion-skeleton-text></p>
+        <ion-row class="item_mar">
+          @for(item of itemMar; track $index) {
+            <ion-col size="4">
+              <ion-skeleton-text [animated]="false"></ion-skeleton-text>
+            </ion-col>
+          }
+        </ion-row>
+      </div>
+    </ion-col>
+  </ion-row>
+}

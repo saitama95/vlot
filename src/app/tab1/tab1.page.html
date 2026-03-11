@@ -15,49 +15,9 @@
       </ion-row>     
   </ion-toolbar >
   
-  <ion-toolbar>
-    <div class="tab tabheading">
-    
-        <button  class="tablinks" (click)="viewcategoryPage(1)"> 
-        
-          <img src="assets/image/shopping-cart2.png">
-          <p>MARKTPLATZ</p>
-        </button>
-   
-   
-        <button class="tablinks " (click)="viewcategoryPage(2)">
-          <img src="assets/image/homemenuicon.png">
-          <p>IMMOBILIE</p>
-        </button>
-       
-        <!-- tab2 close -->
-
-
-      <!-- tab3 start -->
-        <button class="tablinks" (click)="viewcategoryPage(3)">
-          <!-- <ion-icon name="car-sport-outline" style="font-size: 30px;"></ion-icon> -->
-          <img src="assets/image/newautomotoricon2.png"> 
-          <p class="autocate" style="font-size: 9px;">AUTO & MOTOR</p>
-        </button>
-      <!-- tab3 close -->
-
-      <!-- tab4 start -->
-        <button  class="tablinks" (click)="viewcategoryPage(4)" style="display: none;">
-          <!-- <ion-icon name="storefront-outline" style="font-size: 30px;"></ion-icon> -->
-          <img src="assets/image/shopping-cart12.png"> 
-          <p>SHOPS</p>
-        </button>
-      <!-- tab4 close -->
-      
-      <!-- tab5 start -->
-        <button class="tablinks " (click)="viewcategoryPage(5)">
-          <!-- <ion-icon name="paw-outline" style="font-size: 30px;"></ion-icon> -->
-          <img src="assets/image/pawprint12.png"> 
-          <p>HAUSTIERE</p>
-        </button>
-      <!-- tab5 close -->
-      </div> 
-  </ion-toolbar>
+  <app-market-pet-autoheader>
+  </app-market-pet-autoheader>
+  
 </ion-header>
 <!-- <input type="text" value="{{notifyMessage}}"> -->
 <ion-content>
@@ -87,14 +47,17 @@
       <ion-row>
         <ion-col size="12">
           <ion-card>
-            <h2 class="maincontent">
-              <ion-icon name="star"></ion-icon>
-              <p style="margin-top: -26px;padding-left: 28px">Marktplatz</p>
-            </h2>
-            
-            <div class="more_data">
-              <p (click)="OpenMarketPlaceProduct();" class="para1">ALLE ANZEIGEN</p>
+
+            <div class="maincontent">
+              <div class="toricon">
+                <ion-icon name="star"></ion-icon>
+              <p>Marktplatz</p>
+              </div>
+              <div class="more_data">
+                <p (click)="OpenMarketPlaceProduct();" class="para1">ALLE ANZEIGEN</p>
+              </div>
             </div>
+
             <div style="border-bottom: 1px solid #e3dede;">
               <ion-row>
                 <ion-col size="12">
@@ -141,7 +104,7 @@
 
                         <div *ngIf="!marketprod.von">
                           <p class="main-icon" *ngIf="marketprod.price != 0; else pricetyp">
-                            <i class="fa fa-eur"></i>{{ marketprod.euro }}
+                            € {{ marketprod.euro }}
                           </p>
 
                           <ng-template #pricetyp>
@@ -156,7 +119,7 @@
 
                         <div *ngIf="marketprod.von">
                           <p class="main-icon">
-                            <i class="fa fa-eur"></i>
+                            € 
                             {{ marketprod.evon }} - {{ marketprod.ebis }}
                           </p>
                         </div>
@@ -174,7 +137,7 @@
     <div style="margin-top: 5px;">
       <ion-row>
         <ion-col size="12">
-          <ion-card>
+          <ion-card class="ads_banner">
             <ion-skeleton-text [animated]="true" style="height: 256px;width: 100%;" *ngIf="imageData.length==0"></ion-skeleton-text>
             <swiper-container
               #bannerSwiper
@@ -204,14 +167,18 @@
       <ion-row>
         <ion-col size="12">
           <ion-card>
-            <h2 class="maincontent">
-              <ion-icon name="star"></ion-icon>
-              <p style="margin-top: -26px;padding-left: 28px">Immobilien</p>
-            </h2>
+            <div class="maincontent">
             
-            <div class="more_data">
-              <p (click)="OpenPropertyProduct();" class="para1">ALLE ANZEIGEN</p>
-            </div>
+                <div class="toricon">
+                  <ion-icon name="star"></ion-icon>
+                    <p>Immobilien</p>
+                </div>
+                <div class="more_data">
+                  <p (click)="OpenPropertyProduct();" class="para1">ALLE ANZEIGEN</p>
+                </div>
+            
+
+              </div>
             <div style="border-bottom: 1px solid #e3dede;">
               <ion-row>
                 <ion-col size="12">
@@ -249,7 +216,7 @@
 
                         <div *ngIf="!propertyProd.von">
                           <p class="main-icon" *ngIf="propertyProd.price != 0; else pricetyp">
-                            <i class="fa fa-eur"></i>{{ propertyProd.euro }}
+                            € {{ propertyProd.euro }}
                           </p>
                           <ng-template #pricetyp>
                             <p class="main-icon" *ngIf="propertyProd.pricetyp == 'Auf Anfrage'">Preis auf Anfrage</p>
@@ -259,7 +226,7 @@
                         
                         <div *ngIf="propertyProd.von">
                           <p class="main-icon">
-                            <i class="fa fa-eur"></i>{{ propertyProd.evon }} - {{ propertyProd.ebis }}
+                            € {{ propertyProd.evon }} - {{ propertyProd.ebis }}
                           </p>
                         </div>  
                       </a>
@@ -278,13 +245,15 @@
       <ion-row>
         <ion-col size="12">
           <ion-card>
-            <h2 class="maincontent">
-              <ion-icon name="star"></ion-icon>
-              <p style="margin-top: -26px;padding-left: 28px">Haustiere</p>
-            </h2>
-            
-            <div class="more_data">
-              <p (click)="OpenPetPage();" class="para1">ALLE ANZEIGEN</p>
+
+            <div class="maincontent">
+              <div class="toricon">
+                 <ion-icon name="star"></ion-icon>
+                  <p>Haustiere</p>
+              </div>
+              <div class="more_data">
+                <p (click)="OpenPetPage();" class="para1">ALLE ANZEIGEN</p>
+              </div>
             </div>
             <div style="border-bottom: 1px solid #e3dede;">
               <ion-row>
@@ -323,7 +292,7 @@
 
                       <div *ngIf="!petItem.von">
                         <p class="main-icon" *ngIf="petItem.price != 0; else pricetyp">
-                          <i class="fa fa-eur"></i>{{ petItem.euro }}
+                          € {{ petItem.euro }}
                         </p>
                         <ng-template #pricetyp>
                           <p class="main-icon" *ngIf="petItem.pricetyp == 'Auf Anfrage'">Preis auf Anfrage</p>
@@ -333,7 +302,7 @@
                       
                       <div *ngIf="petItem.von">
                         <p class="main-icon">
-                          <i class="fa fa-eur"></i>{{ petItem.evon }} - {{ petItem.ebis }}
+                          € {{ petItem.evon }} - {{ petItem.ebis }}
                         </p>
                       </div>  
                     </a>
@@ -352,14 +321,17 @@
       <ion-row>
         <ion-col size="12">
           <ion-card>
-            <h2 class="maincontent">
-              <ion-icon name="star"></ion-icon>
-              <p style="margin-top: -26px;padding-left: 28px">Auto & Motor</p>
-            </h2>
-            
-            <div class="more_data">
-              <p (click)="OpenautoPage();" class="para1">ALLE ANZEIGEN</p>
+
+            <div class="maincontent">
+              <div class="toricon">
+                 <ion-icon name="star"></ion-icon>
+                <p>Auto & Motor</p>
+              </div>
+              <div class="more_data">
+                <p (click)="OpenautoPage();" class="para1">ALLE ANZEIGEN</p>
+              </div>
             </div>
+
             <div style="border-bottom: 1px solid #e3dede;">
               <ion-row>
                 <ion-col size="12">
@@ -397,7 +369,7 @@
                           
                           <div *ngIf="!autoItem.von">
                             <p class="main-icon product-price" *ngIf="autoItem.price != 0; else pricetyp">
-                              <i class="fa fa-eur"></i>{{ autoItem.euro }}
+                              € {{ autoItem.euro }}
                             </p>
                             <ng-template #pricetyp>
                               <p class="main-icon product-price" *ngIf="autoItem.pricetyp == 'Auf Anfrage'">Preis auf Anfrage</p>
@@ -407,7 +379,7 @@
                           
                           <div *ngIf="autoItem.von">
                             <p class="main-icon product-price">
-                              <i class="fa fa-eur"></i>{{ autoItem.evon }} - {{ autoItem.ebis }}
+                              € {{ autoItem.evon }} - {{ autoItem.ebis }}
                             </p>
                           </div>  
                         </a>
@@ -426,14 +398,19 @@
       <ion-row>
         <ion-col size="12">
           <ion-card>
-            <h2 class="maincontent">
-              <ion-icon name="star"></ion-icon>
-              <p style="margin-top: -26px;padding-left: 28px">Meine Merkliste</p>
-            </h2>
+
             
-            <div class="more_data">
-              <p (click)="openWishlistAllProducts();" class="para1">ALLE ANZEIGEN</p>
+            <div class="maincontent">
+              <div class="toricon">
+                 <ion-icon name="star"></ion-icon>
+                <p>Meine Merkliste</p>
+              </div>
+              <div class="more_data">
+                <p (click)="openWishlistAllProducts();" class="para1">ALLE ANZEIGEN</p>
+              </div>
             </div>
+            
+            
             <div style="border-bottom: 1px solid #e3dede;">
               <ion-row>
                 <ion-col size="12">
@@ -493,7 +470,7 @@
                           
                           <div *ngIf="!wishlistItem.von">
                             <p class="main-icon product-price" *ngIf="wishlistItem.price != 0; else pricetyp">
-                              <i class="fa fa-eur"></i>{{ wishlistItem.euro }}
+                              € {{ wishlistItem.euro }}
                             </p>
                             <ng-template #pricetyp>
                               <p class="main-icon product-price" *ngIf="wishlistItem.pricetyp == 'Auf Anfrage'">
@@ -507,7 +484,7 @@
                           
                           <div *ngIf="wishlistItem.von">
                             <p class="main-icon product-price">
-                              <i class="fa fa-eur"></i>{{ wishlistItem.evon }} - {{ wishlistItem.ebis }}
+                              € {{ wishlistItem.evon }} - {{ wishlistItem.ebis }}
                             </p>
                           </div>
                         </a>

@@ -1,9 +1,45 @@
-import { Injectable } from '@angular/core';
-
+import { inject, Injectable } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root',
 })
 export class Commonservices {
+
+    private toastController = inject(ToastController);
+    
+    async showSuccess(message: string) {
+    const toast = await this.toastController.create({
+      message:  message,
+      duration: 3000,
+      position: 'top',
+      color:    'success',
+      icon:     'checkmark-circle-outline',
+      buttons: [
+        {
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    });
+    await toast.present();
+  }
+
+  async showError(message: string) {
+    const toast = await this.toastController.create({
+      message:  message,
+      duration: 3000,
+      position: 'top',
+      color:    'danger',
+      icon:     'alert-circle-outline',
+      buttons: [
+        {
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    });
+    await toast.present();
+  }
   
    zustandOtp = [
     { name : 'Erstbezug'},

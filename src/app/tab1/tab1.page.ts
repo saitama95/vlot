@@ -388,9 +388,7 @@ export class Tab1Page {
     }
   }
 
-  viewcategoryPage(main_cat_id:number){
-    this.navCtrl.navigateRoot('tabs/tab2?maincatid='+main_cat_id);
-  }
+  
   gotoInformationPage(){
     this.navCtrl.navigateRoot('pages/contactpage');
   }

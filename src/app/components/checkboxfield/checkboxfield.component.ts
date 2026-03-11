@@ -39,13 +39,16 @@ export class CheckboxfieldComponent  implements OnInit {
     return this.selectedItems.includes(name);
   }
 
-  // ✅ show selected as "apple,cate,dog"
+  
   get displayValue(): string {
     return this.selectedItems.length
       ? this.selectedItems.join(', ')
       : '';
   }
 
+  reset(){
+    this.selectedItems=[];
+  }
 
   goback(){
      this.modal.dismiss(null, 'cancel');

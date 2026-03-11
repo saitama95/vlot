@@ -1,7 +1,34 @@
+<ion-header>
+  <app-market-pet-autoheader></app-market-pet-autoheader>
+</ion-header>
 <ion-content>
-  <swiper-container>
-  <swiper-slide>Slide 1</swiper-slide>
-  <swiper-slide>Slide 2</swiper-slide>
-  <swiper-slide>Slide 3</swiper-slide>
-</swiper-container>
+   <app-tab-viewloading
+    [marketplace]="'1'"
+    [arrdata]="getCategoryArray"
+    ></app-tab-viewloading>
+
+    @if(getCategoryArray.length){
+      <ion-row>
+        <ion-col size="3">
+          <ion-row>
+             <div class="head">
+               @for (item of getCategoryArray; track $index) {
+                <ion-col size="12" class="p0">
+                  <div class="catcont">
+                    <div>
+                      <img class="iconimg" [src]="item?.cate_image_path"><br>
+                      <span class="cate">{{item.name}}</span>
+                    </div>
+                  </div>
+                </ion-col>
+              }
+             </div>
+          </ion-row>
+        </ion-col>
+        <ion-col size="9">
+          <h3>Hello</h3>
+        </ion-col>
+    </ion-row>
+    }
+    
 </ion-content>

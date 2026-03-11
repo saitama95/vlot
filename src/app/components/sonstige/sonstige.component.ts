@@ -126,4 +126,10 @@ export class SonstigeComponent  implements OnInit {
   this.formSubmit.emit(value);
   this.modal.dismiss(null, 'confirm');
 }
+
+  reset(){
+    this.Sonstige.reset();
+    this.displayParts =[];
+    this.sonstigePreiseParts=[];
+  }
 }

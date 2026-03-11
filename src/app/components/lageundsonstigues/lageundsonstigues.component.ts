@@ -35,6 +35,12 @@ export class LageundsonstiguesComponent  implements OnInit {
     this.modal.dismiss(null, 'confirm');
   }
   
+  resetForm() {
+    this.LageReactiveFrom.reset();
+    this.lageModal      = null;
+    this.sonstigesModal = null;
+  }
+
  openModal(){
     this.modal.present();
   }

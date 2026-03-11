@@ -59,22 +59,5 @@
       </div>
     </ion-col>
   </ion-row>
-
-  <!-- Upload button -->
-  <ion-row>
-    <ion-col>
-      <ion-button 
-        expand="block" 
-        color="primary" 
-        [disabled]="isUploading" 
-        (click)="uploadAll()"
-        class="upload-button">
-        @if(isUploading) {
-          <ion-spinner name="crescent" slot="start"></ion-spinner>
-        }
-        {{ isUploading ? 'Uploading...' : 'Upload (' + pendingCount + ')' }}
-      </ion-button>
-    </ion-col>
-  </ion-row>
 }
 

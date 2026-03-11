@@ -24,8 +24,8 @@ const routes: Routes = [
     loadChildren: () => import('./propertyadsform/propertyadsform.module').then( m => m.PropertyadsformPageModule)
   },
   {
-    path: 'finalsubmit',
-    loadChildren: () => import('./finalsubmit/finalsubmit.module').then( m => m.FinalsubmitPageModule)
+    path: 'propertyproductdetails',
+    loadChildren: () => import('./propertyproductdetails/propertyproductdetails.module').then( m => m.PropertyproductdetailsPageModule)
   }
 
 ];

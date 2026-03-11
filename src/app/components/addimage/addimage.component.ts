@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { HttpClient } from '@angular/common/http';
 import { Capacitor } from '@capacitor/core';
@@ -21,15 +21,15 @@ interface ImageItem {
 })
 export class AddimageComponent implements OnInit {
 
-  proId: string = '0';
+  @Input() proId: string = '';
 
   images: ImageItem[] = [];
   isUploading: boolean = false;
 
-    form_type="";
-    user_id:any=0;
+  @Input() form_type="";
+  @Input() user_id:any=0;
 
-  private apiUrl = 'http://127.0.0.1:8000/api/upload';
+  @Input() startUpload=false;
 
   constructor( private verapi:VerAPI) {}
 
@@ -37,11 +37,10 @@ export class AddimageComponent implements OnInit {
     //this.getImages()
   }
 
-  getImages(){
-      // this.http.get(`http://127.0.0.1:8000/api/images?proid=${this.proId}`).
-      // subscribe((res:any)=>{
-      //   console.log(res);
-      // })
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['startUpload'] && changes['startUpload'].currentValue === true) {
+      this.uploadAll();
+    }
   }
 
   async pickFromGallery(): Promise<void> {
@@ -111,13 +110,14 @@ export class AddimageComponent implements OnInit {
       try {
         const formData = new FormData();
         formData.append('image', img.blob!, img.name);
-        formData.append('proid', this.proId);
-        formData.append('user_id', this.user_id);
-        formData.append('form_type', this.form_type);
+        formData.append('product_id', this.proId);
+        // formData.append('user_id', this.user_id);
+        //formData.append('form_type', this.form_type);
+        formData.append('action', 'create');
         await new Promise<void>((resolve, reject) => {
           this.verapi.uploadPropertyImage(formData).subscribe({
-            next: (res) => { console.log('Uploaded:', res); resolve(); },
-            error: (err) => { console.error('Upload error:', err); reject(err); }
+            next: (res:any) => { console.log('Uploaded:', res); resolve(); },
+            error: (err:any) => { console.error('Upload error:', err); reject(err); }
           });
         });
 

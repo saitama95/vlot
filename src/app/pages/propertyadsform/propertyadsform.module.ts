@@ -16,6 +16,7 @@ import { EnergieausweisComponent } from 'src/app/components/energieausweis/energ
 import { SonstigeComponent } from 'src/app/components/sonstige/sonstige.component';
 import { LinkzuComponent } from 'src/app/components/linkzu/linkzu.component';
 import { PinCityareaComponent } from 'src/app/components/pin-cityarea/pin-cityarea.component';
+import { LogocomponentComponent } from 'src/app/components/logocomponent/logocomponent.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import { PinCityareaComponent } from 'src/app/components/pin-cityarea/pin-cityar
   ],
   declarations: [PropertyadsformPage,AddimageComponent,UserContactComponent,TextareafieldComponent,
     CheckboxfieldComponent,LageundsonstiguesComponent,VerfugbarkeitComponent,FreiflachenComponent,
-    EnergieausweisComponent,SonstigeComponent,LinkzuComponent,PinCityareaComponent
+    EnergieausweisComponent,SonstigeComponent,LinkzuComponent,PinCityareaComponent,LogocomponentComponent
   ]
 })
 export class PropertyadsformPageModule {}

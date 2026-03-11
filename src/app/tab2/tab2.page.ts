@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { VerAPI } from '../services/ver-api';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-tab2',
@@ -8,6 +11,26 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(
+    private route : ActivatedRoute,
+    private verapi:VerAPI,
+  ) {}
 
+  getCategoryArray:any[]=[];
+  cateloading=false;
+  ngOnInit() {
+    this.route.queryParams.subscribe((params:any) => {
+      let main_cat_id =  params.maincatid
+      this.getCategories(main_cat_id);
+    })
+  }
+
+  getCategories(main_cat_id:number){
+    this.verapi.getCategories(main_cat_id).
+    subscribe({
+      next:(res:any)=>{
+        this.getCategoryArray = res.records
+      }
+    })
+  }
 }

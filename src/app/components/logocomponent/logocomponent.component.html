@@ -1,0 +1,35 @@
+<ion-row>
+  <ion-col size="12">
+    <ion-item class="selectone">
+      <ion-label>Logo hochladen</ion-label>
+      <div class="file-choose-wrap">
+        <label class="imagechoosecls" for="logoInput">Dateien auswählen</label>
+        <input
+          style="display: none;"
+          id="logoInput"
+          type="file"
+          accept="image/*"
+          class="hidden-input"
+          (change)="onFileSelect($event)">
+      </div>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<ion-row class="preview-row">
+  <ion-col size="4"></ion-col>
+  <ion-col size="4">
+    <div class="thumbnailContainer">
+      @if(previewUrl) {
+        <img [src]="previewUrl" class="progressThumbnail">
+        <ion-icon name="close-circle" class="remove-icon" (click)="removeLogo()"></ion-icon>
+      }
+      @if(uploading) {
+        <div class="uploading-overlay">
+          <ion-spinner name="crescent"></ion-spinner>
+        </div>
+      }
+    </div>
+  </ion-col>
+  <ion-col size="4"></ion-col>
+</ion-row>

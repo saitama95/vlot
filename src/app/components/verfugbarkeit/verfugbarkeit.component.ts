@@ -61,4 +61,7 @@ export class VerfugbarkeitComponent  implements OnInit {
     this.modal.dismiss(null, 'confirm');
   }
 
+  reset() {
+    this.displayValue="";
+  }
 }

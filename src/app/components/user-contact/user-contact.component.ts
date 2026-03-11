@@ -107,4 +107,9 @@ export class UserContactComponent implements OnInit {
     this.formSubmit.emit(this.contactData);
     this.modal.dismiss(null, 'confirm');
   }
+
+  reset(){
+    this.contactData = null;
+    this.konkactForm.reset();
+  }
 }
