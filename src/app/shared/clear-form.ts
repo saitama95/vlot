@@ -1,6 +1,5 @@
-import { Injectable, ViewChild } from '@angular/core';
-import { LageundsonstiguesComponent } from '../components/lageundsonstigues/lageundsonstigues.component';
-    
+import { Injectable } from '@angular/core';
+
 @Injectable({
   providedIn: 'root',
 })

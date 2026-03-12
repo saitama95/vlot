@@ -1,12 +1,18 @@
 
 .head {
-background-color: rgba(215, 219, 221, 0.1490196078);
-height: 513px !important;
-border-right: 1px solid #d5d2d2;
-border-bottom: 1px springgreen;
+    background-color: rgba(215, 219, 221, 0.1490196078);
+    height: 513px !important;
+    border-right: 1px solid #d5d2d2;
+    border-bottom: 1px springgreen;
+}
+.scrollb{
+     height: 513px !important;
 }
 .cat_active{
     background-color: #fbc6a1;
+}
+.cate{
+    display: block;
 }
 .catcont{
     border-bottom: 1px solid #d5d2d2;
@@ -40,4 +46,24 @@ div.head {
 }
 .catcont{
 
+}
+.petfilter{
+  display: flex;
+  justify-content: space-between;
+  span{
+    border: 1px solid #bbb1b1;
+    padding: 2px;
+    font-size: 12px;
+  }
+}
+.petactive{
+  background-color:#e9621a;
+  color: white;
+}
+@media screen and (max-width:360px) {
+    .petfilter{
+      span{
+        font-size: 11px;
+      }
+    }
 }

@@ -1,43 +1,35 @@
  <ion-toolbar>
     <div class="tab tabheading">
     
-        <button  class="tablinks" (click)="viewcategoryPage(1)"> 
-        
+        <button  class="tablinks" (click)="viewcategoryPage(1)" [class.active_tab]="main_cat_id==1"> 
           <img src="assets/image/shopping-cart2.png">
           <p>MARKTPLATZ</p>
         </button>
    
    
-        <button class="tablinks " (click)="viewcategoryPage(2)">
+        <button class="tablinks " (click)="viewcategoryPage(2)" [class.active_tab]="main_cat_id==2">
           <img src="assets/image/homemenuicon.png">
           <p>IMMOBILIE</p>
         </button>
        
-        <!-- tab2 close -->
-
-
-      <!-- tab3 start -->
-        <button class="tablinks" (click)="viewcategoryPage(3)">
-          <!-- <ion-icon name="car-sport-outline" style="font-size: 30px;"></ion-icon> -->
-          <img src="assets/image/newautomotoricon2.png"> 
+        <button class="tablinks" (click)="viewcategoryPage(3)" [class.active_tab]="main_cat_id==3">
+          
+          <img src="assets/image/newautomotoricon2.png" > 
           <p class="autocate" style="font-size: 9px;">AUTO & MOTOR</p>
         </button>
-      <!-- tab3 close -->
-
-      <!-- tab4 start -->
-        <button  class="tablinks" (click)="viewcategoryPage(4)" style="display: none;">
-          <!-- <ion-icon name="storefront-outline" style="font-size: 30px;"></ion-icon> -->
+     
+        <button  class="tablinks" (click)="viewcategoryPage(4)" style="display: none;" 
+        [class.active_tab]="main_cat_id==4">
+         
           <img src="assets/image/shopping-cart12.png"> 
           <p>SHOPS</p>
         </button>
-      <!-- tab4 close -->
       
-      <!-- tab5 start -->
-        <button class="tablinks " (click)="viewcategoryPage(5)">
-          <!-- <ion-icon name="paw-outline" style="font-size: 30px;"></ion-icon> -->
+        <button class="tablinks " (click)="viewcategoryPage(5)" [class.active_tab]="main_cat_id==5">
+         
           <img src="assets/image/pawprint12.png"> 
           <p>HAUSTIERE</p>
         </button>
-      <!-- tab5 close -->
+      
       </div> 
   </ion-toolbar>

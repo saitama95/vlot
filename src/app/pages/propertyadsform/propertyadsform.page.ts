@@ -49,10 +49,10 @@ export class PropertyadsformPage implements OnInit {
   loading=false;
   myForm!: FormGroup;
   user_id=2;
-  form_type="";
+  form_type="housesell";
   main_cat_id=2;
-  subcatid=3
-  subsubcatid=4;
+  subcatid=32
+  subsubcatid=230;
   proId:string='';
   startUpload=false;
   startUploadLogo=false;

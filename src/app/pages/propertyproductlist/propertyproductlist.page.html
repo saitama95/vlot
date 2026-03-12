@@ -1,0 +1,145 @@
+<ion-header [class.hidden-header]="hideHeader">
+  <ion-toolbar>
+     <app-listviewheader
+     (propertyType)="propertyType($event)"
+  >
+    </app-listviewheader>
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+ <ion-row>
+  <ion-col size="12">
+    @for (item of propertyListarr; track $index) {
+      <div class="property_card">
+        @if(item.evon && item.ebis){
+          <div class="von_bis">
+            <div  class="newpricedata">
+              <h5>Ich suche</h5>
+                <div  class="newprice_sub">
+                  <p><span>von</span>€ {{item.evon}}</p>
+                  <p><span>bis</span>€ {{item.ebis}}</p>
+                </div>
+              </div>
+          </div>
+        }
+        <div class="card_cont">
+          <div class="img_con1">
+            @if(item.product_img){
+              <img [src]="item.product_img" alt="">
+            }@else {
+              <img src="https://verkaufalles.at/mobapp/image/homesell.png" alt="" srcset="">
+            }
+            @if(item.reserve_status==1){
+              <ion-badge color="primary" class="reserve_status" style="background-color: #e9621a;">reserviert</ion-badge>
+            }
+          </div>
+
+          <div class="card_contnet">
+            <div class="fist12">
+                  <p>{{item.title_name}}</p>
+                    @if(item.subsubcatid =='234' || item.subsubcatid =='235') {
+                        <p>
+                            <strong style="color: #000;font-weight: normal;"> 
+                                <span class="german_form">{{item.grundflache}}</span>
+                                <span> m<sup>2</sup></span>
+                            </strong>
+                        </p>
+                    }
+                    @if(item.nutzflache) {
+                        <p>
+                            <strong style="color: #000;font-weight: normal;">
+                                <span class="german_form">{{item.nutzflache}}</span> m<sup>2</sup>
+                            </strong>
+                            @if(item.objecttyp) {
+                                <span style="color: #808080ba;"> | </span>
+                                <strong style="color: #000;font-weight: normal;" class="zimmer">{{item.objecttyp}}</strong>
+                            }
+                        </p>
+                    }
+
+                    @if(item.wohnflache_val || item.evonwoh) {
+                        <p>
+                            <strong style="color: #000;font-weight: normal;">
+                                @if(item.wohnflache_val) {
+                                    <span class="german_form">{{item.wohnflache_val}}</span>
+                                }
+                                @if(item.evonwoh) {
+                                    <span>{{item.evonwoh}} - {{item.ebiswoh}}</span>
+                                } m<sup>2</sup>
+                            </strong>
+                            @if(item.objecttyp) {
+                                <span style="color: #808080ba;"> | </span>
+                                <strong style="color: #000;font-weight: normal;" class="zimmer">{{item.objecttyp}}</strong>
+                            }
+                        </p>
+                    }
+
+                    @if(item.wohnflache) {
+                        <p>
+                            <strong style="color: #000;font-weight: normal;">
+                                <span class="german_form">{{item.wohnflache}}</span> m<sup>2</sup>
+                            </strong>
+                            @if(item.objecttyp) {
+                                <span style="color: #808080ba;"> | </span>
+                                <strong style="color: #000;font-weight: normal;" class="zimmer">{{item.objecttyp}}</strong>
+                            }
+                        </p>
+                    }
+
+                  @if(item.gesamtflache && item.gesamtflache != 0) {
+                      <p>
+                          <strong style="color: #000;">
+                              <span class="german_form">{{item.gesamtflache}}</span> m<sup>2</sup>
+                          </strong>
+                      </p>
+                  }
+
+                  @if(item.no_of_rooms) {
+                      <p>
+                          <strong style="color: #000;font-weight: normal;">{{item.no_of_rooms}} Zimmer</strong>
+                      </p>
+                  }
+
+                  @if(item.flash_time) {
+                      <p class="flash_time">Heute, {{item.flash_time}}</p>
+                  }
+              
+               
+            </div>
+           
+            <div class="location">
+                <ion-card-subtitle>
+                  <ion-icon name="location-sharp" class="icon1"></ion-icon>
+                </ion-card-subtitle>
+                <ion-card-subtitle class="serialNo">{{item.state}}</ion-card-subtitle>
+                <ion-card-subtitle class="serialNo2">{{item.zipcode}} 
+                  @if(item.city){
+                    <span>{{item.city}}</span>
+                  }
+                  </ion-card-subtitle>
+            </div>
+            
+
+             <div style="width:100%;" class="price_con">
+                @if(item.price != 0) {
+                    <ion-card-subtitle>
+                        € {{item.euro}}
+                    </ion-card-subtitle>
+                } @else {
+                    @if(item.pricetyp == 'Auf Anfrage') {
+                        <ion-card-subtitle>Preis auf Anfrage</ion-card-subtitle>
+                    }
+                    @if(item.pricetyp == 'Zu verschenken') {
+                        <ion-card-subtitle>Zu verschenken</ion-card-subtitle>
+                    }
+                }
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </ion-col>
+ </ion-row>
+</ion-content>

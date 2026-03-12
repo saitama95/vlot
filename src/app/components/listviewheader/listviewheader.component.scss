@@ -1,0 +1,22 @@
+#btnContainer{
+  button{
+    border-left:1px solid grey;
+    border-bottom:1px solid grey;
+    margin: 0 1px;
+  }
+  button:not(:last-child){
+    
+  }
+}
+.hhtbn{
+    ion-icon{
+    font-size: 18px;
+    padding: 12px;
+    }
+}
+.left12{
+    text-align: right;
+    gap: 1px;
+    display: flex;
+    justify-content: space-evenly;
+}

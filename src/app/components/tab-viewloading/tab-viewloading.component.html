@@ -3,16 +3,16 @@
     <ion-col size="3">
       <div class="left_image">
         @for(item of leftarr; track $index) {
-          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          <ion-skeleton-text [animated]="false"></ion-skeleton-text>
         }
       </div>
     </ion-col>
     <ion-col size="9">
       <div class="search">
         @if(searchbar) {
-          <ion-skeleton-text class="searchbar" [animated]="true"></ion-skeleton-text>
+          <ion-skeleton-text class="searchbar" [animated]="false"></ion-skeleton-text>
         }
-        <p class="heading"><ion-skeleton-text [animated]="true"></ion-skeleton-text></p>
+        <p class="heading"><ion-skeleton-text [animated]="false"></ion-skeleton-text></p>
         <ion-row class="item_mar">
           @for(item of itemMar; track $index) {
             <ion-col size="6">

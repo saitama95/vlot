@@ -1,0 +1,33 @@
+  <div id="btnContainer" class="newheaderdarkmode">
+    <ion-row>
+      <ion-col size="2">
+         <a (click)="goback();" > <img src="assets/image/left-arrow2.png"></a>
+      </ion-col>
+        <ion-col size="5" class="p0">
+            <ion-searchbar class="p0" placeholder="Search" (click)="gotosearch();"></ion-searchbar>
+        </ion-col>
+        <ion-col size="5" class="p0 left12">
+          <button class="hhtbn">
+             <ion-icon name="reorder-four" (click)="changeView($event,'list')"></ion-icon>
+          </button>
+           <button class="hhtbn"> 
+             <ion-icon name="grid" (click)="changeView($event,'gridItem')"></ion-icon>
+           </button>
+            <button class="btn filterani" (click)="gotoFilterpage();">
+              <img src="assets/icon/filter_icon.png" alt="" srcset="">
+            </button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" style="display: flex;align-items: center;justify-content: center;">
+          <p class="head newheader">{{subsubcatName}}</p>
+      </ion-col>
+      <ion-col size="6" class="bottomleft" style="padding-right: 0;">
+        <button class="btn2 active2" id="all" (click)="getAllPropertyData($event,'all')">Biete und Suche</button> 
+        <button class="btn2" id="Biete"(click)="getAllPropertyData($event,'Biete')">Biete</button> 
+        <button class="btn2" id="Suche" (click)="getAllPropertyData($event,'Suche')">Suche</button>
+      </ion-col>
+    </ion-row>
+    <div>
+  </div>

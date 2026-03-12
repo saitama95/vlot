@@ -36,6 +36,10 @@ const routes: Routes = [
         loadChildren: () => import('../tab7/tab7.module').then( m => m.Tab7PageModule)
       },
       {
+          path: 'propertyproductlist',
+          loadChildren: () => import('../pages/propertyproductlist/propertyproductlist.module').then( m => m.PropertyproductlistPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

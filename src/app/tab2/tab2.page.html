@@ -1,34 +1,202 @@
 <ion-header>
-  <app-market-pet-autoheader></app-market-pet-autoheader>
+  <app-market-pet-autoheader
+  [main_cat_id]="main_cat_id"
+  ></app-market-pet-autoheader>
 </ion-header>
 <ion-content>
-   <app-tab-viewloading
-    [marketplace]="'1'"
-    [arrdata]="getCategoryArray"
-    ></app-tab-viewloading>
 
-    @if(getCategoryArray.length){
+  <app-tab-viewloading
+  [marketplace]="'1'"
+  [arrdata]="marketCate"
+  ></app-tab-viewloading>
+
+<ng-template #categoryTpl let-items="items" let-getActiveId="getActiveId" let-onSelect="onSelect">
+  <ion-col size="3" class="p0">
+    <ion-row>
+      <div class="head">
+        @for (item of items; track item.id) {
+          <ion-col size="12" class="p0" (click)="onSelect(item.id)">
+            <div class="catcont" [class.cat_active]="getActiveId() === item.id">
+              <img class="iconimg" [src]="item?.cate_image_path" />
+              <!-- <p>{{activeId}} {{item.id}}</p> -->
+              <span class="cate" >{{ item.name }}</span>
+            </div>
+          </ion-col>
+        }
+      </div>
+    </ion-row>
+  </ion-col>
+</ng-template>
+
+  <div [style]="main_cat_id==1?'display:block':'display:none'">
+       @if(marketCate.length){
       <ion-row>
-        <ion-col size="3">
-          <ion-row>
-             <div class="head">
-               @for (item of getCategoryArray; track $index) {
-                <ion-col size="12" class="p0">
-                  <div class="catcont">
-                    <div>
-                      <img class="iconimg" [src]="item?.cate_image_path"><br>
-                      <span class="cate">{{item.name}}</span>
-                    </div>
-                  </div>
-                </ion-col>
-              }
-             </div>
-          </ion-row>
-        </ion-col>
+          <ng-container *ngTemplateOutlet="categoryTpl; context: {
+              items: marketCate,
+              getActiveId: getActiveIdM,
+              onSelect: getsubCategoriesMarket.bind(this)
+            }"></ng-container>
         <ion-col size="9">
-          <h3>Hello</h3>
+           
+              <ion-row>
+                <ion-col size="10">
+                  <ion-searchbar></ion-searchbar>
+                </ion-col>
+                <ion-col size="2">
+                  <ion-icon name="checkmark-outline"></ion-icon>
+                </ion-col>
+              </ion-row>
+              
+            @for (subcatearr of submarketCate; track $index) {
+              <ion-row>
+                  <ion-col size="12">
+                    <h4 class="m0 txtc">{{subcatearr.name}}</h4>
+                  </ion-col>
+              </ion-row>
+               <div class="scrollb head">
+                <ion-row>
+                    @for (item of subcatearr.subsubcatdata; track $index) {
+                      <ion-col size="6">
+                        <ion-img [src]="item.subsubcat_image_path"></ion-img>
+                        <p>{{item.name}}</p>
+                      </ion-col>
+                    }
+                </ion-row>
+              </div>
+            }
         </ion-col>
     </ion-row>
     }
+  </div>
+   
+
+  <div [style]="main_cat_id==3?'display:block':'display:none'">
+      @if(autoCate.length){
+    <ion-row>
+        <ng-container *ngTemplateOutlet="categoryTpl; context: {
+            items: autoCate,
+            getActiveId: getActiveIdA,
+            onSelect: getsubCategoriesAuto.bind(this)
+          }"></ng-container>
+        <ion-col size="9">
+              
+            @for (subcatearr of subautoCate; track $index) {
+              <ion-row>
+                  <ion-col size="12">
+                    <h4 class="m0 txtc">{{subcatearr.name}}</h4>
+                  </ion-col>
+              </ion-row>
+               <div class="scrollb head">
+                <ion-row>
+                    @for (item of subcatearr.subsubcatdata; track $index) {
+                      <ion-col size="6">
+                        <ion-img [src]="item.subsubcat_image_path"></ion-img>
+                        <p>{{item.name}}</p>
+                      </ion-col>
+                    }
+                </ion-row>
+              </div>
+            }
+      </ion-col>
+  </ion-row>
+  }
+  </div>
+    
+  <div [style]="main_cat_id==2?'display:block':'display:none'">
+     @if(propertyCate.length){
+       <ion-row>
+        <ng-container *ngTemplateOutlet="categoryTpl; context: {
+            items: propertyCate,
+            getActiveId: getActiveIdPt,
+            onSelect: getsubCategoriesproperty.bind(this)
+          }"></ng-container>
+        <ion-col size="9">
+            @for (subcatearr of subpropertyCate; track $index) {
+              <ion-row>
+                  <ion-col size="12">
+                    <h4 class="m0 txtc">{{subcatearr.name}}</h4>
+                  </ion-col>
+              </ion-row>
+               <div class="scrollb head">
+                <ion-row>
+                    @for (item of subcatearr.subsubcatdata; track $index) {
+                      <ion-col size="12" (click)="propertyList(item.subsubcatid,item.sub_cat_id)">
+                        <ion-img [src]="item.subsubcat_image_path"></ion-img>
+                        <p class="txtc">{{item.name}}</p>
+                      </ion-col>
+                    }
+                </ion-row>
+              </div>
+            }
+        </ion-col>
+      </ion-row>
+     }
+  </div>
+
+
+  <div [style]="main_cat_id==5?'display:block':'display:none'">
+     @if(petCate.length){
+       <ion-row>
+        <ng-container *ngTemplateOutlet="categoryTpl; context: {
+            items: petCate,
+            getActiveId: getActiveIdPet,
+            onSelect: getsubCategoriesPet.bind(this)
+          }"></ng-container>
+        <ion-col size="9">
+            <ion-row>
+              <ion-col size="10">
+                <ion-searchbar></ion-searchbar>
+              </ion-col>
+              <ion-col size="2">
+                  <ion-icon name="checkmark-outline"></ion-icon>
+              </ion-col>
+            </ion-row>
+
+            @if(getActiveIdPet() == 21){
+               <ion-row>
+              <ion-col size="12">
+                <div class="petfilter">
+                  <span [class.petactive]="cmvalue == '<30cm'" (click)="filterpet('<30cm')">
+                    < 30cm
+                  </span>
+                  <span [class.petactive]="cmvalue == '30-40cm'" (click)="filterpet('30-40cm')">
+                    30-40cm
+                  </span>
+                  <span [class.petactive]="cmvalue == '40-60cm'" (click)="filterpet('40-60cm')">
+                    40-60cm
+                  </span>
+                  <span [class.petactive]="cmvalue == '61-70cm'" (click)="filterpet('61-70cm')">
+                    61-70cm
+                  </span>
+                  <span [class.petactive]="cmvalue == '≥71cm'" (click)="filterpet('≥71cm')">
+                    ≥71cm
+                  </span>
+                </div>
+              </ion-col>
+            </ion-row>
+            }
+            
+
+            @for (subcatearr of subpetCate; track $index) {
+              <ion-row>
+                  <ion-col size="12">
+                    <h4 class="m0 txtc">{{subcatearr.name}}</h4>
+                  </ion-col>
+              </ion-row>
+               <div class="scrollb head">
+                <ion-row>
+                    @for (item of subcatearr.subsubcatdata; track $index) {
+                        <ion-col size="4">
+                          <ion-img [src]="item.subsubcat_image_path"></ion-img>
+                          <p>{{item.name}}</p>
+                        </ion-col>
+                    }
+                </ion-row>
+              </div>
+            }
+        </ion-col>
+      </ion-row>
+     }
+  </div>
     
 </ion-content>

@@ -19,14 +19,15 @@ const routes: Routes = [
   {
     path: 'propertyadsplace',
     loadChildren: () => import('./propertyadsplace/propertyadsplace.module').then( m => m.PropertyadsplacePageModule)
-  },  {
+  },
+  {
     path: 'propertyadsform',
     loadChildren: () => import('./propertyadsform/propertyadsform.module').then( m => m.PropertyadsformPageModule)
   },
   {
     path: 'propertyproductdetails',
     loadChildren: () => import('./propertyproductdetails/propertyproductdetails.module').then( m => m.PropertyproductdetailsPageModule)
-  }
+  },
 
 ];
 

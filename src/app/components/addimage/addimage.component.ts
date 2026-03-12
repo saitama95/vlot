@@ -26,6 +26,7 @@ export class AddimageComponent implements OnInit {
   images: ImageItem[] = [];
   isUploading: boolean = false;
 
+  @Input() tablename:string="";
   @Input() form_type="";
   @Input() user_id:any=0;
 
@@ -111,8 +112,7 @@ export class AddimageComponent implements OnInit {
         const formData = new FormData();
         formData.append('image', img.blob!, img.name);
         formData.append('product_id', this.proId);
-        // formData.append('user_id', this.user_id);
-        //formData.append('form_type', this.form_type);
+        formData.append('tablename', this.tablename);
         formData.append('action', 'create');
         await new Promise<void>((resolve, reject) => {
           this.verapi.uploadPropertyImage(formData).subscribe({

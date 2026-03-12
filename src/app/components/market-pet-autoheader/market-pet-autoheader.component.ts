@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -9,6 +9,7 @@ import { NavController } from '@ionic/angular';
 })
 export class MarketPetAutoheaderComponent  implements OnInit {
 
+  @Input() main_cat_id:number=0;
   constructor(
     private navCtrl : NavController,
   ) { }
@@ -16,6 +17,6 @@ export class MarketPetAutoheaderComponent  implements OnInit {
   ngOnInit() {}
 
   viewcategoryPage(main_cat_id:number){
-    this.navCtrl.navigateRoot('tabs/tab2?maincatid='+main_cat_id);
+    this.navCtrl.navigateRoot(`tabs/tab2?maincatid=${main_cat_id}`);
   }
 }

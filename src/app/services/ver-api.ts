@@ -27,7 +27,7 @@ export class VerAPI {
     }
 
     uploadPropertyImage(data:any){
-      return this.http.post(`${this.API_URL}/mobapp/posthausselldataimages.php`,data)
+      return this.http.post(`${this.API_URL}/mobapp/image_upload.php`,data)
     }
 
     updateLogo(data:any){
@@ -38,8 +38,17 @@ export class VerAPI {
       return this.http.get(`https://verkaufalles.at/api/categories/getcategories.php?maincatid=${maincatid}`);
     }
 
-    getSubCategories(subcatid:number,maincatid:number){
-      return this.http.get(`https://verkaufalles.at/api/categories/getsubsubcatbyid.php?subcatid=${subcatid}&maincatid=${maincatid}`);
+    getSubCategories(subcatid:number,maincatid:number,cm:string=""){
+      return this.http.get(`https://verkaufalles.at/api/categories/getsubsubcatbyid.php?subcatid=${subcatid}&maincatid=${maincatid}&cm=${cm}`);
       
+    }
+
+    getHouseSell(type:string){
+      return this.http.get(`https://verkaufalles.at/api/propertyproducts/getpropertyproductlist.php?user_id=null&type=${type}`)
+    }
+
+    //tab1
+    getRandomProperty(){
+      return this.http.get(`${this.API_URL}/`);
     }
 }
