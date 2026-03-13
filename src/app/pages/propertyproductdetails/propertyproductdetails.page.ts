@@ -107,30 +107,8 @@ export class PropertyproductdetailsPage implements OnInit {
 
     getProductDetails(proid:any){
       this.getProductDetailData=[];
-      this.verapi.posthausselldatadetail(proid,2).subscribe((res:any)=>{
+      this.verapi.hausselldatadetail(proid,2).subscribe((res:any)=>{
         this.getProductDetailData = this.getProductDetailData.concat(res['productdetailsdata']);
-        //this.postViewData(this.getProductDetailData);
-        // console.log(this.getProductDetailData);
-        var ausstatung_val = this.getProductDetailData[0]['ausstatung_val'];
-        var dataArray = ausstatung_val.split(",");
-        this.newaustatungval = dataArray.join("\n");
-
-        var bodenval = this.getProductDetailData[0]['baden_val'];
-        var bodenarray = bodenval.split(",");
-        this.newbodenval = bodenarray.join("\n");
-
-        var heizungval = this.getProductDetailData[0]['heizung_val'];
-        var heizungvalarray = heizungval.split(",");
-        this.newheizugval = heizungvalarray.join("\n");
-        //this.changeGermanForm();
-
-        this.tour_link = this.getProductDetailData[0].tour_link.replace(/www./g, "");
-        this.objekt_info = this.getProductDetailData[0].objekt_info.replace(/www./g, "");
-        this.zustand = this.getProductDetailData[0].zustand.replace(/www./g, "");
-        this.verkauf = this.getProductDetailData[0].verkauf.replace(/www./g, "");
-
-        this.website_link = this.getProductDetailData[0].weiter_homepage.replace(/www./g, "");
-        this.homepage_link = this.getProductDetailData[0].zusatzliche_homepage.replace(/www./g, "");
       });
   }
 }

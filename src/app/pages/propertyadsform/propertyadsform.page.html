@@ -137,37 +137,40 @@
       
       
       @if(ichcontainer){
+
         <ion-row>
-        <ion-col size="4" style="padding-top: 2px;padding-bottom: 1px;">
-          <ion-item class="item_form" [style.border]="price_type?.invalid && price_type?.touched ? '1px solid red' : ''">
-            <ion-label style="font-size: 12px;font-weight:700">Preistyp 
-              @if(!price_type?.value) {
-              <span class="requiedcls4">*</span>
+          <ion-col size="4" style="padding-top: 2px;padding-bottom: 1px;">
+            <ion-item class="item_form" [style.border]="price_type?.invalid && price_type?.touched ? '1px solid red' : ''">
+              <ion-label style="font-size: 12px;font-weight:700">Preistyp 
+                @if(!price_type?.value) {
+                <span class="requiedcls4">*</span>
+                }
+              </ion-label>
+              <ion-select interface="popover" (ionChange)="getPricetypValue($event.detail.value)" formControlName="price_type" 
+              >
+                @for (item of commonServices.Preistyp; track $index) {
+                  <ion-select-option [value]="item.name">{{item.name}}</ion-select-option>
+                }
+              </ion-select>
+            </ion-item>
+          </ion-col>
+           @if(price_type?.value!="Auf Anfrage"){
+            <ion-col size="1"  class="">
+            <ion-input readonly="true"  value="€" class="myinputsss form_euro" ></ion-input>
+          </ion-col>
+          <ion-col size="4" id="pricediv" class="">
+              @if(!price?.value) {
+                <span class="requiedcls5">*</span>
               }
-            </ion-label>
-            <ion-select interface="popover" formControlName="price_type" 
-            >
-               @for (item of commonServices.Preistyp; track $index) {
-                <ion-select-option [value]="item.name">{{item.name}}</ion-select-option>
-              }
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col size="1"  class="">
-          <ion-input disabled class="myinputsss"><i class="fa fa-eur" aria-hidden="true"></i></ion-input>
-        </ion-col>
-        <ion-col size="4" id="pricediv" class="">
-            @if(!price?.value) {
-              <span class="requiedcls5">*</span>
-            }
-          <ion-input type="number" maxlength="8" 
-          placeholder="Kaufpreis" class="myinput" formControlName="price"
-          [class.input-error]="price?.invalid && price?.touched"
-          ></ion-input>
-        </ion-col>
-        <ion-col size="3">
-          <label style="font-size:14px;color:green;"></label>
-        </ion-col>
+              <ion-input type="number" maxlength="8" 
+                placeholder="Kaufpreis" class="myinput" formControlName="price"
+                [class.input-error]="price?.invalid && price?.touched"
+                ></ion-input>
+          </ion-col>
+           }
+          <ion-col size="3">
+            <label style="font-size:14px;color:green;">{{price_type?.value}}</label>
+          </ion-col>
       </ion-row>
 
       <ion-row style="margin-left: 7px;">

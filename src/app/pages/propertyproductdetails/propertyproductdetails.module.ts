@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { PropertyproductdetailsPageRoutingModule } from './propertyproductdetails-routing.module';
 
 import { PropertyproductdetailsPage } from './propertyproductdetails.page';
+import { DetailheaderComponent } from 'src/app/components/detailheader/detailheader.component';
+import { GermanNumberPipe } from 'src/app/pipe/germanNumberPipe';
 
 @NgModule({
   imports: [
@@ -15,7 +17,7 @@ import { PropertyproductdetailsPage } from './propertyproductdetails.page';
     IonicModule,
     PropertyproductdetailsPageRoutingModule
   ],
-  declarations: [PropertyproductdetailsPage],
+  declarations: [PropertyproductdetailsPage,DetailheaderComponent,GermanNumberPipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PropertyproductdetailsPageModule {}

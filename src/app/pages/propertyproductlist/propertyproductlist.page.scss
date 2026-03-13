@@ -1,19 +1,23 @@
 .property_card{
     height: 150px;
     width: 100%;
-    border-bottom: 1px solid grey;
+    // border-bottom: 1px solid grey;
+    border-bottom:1px solid #d8d3d3;
     position: relative;
 }
 .newpricedata{
     display: flex;
     justify-content: start;
     align-items: center;
+    .newprice_sub{
+      font-size: 13px;
+    }
 }
 .img_con1{
-    width: 35%;
-    height: 100%;
+    width: 95px;
+    height: 82%;
+    margin: auto 0;
     border: 1px solid #b5a3a3;
-    padding: 6px;
 }
 .card_cont{
     display: flex;
@@ -25,25 +29,32 @@
         height: 100%;
     }
 }
-.fist12 p{
-    margin: 0;
-
+.fist12 {
+  p{
+     margin: 0;
+  }
+  .title{
+   
+  }
+  .german_form,.zimmer,.flash_time,strong{
+    font-size: 13px;
+  }
 }
 .price_con{
-
+  position: absolute;
+  bottom:32px;
+  right: 15px;
 }
  .price_con ion-card-subtitle{
     color: #e9621a;
     font-weight: 700;
     font-size: 16px;
     text-align: right;
-    // padding-top: 30px !important;
-    // padding-right: 9px;
-    position: absolute;
-    bottom:18px;
-    right: 15px;
+    
   }
   .card_contnet{
+    padding-left: 5px;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -51,9 +62,12 @@
   }
 
 .location{
-    
-
+    display: flex;
+    ion-card-subtitle{
+      font-size: 12px;
+    }
   }
+
   .location1{
     position: absolute;
     /* top: 304px; */
@@ -74,14 +88,7 @@
     color: red;
    }
    @media screen and (max-width:380px){
-    .location{
-        width: 260px;
-    }
-}
-ion-header {
-  transition: transform 0.3s ease;
-}
-
-.hidden-header {
-  transform: translateY(-100%);
+    // .location{
+    //     width: 260px;
+    // }
 }

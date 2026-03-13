@@ -1,18 +1,21 @@
-<ion-header [class.hidden-header]="hideHeader">
+@if(!commonServices.hideHeader){
+  <ion-header>
   <ion-toolbar>
      <app-listviewheader
      (propertyType)="propertyType($event)"
   >
     </app-listviewheader>
   </ion-toolbar>
- 
 </ion-header>
+}
 
-<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+
+<ion-content [scrollEvents]="true" (ionScroll)="commonServices.onScroll($event)" [class.content-shifted]="!commonServices.hideHeader">
  <ion-row>
   <ion-col size="12">
     @for (item of propertyListarr; track $index) {
-      <div class="property_card">
+      @if(item.title_name){
+        <div class="property_card" (click)="viewDetails(item.id)">
         @if(item.evon && item.ebis){
           <div class="von_bis">
             <div  class="newpricedata">
@@ -38,7 +41,7 @@
 
           <div class="card_contnet">
             <div class="fist12">
-                  <p>{{item.title_name}}</p>
+                  <p class="title">{{item.title_name}}</p>
                     @if(item.subsubcatid =='234' || item.subsubcatid =='235') {
                         <p>
                             <strong style="color: #000;font-weight: normal;"> 
@@ -91,7 +94,7 @@
                   @if(item.gesamtflache && item.gesamtflache != 0) {
                       <p>
                           <strong style="color: #000;">
-                              <span class="german_form">{{item.gesamtflache}}</span> m<sup>2</sup>
+                              <span class="german_form">{{item.gesamtflache}}</span > m<sup>2</sup>
                           </strong>
                       </p>
                   }
@@ -103,22 +106,20 @@
                   }
 
                   @if(item.flash_time) {
-                      <p class="flash_time">Heute, {{item.flash_time}}</p>
+                      <!-- <p class="flash_time">Heute, {{item.flash_time}}</p> -->
                   }
-              
-               
             </div>
            
             <div class="location">
-                <ion-card-subtitle>
-                  <ion-icon name="location-sharp" class="icon1"></ion-icon>
-                </ion-card-subtitle>
-                <ion-card-subtitle class="serialNo">{{item.state}}</ion-card-subtitle>
-                <ion-card-subtitle class="serialNo2">{{item.zipcode}} 
+                <ion-icon name="location-sharp" class="icon1"></ion-icon>
+                <div>
+                   <ion-card-subtitle class="serialNo">{{item.state}}</ion-card-subtitle>
+                  <ion-card-subtitle class="serialNo2">{{item.zipcode}} 
                   @if(item.city){
                     <span>{{item.city}}</span>
                   }
                   </ion-card-subtitle>
+                </div>
             </div>
             
 
@@ -139,6 +140,7 @@
           </div>
         </div>
       </div>
+      }
     }
   </ion-col>
  </ion-row>

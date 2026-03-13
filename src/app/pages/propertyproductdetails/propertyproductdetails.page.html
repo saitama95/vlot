@@ -1,6 +1,8 @@
 <ion-content>
   
-  <div *ngFor="let productdetails of getProductDetailData;">
+  @for (productdetails of getProductDetailData; track productdetails) {
+
+    <!-- Blur Header -->
     <div class="blur_container">
       <div class="blur_back">
         <a (click)="goBack();">
@@ -8,34 +10,33 @@
             <img src="assets/image/left-arrow2.png">
           </div>
         </a>
-        <div  class="staricon shareIconimage">
+        <div class="staricon shareIconimage">
           <div class="likeIcon">
-            <a *ngIf="productdetails.wishpro == 'true';else wishnewhaussell" >
-              <div>
-                <ion-icon name="heart" value="off"></ion-icon>
-              </div>
-            </a>
-            <ng-template #wishnewhaussell>
-              <a >
+            @if (productdetails.wishpro) {
+              <a>
+                <div>
+                  <ion-icon name="heart" value="off"></ion-icon>
+                </div>
+              </a>
+            } @else {
+              <a>
                 <div>
                   <ion-icon name="heart-outline" value="on"></ion-icon>
                 </div>
               </a>
-            </ng-template>
+            }
           </div>
           <div class="socialmeida">
-            <ion-icon  name="share-social"></ion-icon>
+            <ion-icon name="share-social"></ion-icon>
           </div>
-         
         </div>
       </div>
     </div>
-  
 
-
-    <!-- <a id="emailMe" href="mailto:example@website.com">e-mail me</a> -->
     <ion-row>
-      <ion-col size="12" style="padding:0px;"> 
+      <ion-col size="12" class="col-no-padding">
+
+        <!-- Image Section -->
         <div>
           <div class="imagecls">
             @if (productdetails.imageData != '') {
@@ -55,19 +56,17 @@
                   </swiper-slide>
                 }
               </swiper-container>
-}
-            <ng-template #noimage>
-             
-                  <!-- <a (click)="ViewImages(productdetails.subsubcatid,productdetails.id);"> -->
-                    <img color='red' src="https://verkaufalles.at/mobapp/image/homesell.png" style="border-radius:5px;border:1px solid #d7d2d299;color:black;width: 100%;height: 271px;" >
-                    <!-- <img color='red' src="https://verkaufalles.at/mobapp/uploads/noimage.png" style="border-radius:5px;border:1px solid #d7d2d299;color:black;width: 100%;height: 271px;" > -->
-                  <!-- </a> -->
-               
-            </ng-template>
+            } @else {
+              <img
+                src="https://verkaufalles.at/mobapp/image/homesell.png"
+                class="fallback-image"
+              >
+            }
           </div>
         </div>
 
-        <div style="display:none;background-color: rgb(251 146 82)!important;position: fixed;width: 100%;top: 0px;z-index:99999;height: 55px;" id="isflags" >
+        <!-- Sticky Header (hidden by default) -->
+        <div class="sticky-header" id="isflags">
           <div class="blur_container hideheader">
             <div class="blur_back">
               <a (click)="goBack();">
@@ -75,328 +74,441 @@
                   <img src="assets/image/left-arrow2.png">
                 </div>
               </a>
-    
-              <div  class="staricon shareIconimage">
+              <div class="staricon shareIconimage">
                 <div class="likeIcon">
-                  <a *ngIf="productdetails.wishpro == 'true';else wishnewhaussell" >
+                  @if (productdetails.wishpro) {
                     <div>
                       <ion-icon name="heart" value="off"></ion-icon>
                     </div>
-                  </a>
-                  <ng-template #wishnewhaussell>
-                    <a>
-                      <div>
-                        <ion-icon name="heart-outline" value="on"></ion-icon>
-                      </div>
-                    </a>
-                  </ng-template>
+                  } @else {
+                    <div>
+                      <ion-icon name="heart-outline" value="on"></ion-icon>
+                    </div>
+                  }
                 </div>
                 <div class="socialmeida">
-                  <ion-icon  name="share-social"></ion-icon>
+                  <ion-icon name="share-social"></ion-icon>
                 </div>
-               
               </div>
             </div>
           </div>
-        
-          
         </div>
 
         <div>
+
+          <!-- Title & Price Section -->
           <div class="shadowclass">
-            <p class="suche" *ngIf="productdetails.von">Ich suche</p>
-            <p class="title">{{productdetails.title_name}}</p>
-            <ion-badge *ngIf="productdetails.reserve_status==1;" color="primary" class="reserve_status">reserviert</ion-badge>
-            <ion-row style="padding: 0px 3px 5px 15px;">
-              
-              <ion-col size="12" *ngIf="!productdetails.von">
-                <div style="text-align: center;" *ngIf="productdetails.price !=0;else newpricetyp">
-                  <p class="makeorange" style="color: #e9621a;font-weight: 600;font-size: 18px;margin-bottom: 1px;"><i class="fa fa-eur"></i> {{productdetails.euro}}  </p>
-                  <p style="color:black;margin-left: 10px;text-align: center;margin-bottom:0px;">({{productdetails.pricetyp}})</p>
-                </div>
-                <ng-template #newpricetyp>
-                  <div style="text-align: center;">
-                    <p style="color: #e9621a;font-weight: 600;font-size: 18px;margin-bottom: 1px;">Preis auf Anfrage</p>
-                  </div>
-                </ng-template>
-              </ion-col>
-              
-              <ion-col size="12" *ngIf="productdetails.von">
-                <div class="newpricedetail1">
-                  <h4>Preis</h4>
-                
-                  <div class="newpricedetail1_sub">
-                    <p>von  <span><i class="fa fa-eur"></i> {{productdetails.evon}}</span></p>
-                    <p>bis  <span><i class="fa fa-eur"></i> {{productdetails.ebis}}</span></p>
-                  </div>
-                  
-                </div>
-              </ion-col>
+            @if (productdetails.von) {
+              <p class="suche">Ich suche</p>
+            }
+            <p class="title">{{ productdetails.title_name }}</p>
 
-              <ion-col size="12" *ngIf="productdetails.evonwoh" style="padding-top: 7px;">
-                <div class="newpricedetail1">
-                  <h4>Wohnfläche</h4>
-                  <div class="newpricedetail1_sub">
-                    <p>von  <span>{{productdetails.evonwoh}} m<sup>2</sup></span>  </p>
-                    <p>bis  <span>{{productdetails.ebiswoh}} m<sup>2</sup></span>  </p>
-                  </div>
-                    
-                </div>
-              </ion-col>
+            @if (productdetails.reserve_status == 1) {
+              <ion-badge color="primary" class="reserve_status">reserviert</ion-badge>
+            }
 
-              <ion-col [size]="productdetails.no_of_rooms!=0?6:12" *ngIf="!productdetails.von">
-                <div style="text-align: center;">
-                  <span style="color: #e9621a;font-weight: 600;font-size: 17px;"> <span  class="german_form">{{productdetails.wohnflache_val}}</span>  m<sup>2</sup></span>
-                  <p>Wohnfläche</p>
-                </div>
-              </ion-col>
-              <ion-col  [size]="productdetails.von?12:6" *ngIf="productdetails.no_of_rooms!=0">
-                <div style="text-align: center;">
-                  <span style="color: #e9621a;font-weight: 600;font-size: 17px;" class="zimmer">{{productdetails.no_of_rooms}}</span>
-                  <p>Zimmer</p>
-                </div>
-              </ion-col>
+            <ion-row class="price-row">
+
+              @if (!productdetails.von) {
+                <ion-col size="12" class="textcenter">
+                  @if (productdetails.price != 0) {
+                    <div>
+                      <p class="makeorange price-value fw">€ {{ productdetails.euro }}</p>
+                      <p class="price-type">({{ productdetails.pricetyp }})</p>
+                    </div>
+                  } @else {
+                    <div>
+                      <p class="price-on-request fw makeorange">Preis auf Anfrage</p>
+                    </div>
+                  }
+                </ion-col>
+              }
+
+              @if (productdetails.von) {
+                <ion-col size="12">
+                  <div class="newpricedetail1">
+                    <h4>Preis</h4>
+                    <div class="newpricedetail1_sub">
+                      <p>von <span>€ {{ productdetails.evon }}</span></p>
+                      <p>bis <span>€ {{ productdetails.ebis }}</span></p>
+                    </div>
+                  </div>
+                </ion-col>
+              }
+
+              @if (productdetails.evonwoh) {
+                <ion-col size="12" class="wohnflache-col">
+                  <div class="newpricedetail1">
+                    <h4>Wohnfläche</h4>
+                    <div class="newpricedetail1_sub">
+                      <p>von <span>{{ productdetails.evonwoh }} m<sup>2</sup></span></p>
+                      <p>bis <span>{{ productdetails.ebiswoh }} m<sup>2</sup></span></p>
+                    </div>
+                  </div>
+                </ion-col>
+              }
+
+              @if (!productdetails.von) {
+                <ion-col [size]="productdetails.no_of_rooms != 0 ? 6 : 12">
+                  <div class="textcenter">
+                    <span class="stat-value fw">
+                      <span class="german_form makeorange">{{ productdetails.wohnflache_val | germanNumber }}  m<sup>2</sup></span>
+                    </span>
+                    <p>Wohnfläche</p>
+                  </div>
+                </ion-col>
+              }
+
+              @if (productdetails.no_of_rooms != 0) {
+                <ion-col [size]="productdetails.von ? 12 : 6">
+                  <div class="textcenter">
+                    <span class="stat-value zimmer makeorange fw">{{ productdetails.no_of_rooms }}</span>
+                    <p>Zimmer</p>
+                  </div>
+                </ion-col>
+              }
+
             </ion-row>
           </div>
 
-          <div class="shadowstyle" *ngIf="productdetails.zipcode">
-            <p class="titlediv">Objektstandort</p>
-            <p style="font-weight: 500;"><span *ngIf="productdetails.street_address">{{productdetails.street_address}}, </span><span>{{productdetails.zipcode}}</span><span> {{productdetails.city}},</span> <span> {{productdetails.country}}</span></p>
-            <!-- <span class="pricehead">{{productdetails.description}}</span> -->
-          </div>
-
-          <div class="shadowstyle" *ngIf="productdetails.description">
-            <p class="titlediv">Objektinformation</p>
-            <span class="pricehead">{{productdetails.description}}</span>
-          </div>
-          
-          <div class="shadow" >
-            <div style="border-bottom: 1px solid #e4e6e9;" *ngIf="productdetails.objecttyp || productdetails.grundflache_val != 0 || productdetails.availability ||  productdetails.bautyp || productdetails.heizung_val || productdetails.zustand_val">
-              <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 0.5rem;">
-                <p class="titlediv">Objektinformation</p>
-                <p class="mb-1 text-clrs" *ngIf="productdetails.objecttyp"><span style="font-weight: 500;">Objekttyp</span><span class="float-right text-dark makewhite">{{productdetails.objecttyp}}</span></p>
-                <p class="mb-1 text-clrss" *ngIf="productdetails.grundflache_val != 0 && productdetails.grundflache_val != '' "><span style="font-weight: 500;">Grundfläche</span><span class="float-right text-dark makewhite"> <span class="energy_form">{{productdetails.grundflache_val}}</span>  m<sup>2</sup></span></p>
-                <p class="mb-1 text-clrss" *ngIf="productdetails.availability"><span style="font-weight: 500;">Verfügbar</span><span class="float-right text-dark makewhite">{{productdetails.availability}}</span></p>
-              
-                <p class="mb-1 text-clrs" *ngIf="productdetails.bautyp"><span style="font-weight: 500;">Bautyp</span><span class="float-right text-dark makewhite">{{productdetails.bautyp}}</span></p>
-                <!-- <p class="mb-1 text-clrs" *ngIf="productdetails.heizung_val"><span style="font-weight: 500;">Heizung</span><span class="float-right text-dark makewhite">{{productdetails.heizung_val}}</span></p> -->
-                <p class="mb-1 text-clrss" *ngIf="productdetails.zustand_val"><span style="font-weight: 500;">Zustand</span><span class="float-right text-dark makewhite">{{productdetails.zustand_val}}</span></p>
-                <!-- <p class="mb-1 text-clrs" *ngIf="productdetails.baden_val"><span style="font-weight: 500;">Böden</span><span class="float-right text-dark makewhite">{{productdetails.baden_val}}</span></p> -->
-              </div>
+          <!-- Location -->
+          @if (productdetails.zipcode) {
+            <div class="shadowstyle">
+              <p class="titlediv">Objektstandort</p>
+              <p class="location-text">
+                @if (productdetails.street_address) {
+                  <span>{{ productdetails.street_address }}, </span>
+                }
+                <span>{{ productdetails.zipcode }}</span>
+                <span> {{ productdetails.city }},</span>
+                <span> {{ productdetails.country }}</span>
+              </p>
             </div>
-            <div style="border-bottom: 1px solid #e4e6e9;" *ngIf="productdetails.balkon_val!=0 || productdetails.dachterrasse_val!=0 || productdetails.garten_val!=0 || productdetails.loggia_val!=0 || productdetails.terrasse_val!=0  || productdetails.wintergarten_val!=0">
-              <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;">
-                <p class="titlediv" style="margin-top: 12px;">Freiflächen</p>
-                <div *ngIf="productdetails.balkon_val == 'Balkon' || productdetails.dachterrasse_val == 'Dachterrasse' || productdetails.garten_val == 'Garten' || productdetails.loggia_val == 'Loggia' || productdetails.terrasse_val == 'Terrasse' || productdetails.wintergarten_val == 'Wintergarten'">
+          }
 
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.balkon_val == 'Balkon'" >Balkon</p>
+          <!-- Description -->
+          @if (productdetails.description) {
+            <div class="shadowstyle">
+              <p class="titlediv">Objektinformation</p>
+              <span class="pricehead">{{ productdetails.description }}</span>
+            </div>
+          }
 
-                  <!-- <span *ngIf="productdetails.dachterrasse_val == 'Dachterrasse'"> ,</span> -->
-                  <p  style="margin-bottom: 2px;" *ngIf="productdetails.dachterrasse_val == 'Dachterrasse'" >Dachterrasse</p>
+          <!-- Object Details -->
+          <div class="shadow">
 
-                  <!-- <span *ngIf="productdetails.garten_val == 'Garten'"> ,</span> -->
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.garten_val == 'Garten'" >Garten</p>
+            @if (productdetails.objecttyp || productdetails.grundflache_val != 0 || productdetails.availability || productdetails.bautyp || productdetails.heizung_val || productdetails.zustand_val) {
+              <div class="section-border">
+                <div class="section-padding-lg">
+                  <p class="titlediv">Objektinformation</p>
+                  @if (productdetails.objecttyp) {
+                    <p class="mb-1 text-clrs">
+                      <span class="label-bold">Objekttyp</span>
+                      <span class="float-right text-dark makewhite">{{ productdetails.objecttyp }}</span>
+                    </p>
+                  }
+                  @if (productdetails.grundflache_val != 0 && productdetails.grundflache_val != '') {
+                    <p class="mb-1 text-clrss">
+                      <span class="label-bold">Grundfläche</span>
+                      <span class="float-right text-dark makewhite">
+                        <span class="energy_form">{{ productdetails.grundflache_val | germanNumber:0}} m<sup>2</sup></span>
+                      </span>
+                    </p>
+                  }
+                  @if (productdetails.availability) {
+                    <p class="mb-1 text-clrss">
+                      <span class="label-bold">Verfügbar</span>
+                      <span class="float-right text-dark makewhite">{{ productdetails.availability }}</span>
+                    </p>
+                  }
+                  @if (productdetails.bautyp) {
+                    <p class="mb-1 text-clrs">
+                      <span class="label-bold">Bautyp</span>
+                      <span class="float-right text-dark makewhite">{{ productdetails.bautyp }}</span>
+                    </p>
+                  }
+                  @if (productdetails.zustand_val) {
+                    <p class="mb-1 text-clrss">
+                      <span class="label-bold">Zustand</span>
+                      <span class="float-right text-dark makewhite">{{ productdetails.zustand_val }}</span>
+                    </p>
+                  }
+                </div>
+              </div>
+            }
 
-                  <!-- <span *ngIf="productdetails.loggia_val == 'Loggia'"> ,</span> -->
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.loggia_val == 'Loggia'" >Loggia</p>
+            <!-- Freiflächen -->
+            @if (productdetails.balkon_val != 0 || productdetails.dachterrasse_val != 0 || productdetails.garten_val != 0 || productdetails.loggia_val != 0 || productdetails.terrasse_val != 0 || productdetails.wintergarten_val != 0) {
+              <div class="section-border">
+                <div class="section-padding-lg">
+                  <p class="titlediv freiflachen-title">Freiflächen</p>
 
-                  <!-- <span *ngIf="productdetails.terrasse_val == 'Terrasse'"> ,</span> -->
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.terrasse_val == 'Terrasse'" >Terrasse</p>
+                  @if (productdetails.balkon_val == 'Balkon' || productdetails.dachterrasse_val == 'Dachterrasse' || productdetails.garten_val == 'Garten' || productdetails.loggia_val == 'Loggia' || productdetails.terrasse_val == 'Terrasse' || productdetails.wintergarten_val == 'Wintergarten') {
+                    <div>
+                      @if (productdetails.balkon_val == 'Balkon') {
+                        <p class="freiflachen-item">Balkon</p>
+                      }
+                      @if (productdetails.dachterrasse_val == 'Dachterrasse') {
+                        <p class="freiflachen-item">Dachterrasse</p>
+                      }
+                      @if (productdetails.garten_val == 'Garten') {
+                        <p class="freiflachen-item">Garten</p>
+                      }
+                      @if (productdetails.loggia_val == 'Loggia') {
+                        <p class="freiflachen-item">Loggia</p>
+                      }
+                      @if (productdetails.terrasse_val == 'Terrasse') {
+                        <p class="freiflachen-item">Terrasse</p>
+                      }
+                      @if (productdetails.wintergarten_val == 'Wintergarten') {
+                        <p class="freiflachen-item">Wintergarten</p>
+                      }
+                    </div>
+                  }
 
-                  <!-- <span *ngIf="productdetails.wintergarten_val == 'Wintergarten'"> ,</span> -->
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.wintergarten_val == 'Wintergarten'" >Wintergarten</p>
+                  @if (productdetails.balkon_val != 'Balkon' || productdetails.dachterrasse_val != 'Dachterrasse' || productdetails.garten_val != 'Garten' || productdetails.loggia_val != 'Loggia' || productdetails.terrasse_val != 'Terrasse' || productdetails.wintergarten_val != 'Wintergarten') {
+                    <div>
+                      @if (productdetails.balkon_val != 'Balkon' && productdetails.balkon_val != '' && productdetails.balkon_val != 0) {
+                        <p class="text-clrss">
+                          Balkon: 
+                          <span class="german_form">{{ productdetails.balkon_val | germanNumber:0 }} m<sup>2</sup></span></p>
+                      }
+                      @if (productdetails.dachterrasse_val != 'Dachterrasse' && productdetails.dachterrasse_val != '' && productdetails.dachterrasse_val != 0) {
+                        <p class="text-clrss">Dachterrasse: 
+                          <span class="german_form">{{ productdetails.dachterrasse_val | germanNumber:0}} m<sup>2</sup></span></p>
+                      }
+                      @if (productdetails.garten_val != 'Garten' && productdetails.garten_val != '' && productdetails.garten_val != 0) {
+                        <p class="text-clrss">Garten: 
+                          <span class="german_form">{{ productdetails.garten_val| germanNumber:0 }} m<sup>2</sup></span></p>
+                      }
+                      @if (productdetails.loggia_val != 'Loggia' && productdetails.loggia_val != '' && productdetails.loggia_val != 0) {
+                        <p class="text-clrss">Loggia: 
+                          <span class="german_form">{{ productdetails.loggia_val| germanNumber:0 }} m<sup>2</sup></span></p>
+                      }
+                      @if (productdetails.terrasse_val != 'Terrasse' && productdetails.terrasse_val != '' && productdetails.terrasse_val != 0) {
+                        <p class="text-clrss">Terrasse: 
+                          <span class="german_form">{{ productdetails.terrasse_val | germanNumber:0}} m<sup>2</sup></span></p>
+                      }
+                      @if (productdetails.wintergarten_val != 'Wintergarten' && productdetails.wintergarten_val != '' && productdetails.wintergarten_val != 0) {
+                        <p class="text-clrss">Wintergarten: <span class="german_form">{{ productdetails.wintergarten_val | germanNumber:0}} m<sup>2</sup></span></p>
+                      }
+                    </div>
+                  }
 
                 </div>
+              </div>
+            }
 
-                <div *ngIf="productdetails.balkon_val != 'Balkon' || productdetails.dachterrasse_val != 'Dachterrasse' || productdetails.garten_val != 'Garten' || productdetails.loggia_val != 'Loggia' || productdetails.terrasse_val != 'Terrasse' || productdetails.wintergarten_val != 'Wintergarten'">
+            <!-- Ausstattung -->
+            @if (productdetails.ausstatung_val_f) {
+              <div class="section-padding-lg section-border">
+                <p class="titlediv">Ausstattung</p>
+                <p class="mb-1 text-clrs feature-text remove_space">{{ productdetails.ausstatung_val_f }}</p>
+              </div>
+            }
 
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.balkon_val != 'Balkon' && productdetails.balkon_val != '' && productdetails.balkon_val != 0" >Balkon: <span class="german_form">{{productdetails.balkon_val}}</span>m<sup>2</sup></p>
+            <!-- Böden -->
+            @if (productdetails.baden_val_f) {
+              <div class="section-padding-lg section-border">
+                <p class="titlediv">Böden</p>
+                <p class="mb-1 text-clrs feature-text">{{ productdetails.baden_val_f }}</p>
+              </div>
+            }
 
-                  <!-- <span *ngIf="productdetails.dachterrasse_val != 'Dachterrasse' && productdetails.dachterrasse_val !=''"> ,</span> -->
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.dachterrasse_val != 'Dachterrasse' && productdetails.dachterrasse_val !='' && productdetails.dachterrasse_val != 0" >Dachterrasse: <span class="german_form">{{productdetails.dachterrasse_val}}</span>m<sup>2</sup></p>
+            <!-- Heizung -->
+            @if (productdetails.heizung_val_f) {
+              <div class="section-padding-lg">
+                <p class="titlediv">Heizung</p>
+                <p class="mb-1 text-clrs feature-text">{{ productdetails.heizung_val_f }}</p>
+              </div>
+            }
 
-                  <!-- <span *ngIf="productdetails.garten_val != 'Garten' && productdetails.garten_val !=''"> ,</span> -->
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.garten_val != 'Garten' && productdetails.garten_val !='' && productdetails.garten_val != 0" >Garten: <span class="german_form">{{productdetails.garten_val}}</span>m<sup>2</sup></p>
+          </div>
 
-                  <!-- <span *ngIf="productdetails.loggia_val != 'Loggia' && productdetails.loggia_val !=''"> ,</span> -->
-                  <p style="margin-bottom: 2px;"  *ngIf="productdetails.loggia_val != 'Loggia' && productdetails.loggia_val !='' && productdetails.loggia_val != 0" >Loggia: <span class="german_form">{{productdetails.loggia_val}}</span>m<sup>2</sup></p>
-
-                  <!-- <span *ngIf="productdetails.terrasse_val != 'Terrasse' && productdetails.terrasse_val !=''"> ,</span> -->
-                  <p style="margin-bottom: 2px;" *ngIf="productdetails.terrasse_val != 'Terrasse' && productdetails.terrasse_val !='' && productdetails.terrasse_val != 0" >Terrasse: <span class="german_form">{{productdetails.terrasse_val}}</span>m<sup>2</sup></p>
-
-                  <!-- <span *ngIf='productdetails.wintergarten_val != "Wintergarten" && productdetails.wintergarten_val !=""'> ,</span> -->
-                  <p style="margin-bottom: 2px;" *ngIf='productdetails.wintergarten_val != "Wintergarten" && productdetails.wintergarten_val !="" && productdetails.wintergarten_val != 0' >Wintergarten: <span class="german_form">{{productdetails.wintergarten_val}}</span>m<sup>2</sup></p>
-
-                </div>
-
+          <!-- Links -->
+          @if (this.tour_link || this.verkauf || this.zustand || this.objekt_info) {
+            <div class="shadow">
+              <div class="section-padding-lg">
+                <p class="titlediv">Links zu Zusatzinformationen</p>
+                @if (this.tour_link) {
+                  <p class="mb-1 text-clrs">
+                    <span class="label-semibold">360° Tour link</span>
+                    <span class="float-right text-dark makewhite"><a href="{{ this.tour_link }}">{{ this.tour_link }}</a></span>
+                  </p>
+                }
+                @if (this.objekt_info) {
+                  <p class="mb-1 text-clrs">
+                    <span class="label-semibold">Objektinformationen</span>
+                    <span class="float-right text-dark makewhite"><a href="{{ this.objekt_info }}">{{ this.objekt_info }}</a></span>
+                  </p>
+                }
+                @if (this.zustand) {
+                  <p class="mb-1 text-clrs">
+                    <span class="label-semibold">Zustandsbericht</span>
+                    <span class="float-right text-dark makewhite"><a href="{{ this.zustand }}">{{ this.zustand }}</a></span>
+                  </p>
+                }
+                @if (this.verkauf) {
+                  <p class="mb-1 text-clrs">
+                    <span class="label-semibold">Verkaufsbericht</span>
+                    <span class="float-right text-dark makewhite"><a href="{{ this.verkauf }}">https://{{ this.verkauf }}</a></span>
+                  </p>
+                }
               </div>
             </div>
+          }
 
-            <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;border-bottom: 1px solid #e4e6e9;" *ngIf="productdetails.ausstatung_val">
-              <p class="titlediv">Ausstattung</p>
-              <p class="mb-1 text-clrs" style="font-size: 16px;white-space: break-spaces;" class="remove_space">{{this.newaustatungval}}
-              </p>
+          <!-- Energieausweis -->
+          @if (productdetails.hwb_val || productdetails.hwb_energie || productdetails.fgee || productdetails.fgee_energie) {
+            <div class="shadow">
+              <div class="section-padding-lg">
+                <p class="titlediv">Energieausweis</p>
+                @if (productdetails.hwb_val) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">HWB</span>
+                    <span class="float-right text-dark makewhite"><span class="energy_form">{{ productdetails.hwb_val | germanNumber}}</span></span>
+                  </p>
+                }
+                @if (productdetails.hwb_energie) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">HWB Energieklasse</span>
+                    <span class="float-right text-dark makewhite">{{ productdetails.hwb_energie }}</span>
+                  </p>
+                }
+                @if (productdetails.fgee) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">fGEE</span>
+                    <span class="float-right text-dark makewhite"><span class="energy_form">{{ productdetails.fgee |germanNumber }}</span></span>
+                  </p>
+                }
+                @if (productdetails.fgee_energie) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">fGEE Energieklasse</span>
+                    <span class="float-right text-dark makewhite">{{ productdetails.fgee_energie }}</span>
+                  </p>
+                }
+              </div>
             </div>
+          }
 
-            <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;border-bottom: 1px solid #e4e6e9;border-bottom: 1px solid #e4e6e9;" *ngIf="productdetails.baden_val">
-              <p class="titlediv">Böden</p>
-              <p class="mb-1 text-clrs" style="font-size: 16px;white-space: break-spaces;">{{this.newbodenval}}
-              </p>
+          <!-- Preisinformation -->
+          @if (productdetails.maklerprovision || productdetails.ablose_val != 0 || productdetails.wohnbauf_val || productdetails.betriebskosten != 0 || productdetails.betriebskosten_exkl != 0 || productdetails.heizkosten != 0 || productdetails.sonstige_exkl != 0 || productdetails.monatliche_inkl != 0 || productdetails.monatliche_imwst != 0 || productdetails.zusatzinformation) {
+            <div class="shadow">
+              <div class="section-padding-lg">
+                <p class="titlediv">Preisinformation</p>
+                @if (productdetails.maklerprovision) {
+                  <p class="mb-1">
+                    <span class="label-bold">Maklerprovision</span>
+                    <span class="float-right text-dark makewhite"><span class="german_form">{{ productdetails.maklerprovision | germanNumber}}</span></span>
+                  </p>
+                }
+                @if (productdetails.ablose_val != 0) {
+                  <p class="mb-1 text-clrs">
+                    <span class="label-bold">Ablöse</span>
+                    <span class="float-right text-dark makewhite">€ <span class="german_form">{{ productdetails.ablose_val| germanNumber }}</span></span>
+                  </p>
+                }
+                @if (productdetails.wohnbauf_val == 'Yes') {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">Wohnbauförderung</span>
+                    <span class="float-right text-dark makewhite">JA</span>
+                  </p>
+                }
+                @if (productdetails.wohnbauf_val == 'No') {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">Wohnbauförderung</span>
+                    <span class="float-right text-dark makewhite">Nein</span>
+                  </p>
+                }
+                @if (productdetails.betriebskosten != 0) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">Betriebskosten (inkl. MwSt.)</span>
+                    <span class="float-right text-dark makewhite">€ <span class="german_form">{{ productdetails.betriebskosten| germanNumber }}</span></span>
+                  </p>
+                }
+                @if (productdetails.betriebskosten_exkl != 0) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">Betriebskosten (exkl. MwSt.)</span>
+                    <span class="float-right text-dark makewhite">€ <span class="german_form">{{ productdetails.betriebskosten_exkl| germanNumber }}</span></span>
+                  </p>
+                }
+                @if (productdetails.heizkosten != 0) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">Heizkosten (exkl. MwSt.)</span>
+                    <span class="float-right text-dark makewhite">€ <span class="german_form">{{ productdetails.heizkosten | germanNumber}}</span></span>
+                  </p>
+                }
+                @if (productdetails.sonstige_exkl != 0) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">Sonstige Kosten (exkl. MwSt.)</span>
+                    <span class="float-right text-dark makewhite">€ <span class="german_form">{{ productdetails.sonstige_exkl| germanNumber }}</span></span>
+                  </p>
+                }
+                @if (productdetails.monatliche_inkl != 0) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">Monatliche Kosten (inkl. MwSt.)</span>
+                    <span class="float-right text-dark makewhite">€ <span class="german_form">{{ productdetails.monatliche_inkl | germanNumber}}</span></span>
+                  </p>
+                }
+                @if (productdetails.monatliche_imwst != 0) {
+                  <p class="mb-1 text-clrss">
+                    <span class="label-bold">Monatliche Kosten (exkl. MwSt.)</span>
+                    <span class="float-right text-dark makewhite">€ <span class="german_form">{{ productdetails.monatliche_imwst| germanNumber }}</span></span>
+                  </p>
+                }
+                @if (productdetails.zusatzinformation) {
+                  <p class="mb-1 text-clrs titlediv"><span class="label-semibold">Zusatzinformation</span></p>
+                  <p class="zusatz-text">{{ productdetails.zusatzinformation }}</p>
+                }
+              </div>
             </div>
+          }
 
-            <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;" *ngIf="productdetails.heizung_val">
-              <p class="titlediv">Heizung</p>
-              <p class="mb-1 text-clrs" style="font-size: 16px;white-space: break-spaces;">{{this.newheizugval}}
-              </p>
+          <!-- Lage -->
+          @if (productdetails.lage) {
+            <div class="shadowstyle">
+              <p class="titlediv">Lage</p>
+              <span class="pricehead">{{ productdetails.lage }}</span>
             </div>
-          </div>
-          <div class="shadow" *ngIf="this.tour_link || this.verkauf || this.zustand || this.objekt_info">
-            <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;">
-              <p class="titlediv">Links zu Zusatzinformationen</p>
+          }
 
-              <p class="mb-1 text-clrs"  *ngIf="this.tour_link"><span style="font-weight: 700;">360° Tour link</span><span class="float-right text-dark makewhite"><a href="https://{{this.tour_link}}">https://{{this.tour_link}}</a></span></p>
-
-              <p class="mb-1 text-clrs" *ngIf="this.objekt_info"><span style="font-weight: 700;">Objektinformationen</span><span class="float-right text-dark makewhite"><a href="https://{{this.objekt_info}}">https://{{this.objekt_info}}</a></span></p>
-
-              <p class="mb-1 text-clrs" *ngIf="this.zustand"><span style="font-weight: 700;">Zustandsbericht</span><span class="float-right text-dark makewhite"><a href="https://{{this.zustand}}">https://{{this.zustand}}</a></span></p>
-
-              <p class="mb-1 text-clrs" *ngIf="this.verkauf"><span style="font-weight: 700;">Verkaufsbericht</span><span class="float-right text-dark makewhite"><a href="https://{{this.verkauf}}">https://{{this.verkauf}}</a></span></p>
+          <!-- Sonstige -->
+          @if (productdetails.sonstige) {
+            <div class="shadowstyle">
+              <p class="titlediv">Sonstige</p>
+              <span class="pricehead">{{ productdetails.sonstige }}</span>
             </div>
-          </div>
+          }
 
-          <div class="shadow" *ngIf="productdetails.hwb_val || productdetails.hwb_energie || productdetails.fgee || productdetails.fgee_energie">
-            <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;">
-              <p class="titlediv">Energieausweis</p>
-
-              <p class="mb-1 text-clrs"  *ngIf="productdetails.hwb_val"><span style="font-weight: 500;">HWB</span><span class="float-right text-dark makewhite"><span class="energy_form">{{productdetails.hwb_val}}</span></span></p>
-
-              <p class="mb-1 text-clrs" *ngIf="productdetails.hwb_energie"><span style="font-weight: 500;">HWB Energieklasse</span><span class="float-right text-dark makewhite">{{productdetails.hwb_energie}}</span></p>
-
-              <p class="mb-1 text-clrs" *ngIf="productdetails.fgee"><span style="font-weight: 500;">fGEE</span><span class="float-right text-dark makewhite"><span class="energy_form">{{productdetails.fgee}}</span></span></p>
-
-              <p class="mb-1 text-clrs" *ngIf="productdetails.fgee_energie"><span style="font-weight: 500;">fGEE Energieklasse</span><span class="float-right text-dark makewhite">{{productdetails.fgee_energie}}</span></p>
-            </div>
-          </div>
-          
-          <div class="shadow" *ngIf="productdetails.maklerprovision || productdetails.ablose_val!=0 || productdetails.wohnbauf_val || productdetails.betriebskosten!=0 || productdetails.betriebskosten_exkl!=0 || productdetails.heizkosten!=0 || productdetails.sonstige_exkl!=0 || productdetails.monatliche_inkl!=0 || productdetails.monatliche_imwst!=0 || productdetails.zusatzinformation">
-            <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;">
-              <p class="titlediv">Preisinformation</p>
-              
-              <p class="mb-1" *ngIf="productdetails.maklerprovision">
-                <span style="font-weight: 500;">Maklerprovision</span>
-                <span class="float-right text-dark makewhite">
-                 
-                  <span class="german_form">{{productdetails.maklerprovision}}</span>
-                </span>
-              </p>
-
-              <p class="mb-1 text-clrs" *ngIf="productdetails.ablose_val!=0"><span style="font-weight: 500;">Ablöse</span><span class="float-right text-dark makewhite"><i class="fa fa-eur"></i> <span class="german_form">{{productdetails.ablose_val}}</span> </span></p>
-
-              <p class="mb-1 text-clrss" *ngIf="productdetails.wohnbauf_val == 'Yes'"><span style="font-weight: 500;">Wohnbauförderung</span><span class="float-right text-dark makewhite">JA</span></p>
-
-              <p class="mb-1 text-clrss" *ngIf="productdetails.wohnbauf_val == 'No'"><span style="font-weight: 500;">Wohnbauförderung</span><span class="float-right text-dark makewhite">Nein</span></p>
-
-              <p class="mb-1 text-clrss" *ngIf="productdetails.betriebskosten!=0"><span style="font-weight: 500;">Betriebskosten (inkl. MwSt.)</span><span class="float-right text-dark makewhite"><i class="fa fa-eur"></i> <span class="german_form">{{productdetails.betriebskosten}}</span> </span></p>
-
-              <p class="mb-1 text-clrss" *ngIf="productdetails.betriebskosten_exkl!=0"><span style="font-weight: 500;">Betriebskosten (exkl. MwSt.)</span><span class="float-right text-dark makewhite"><i class="fa fa-eur"></i> <span class="german_form">{{productdetails.betriebskosten_exkl}}</span> </span></p>
-
-              <p class="mb-1 text-clrss" *ngIf="productdetails.heizkosten!=0"><span style="font-weight: 500;">Heizkosten (exkl. MwSt.)</span><span class="float-right text-dark makewhite"><i class="fa fa-eur"></i> <span class="german_form">{{productdetails.heizkosten}}</span> </span></p>
-
-              <p class="mb-1 text-clrss" *ngIf="productdetails.sonstige_exkl!=0"><span style="font-weight: 500;">Sonstige Kosten (exkl. MwSt.)</span><span class="float-right text-dark makewhite"><i class="fa fa-eur"></i> <span class="german_form">{{productdetails.sonstige_exkl}}</span></span></p>
-
-              <p class="mb-1 text-clrss" *ngIf="productdetails.monatliche_inkl!=0"><span style="font-weight: 500;">Monatliche Kosten (inkl. MwSt.)</span><span class="float-right text-dark makewhite"><i class="fa fa-eur"></i> <span class="german_form"> {{productdetails.monatliche_inkl}}</span></span></p>
-              
-              
-              <p class="mb-1 text-clrss" *ngIf="productdetails.monatliche_imwst!=0"><span style="font-weight: 500;">Monatliche Kosten (exkl. MwSt.)</span><span class="float-right text-dark makewhite"><i class="fa fa-eur"></i> <span class="german_form">{{productdetails.monatliche_imwst}}</span> </span></p>
-
-              <p class="mb-1 text-clrs" *ngIf="productdetails.zusatzinformation" style="margin-top: 15px;"><span style="font-weight: 600;">Zusatzinformation:</span></p>
-              <p style="white-space :break-spaces;">{{productdetails.zusatzinformation}}</p>
-            
-            </div>
-          </div>
-
-
-          <div class="shadowstyle" *ngIf="productdetails.lage">
-            <p class="titlediv">Lage</p>
-            <span class="pricehead">{{productdetails.lage}}</span>
-          </div>
-
-          <div class="shadowstyle" *ngIf="productdetails.sonstige">
-            <p class="titlediv">Sonstige</p>
-            <span class="pricehead">{{productdetails.sonstige}}</span>
-          </div>
-
+          <!-- Legal Notice -->
           <div class="noticetext">
-            <p><b style="color: #e9621a;">Rechtlicher Hinweis: </b>{{this.legalnotice}}</p>
+            <p><b class="notice-label">Rechtlicher Hinweis: </b>{{ this.legalnotice }}</p>
           </div>
 
-           <!-- contact detail -->
-           <app-propertycontactdetail 
-           [productdetails]="productdetails" 
-           [homepage_link] = "homepage_link" 
-           [website_link] = "website_link">
+          <!-- Contact Detail -->
+          <app-propertycontactdetail
+            [productdetails]="productdetails"
+            [homepage_link]="homepage_link"
+            [website_link]="website_link">
           </app-propertycontactdetail>
-          <!-- end contact detail -->
 
-          <div class="newshadow" style="display: none;">
-            <div style="padding-left: 1rem;padding-top: 1rem;padding-right: 1rem;padding-bottom: 1.5rem;">
-              <p style="font-weight:500;font-weight: 500;font-size: 12px;text-align: center;">ANZEIGE MIT FREUNDEN TEILEN</p>
-              <div style="text-align: center;">
-                <span style="background: #022381;padding: 6px;color: #fff;border-radius: 50%;">
-                  <a class="myicon"><i class="fa fa-facebook"></i></a>
-                </span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="shadow" style="display: none;">
-            <ion-row>
-              <ion-col size="12">
-                <ion-title class="heading">Seller details</ion-title>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="3">
-                <img src="assets/image/user.png" style="padding-left:10px">
-                <p class="newratingcss"><ion-icon name="star"></ion-icon> 5/5</p>
-              </ion-col>
-              <ion-col size="9">
-                <p class="txtstye">Monica Pogatschnig</p>
-                <p class="somenewtxt">User since 09/2012</p>
-                <p class="somenewtxt">Usually repies within 6 hours.</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12">
-                <a >
-                  <div class="btnborder">
-                    More ads fromMonika
-                  </div>
-                </a>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12">
-                <p class="para">Adresse</p>
-                <p class="para2">9300 St Veit an der Glan Sankt Veit an der Glan, Carinthia</p>
-              </ion-col>
-            </ion-row>
-          </div>
         </div>
       </ion-col>
-        <ion-col size="12" style="padding: 0px;margin-bottom: 17px;" *ngIf="productdetails.logoimage!='https://verkaufalles.at/'">        
-            <div class="logoImg" >
-              <img alt="" src="{{productdetails.logoimage}}"/>
-             </div>
+
+      @if (productdetails.logoimage) {
+        <ion-col size="12" class="logo-col">
+          <div class="logoImg">
+            <img alt="" src="{{ productdetails.logoimage }}" />
+          </div>
         </ion-col>
+      }
+
     </ion-row>
 
- 
-
     <app-spam-reason-component
-    [productdetails] = "productdetails"
-    >
+      [productdetails]="productdetails">
     </app-spam-reason-component>
-  
-  </div>
+
+  }
+
 </ion-content>

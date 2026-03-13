@@ -39,6 +39,8 @@
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
 
+
+
 :root {
     --ion-safe-area-top: env(safe-area-inset-top);
     --ion-safe-area-bottom: env(safe-area-inset-bottom);
@@ -368,7 +370,11 @@ ion-input input {
 }
 
 
-
+.text-clrss{
+    display: flex;
+    justify-content: space-between;
+    margin: 3px 0;
+}
 /////////////////header css////////////////////////////
 .blur_container{
     width: 100%;
@@ -424,7 +430,7 @@ ion-footer{
 
 .filterani{
     width: 46px;
-    height: 45px;
+    height: 48px;
     text-align: center;
     padding: 0 !important;
     img{
@@ -872,4 +878,15 @@ ion-item.selectone{
 }
 .txtc{
     text-align: center;
+}
+.makeorange{
+    color: #f15400;
+}
+.hidden-header {
+  transform: translateY(-100%) !important;
+  
+  & + ion-content {
+    margin-top: 0 !important;
+    --offset-top: 0px !important;
+  }
 }

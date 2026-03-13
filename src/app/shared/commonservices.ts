@@ -166,4 +166,17 @@ export class Commonservices {
     }
     
 ];
+
+  hideHeader = false;
+  lastScrollTop = 0;
+  onScroll(event: any) {
+    const scrollTop = event.detail.scrollTop;
+    if (scrollTop > this.lastScrollTop && scrollTop > 50) {
+      this.hideHeader = true;
+    } else {
+      this.hideHeader = false;
+    }
+    this.lastScrollTop = scrollTop;
+  }
+
 }

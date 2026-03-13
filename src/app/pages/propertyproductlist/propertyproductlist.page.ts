@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { finalize } from 'rxjs';
 import { VerAPI } from 'src/app/services/ver-api';
+import { Commonservices } from 'src/app/shared/commonservices';
 
 @Component({
   selector: 'app-propertyproductlist',
@@ -15,6 +16,7 @@ export class PropertyproductlistPage implements OnInit {
   constructor(
      private navCtrl : NavController,
      private route : ActivatedRoute,
+     protected commonServices:Commonservices,
     private verapi:VerAPI,
   ) { }
 
@@ -34,7 +36,7 @@ export class PropertyproductlistPage implements OnInit {
 
   propertyListarr:any[]=[];
   getHouseSellProperty(properType="all"){
-    this.verapi.getHouseSell(properType).pipe(
+    this.verapi.getHouseSellList(properType).pipe(
       finalize(()=>{
 
       })
@@ -50,15 +52,8 @@ export class PropertyproductlistPage implements OnInit {
       this.getHouseSellProperty(properType)
   }
 
-  hideHeader = false;
-  lastScrollTop = 0;
-  onScroll(event: any) {
-    const scrollTop = event.detail.scrollTop;
-    if (scrollTop > this.lastScrollTop && scrollTop > 50) {
-      this.hideHeader = true;
-    } else {
-      this.hideHeader = false;
-    }
-    this.lastScrollTop = scrollTop;
+ 
+  viewDetails(proid:number){
+    this.navCtrl.navigateForward(`pages/propertyproductdetails?proid=${proid}`)
   }
 }

@@ -7,18 +7,18 @@ import { inject, Injectable } from '@angular/core';
 export class VerAPI {
      private http = inject(HttpClient);
     //private API_URL = 'http://localhost/ver';
-     private API_URL = 'http://dkapoor-001-site40.rtempurl.com';
+    private API_URL = 'https://dkapoor-001-site40.rtempurl.com';
 
 
     posthausselldata(data:any){
       return this.http.post(`${this.API_URL}/api/propertyform/posthausselldata.php`,data,{ headers: { 'Content-Type': 'application/json' } })
     }
-
-    posthausselllistview(proid:any,userid:any){
-       return this.http.get(`${this.API_URL}/api/propertyproducts/gethaussellproductdetails.php?proid=${proid}&user_id=${userid}`);
+    
+    getHouseSellList(type:string){
+      return this.http.get(`${this.API_URL}/api/propertyproducts/getpropertyproductlist.php?user_id=null&type=${type}`);
     }
 
-    posthausselldatadetail(proid:any,userid:any){
+    hausselldatadetail(proid:any,userid:any){
         return this.http.get(`${this.API_URL}/api/propertyproducts/gethaussellproductdetails.php?proid=${proid}&user_id=${userid}`);
     }
 
@@ -41,10 +41,6 @@ export class VerAPI {
     getSubCategories(subcatid:number,maincatid:number,cm:string=""){
       return this.http.get(`https://verkaufalles.at/api/categories/getsubsubcatbyid.php?subcatid=${subcatid}&maincatid=${maincatid}&cm=${cm}`);
       
-    }
-
-    getHouseSell(type:string){
-      return this.http.get(`https://verkaufalles.at/api/propertyproducts/getpropertyproductlist.php?user_id=null&type=${type}`)
     }
 
     //tab1

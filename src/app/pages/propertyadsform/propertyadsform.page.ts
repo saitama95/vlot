@@ -347,6 +347,15 @@ get bisValue() { return this.myForm.get('bisValue'); }
       }
     }
 
-  
+    getPricetypValue(value:string){
+      if(value=='Auf Anfrage'){
+         this.myForm.removeControl('price');
+      }else{
+        this.myForm.addControl('price',   this.fb.control('', Validators.required));
+      }
+      this.myForm.patchValue({
+        price_type:value
+      })
+    }
  
 }
