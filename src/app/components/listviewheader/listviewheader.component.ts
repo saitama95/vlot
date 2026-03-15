@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-listviewheader',
@@ -10,16 +10,27 @@ import { NavController } from '@ionic/angular';
 export class ListviewheaderComponent  implements OnInit {
 
   @Output() propertyType = new EventEmitter<any>;
+  @Output() gotoFilter = new EventEmitter<any>;
   propcatcatid:number=0;
   subsubcatName:string="";
+  activeBtn="all";
   constructor(
-    private navCtrl:NavController
-  ) { }
+    private navCtrl:NavController,
+    private platform:Platform
+  ) { 
+    this.handleBackButton();
+  }
+
+   handleBackButton() {
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.goback(); 
+    });
+  }
 
   ngOnInit() {}
 
   goback(){
-      this.navCtrl.back();
+      this.navCtrl.navigateBack(`tabs/tab2?maincatid=2`);
   }
 
   gotosearch(){
@@ -28,7 +39,9 @@ export class ListviewheaderComponent  implements OnInit {
 
  
 
-    gotoFilterpage(){}
+    gotoFilterpage(){
+        this.gotoFilter.emit()
+    }
      gotoHausRentFilterpage(){}
      gotoApartmentSellFilterpage(){}
      gotoApartmentRentFilterpage(){}
@@ -40,9 +53,11 @@ export class ListviewheaderComponent  implements OnInit {
      gotoSonstigepropSellFilterpage(){}
 
      getAllPropertyData(event:any,type:string){
+      this.activeBtn=type;
       this.propertyType.emit(type)
      }
 
+   
      changeView(event:any,viewtype:string){
       
      }

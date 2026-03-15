@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { VerAPI } from 'src/app/services/ver-api';
 
 @Component({
@@ -81,11 +81,16 @@ export class PropertyproductdetailsPage implements OnInit {
   objekt_info="";
   homepage_link="";
   website_link="";
+
+  proid:number=0;
   constructor(
     private navCtrl:NavController,
     private verapi:VerAPI,
     private route : ActivatedRoute,
-  ) { }
+    private platform:Platform
+  ) { 
+    this.handleBackButton();
+  }
 
   slideOpts ={
     initialSlide: 0,
@@ -94,14 +99,20 @@ export class PropertyproductdetailsPage implements OnInit {
   
   ngOnInit() {
     this.route.queryParams.subscribe((params:any) => {
-        let productid = JSON.parse(params.proid);
+        let productid = this.proid= JSON.parse(params.proid);
         this.getProductDetails(productid);
     })
     
   }
 
+  handleBackButton() {
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.goBack(); 
+    });
+  }
+
    goBack(){
-    this.navCtrl.back();
+    this.navCtrl.navigateBack(`tabs/propertyproductlist?propcatid=${this.proid}&subcatid=32`);
     }
 
 

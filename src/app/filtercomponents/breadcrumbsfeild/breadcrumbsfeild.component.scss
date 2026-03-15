@@ -1,0 +1,23 @@
+.selectcategories:not(:last-child){
+    border-bottom: none !important;
+}   
+.selectcategories{
+    border-radius: unset;
+    div{
+        height: 34px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 13px;
+        padding-right: 7px;
+    }
+    ion-label{
+        font-size: 15px;
+        font-weight: 600;
+        color: #ff4700;
+        margin:0;
+    }
+}
+.newdiv{
+    border: 1px solid #d1c9c9;
+}

@@ -13,12 +13,13 @@
 }
 .cate{
     display: block;
+    font-size: 12px;
+    font-weight: 700;
 }
 .catcont{
     border-bottom: 1px solid #d5d2d2;
     text-align: center;
     padding: 6px 0;
-    margin-right: 2px;
     div{
         text-align: center;
         span{
@@ -27,11 +28,11 @@
         }
     }
     .iconimg{
-        width: 20px;
+        width: 23px;
     }
 }
 .head::-webkit-scrollbar {
-  // display: none;
+  display: none;
   width: 5px;
   height: 5px;
 }
@@ -67,3 +68,16 @@ div.head {
       }
     }
 }
+.subcatdes{
+    border-radius: 5px;
+    border: 1px solid #8080804f;
+    margin-right: auto;
+        overflow: hidden;
+
+}
+.sbcatd{
+    font-size: 12px;
+    text-align: center;
+
+}
+

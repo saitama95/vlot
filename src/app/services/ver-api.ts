@@ -43,6 +43,10 @@ export class VerAPI {
       
     }
 
+    getSubCatNames(sid:number){
+      return this.http.get(`https://verkaufalles.at/api/categories/getsubsubcatbyid.php?subcatid=${sid}`)
+    }
+
     //tab1
     getRandomProperty(){
       return this.http.get(`${this.API_URL}/`);

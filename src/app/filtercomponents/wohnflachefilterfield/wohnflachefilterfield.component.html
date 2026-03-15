@@ -1,0 +1,66 @@
+<ion-row>
+    <ion-col>
+      <div class="newdiv" *ngIf="!this.rentHouseWohnflacheData; else wohnflachediv">
+        <a (click)="openModal()">
+          <ion-item><ion-label>Wohnfläche</ion-label></ion-item>
+        </a>
+      </div>
+      <ng-template #wohnflachediv>
+        <div class="newdiv" style="padding: 7px;">
+          <a (click)="openModal()">
+            <ion-label style="color:black; font-size: 15px; font-weight: 700">Wohnfläche: </ion-label>
+            <p style="font-size:15px; font-weight:600; color:#ff4700;margin-top: 5px">{{rentHouseWohnflacheData}}</p>
+          </a>
+          <a (click)="cutWohnflache()">
+            <ion-icon name="close" class="closebtn">
+            </ion-icon>
+          </a>
+        </div>
+      </ng-template>
+    </ion-col>
+  </ion-row>
+
+<ion-modal #modal>
+  <ng-template>
+    <ion-header>
+  <ion-toolbar color="primary">
+    <a (click)="goback();" style="float: left;">
+      <img src="assets/image/left-arrow2.png" style="padding-left: 10px;">
+    </a>
+    <ion-title style="text-align: center;">Wohnfläche</ion-title>
+    <ion-buttons slot="primary" (click)="postRentHausFilterData();">
+      <ion-icon name="checkmark-sharp" style="color: #ffffff; margin-right: 15px; font-size: 25px;"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row style="padding-top:15px">
+    <ion-col size="6" class="mycol">
+      <ion-item style="height: 39px;">
+        <ion-label>von</ion-label>
+        <ion-select interface="popover" (ionChange)="getRentHausWohnflache1($event.detail.value);" [(ngModel)]="wohnflache_Val1">
+          <ion-select-option value="{{wohnRange1.value}}" *ngFor="let wohnRange1 of getRentHausWohnflacheRange1">{{wohnRange1.range1}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size="6" class="mycol">
+      <ion-item style="height: 39px;">
+        <ion-label>bis</ion-label>
+        <ion-select interface="popover" (ionChange)="getRentHausWohnflache2($event.detail.value);" [(ngModel)]="wohnflache_Val2">
+          <ion-select-option value="{{wohnRange2.value}}" *ngFor="let wohnRange2 of getRentHausWohnflacheRange2">{{wohnRange2.range2}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top: 25px;">
+    <ion-col size="12" class="submit_btn">
+      <ion-button color="primary"  (click)="postRentHausFilterData();">Weiter</ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+   </ng-template>
+</ion-modal>

@@ -1,0 +1,24 @@
+<app-filterheader
+(back)="goBack()"
+(submitfilter)="postFilterdata()"
+>
+</app-filterheader>
+
+<ion-content>
+    <app-breadcrumbsfeild
+    [subcatid]="subcatid"
+    [subsubcatid]="subsubcatid"
+    >
+    </app-breadcrumbsfeild>
+
+    <app-pricefilterfield>
+    </app-pricefilterfield>
+
+    <app-wohnflachefilterfield>
+    </app-wohnflachefilterfield>
+
+    <app-checkboxfilterfield
+    [label]="'Zimmer'"
+    >
+    </app-checkboxfilterfield>
+</ion-content>

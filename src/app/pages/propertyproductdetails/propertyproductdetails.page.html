@@ -59,14 +59,15 @@
             } @else {
               <img
                 src="https://verkaufalles.at/mobapp/image/homesell.png"
-                class="fallback-image"
+                class="no_iamge_detail"
               >
             }
           </div>
         </div>
 
-        <!-- Sticky Header (hidden by default) -->
-        <div class="sticky-header" id="isflags">
+        
+        @if(false){
+          <div class="sticky-header" id="isflags">
           <div class="blur_container hideheader">
             <div class="blur_back">
               <a (click)="goBack();">
@@ -93,6 +94,8 @@
             </div>
           </div>
         </div>
+        }
+        
 
         <div>
 

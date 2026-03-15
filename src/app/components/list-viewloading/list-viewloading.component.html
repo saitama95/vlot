@@ -1,0 +1,21 @@
+<ion-row *ngIf="arrdata.length==0">
+    <ion-col size="12" class="List_card" *ngFor="let item of repearframe">
+      <div class="img_sec">
+        <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      </div>
+      <div class="content_sek">
+        <div class="above_con">
+          <p><ion-skeleton-text [animated]="true"></ion-skeleton-text></p> 
+          <p><ion-skeleton-text [animated]="true" style="height: 13px;
+            width: 161px;"></ion-skeleton-text></p>
+        </div>
+        <div class="bottom_con">
+          <p style="display: flex;justify-content: space-between;align-items: self-end;">
+            <ion-skeleton-text [animated]="true" style="width: 62px;height: 11px;margin: 0;"></ion-skeleton-text>  
+            <ion-skeleton-text [animated]="true" style="width: 135px;height: 17px;margin: 0;"></ion-skeleton-text>
+          </p> 
+          <p><ion-skeleton-text [animated]="true"></ion-skeleton-text></p>
+        </div>
+      </div>
+    </ion-col>
+</ion-row>

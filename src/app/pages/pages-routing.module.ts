@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'propertyproductdetails',
     loadChildren: () => import('./propertyproductdetails/propertyproductdetails.module').then( m => m.PropertyproductdetailsPageModule)
   },
+  {
+    path: 'housesellfilter',
+    loadChildren: () => import('./housesellfilter/housesellfilter.module').then( m => m.HousesellfilterPageModule)
+  },
 
 ];
 

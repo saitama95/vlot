@@ -23,11 +23,11 @@
       <ion-col size="6" style="display: flex;align-items: center;justify-content: center;">
           <p class="head newheader">{{subsubcatName}}</p>
       </ion-col>
-      <ion-col size="6" class="bottomleft" style="padding-right: 0;">
-        <button class="btn2 active2" id="all" (click)="getAllPropertyData($event,'all')">Biete und Suche</button> 
-        <button class="btn2" id="Biete"(click)="getAllPropertyData($event,'Biete')">Biete</button> 
-        <button class="btn2" id="Suche" (click)="getAllPropertyData($event,'Suche')">Suche</button>
-      </ion-col>
+     <ion-col size="6" class="bottomleft" style="padding-right: 0;">
+      <button class="btn2"  [class.active2]="activeBtn === 'all'" (click)="getAllPropertyData($event,'all')">Biete und Suche</button> 
+      <button class="btn2"  [class.active2]="activeBtn === 'Biete'" (click)="getAllPropertyData($event,'Biete')">Biete</button> 
+      <button class="btn2"  [class.active2]="activeBtn === 'Suche'" (click)="getAllPropertyData($event,'Suche')">Suche</button>
+    </ion-col>
     </ion-row>
     <div>
   </div>

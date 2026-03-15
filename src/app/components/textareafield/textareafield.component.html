@@ -1,11 +1,11 @@
 <ion-row id="open-modal" expand="block">
     <ion-col (click)="openModal()">
-        <div class="newdiv" [class.input-error]="isInvalid">
+        <div class="newdiv" [class.input-error]="isInvalid" [style]="description?'padding: 5px 15px;':''">
           @if(!description){
            <ion-item>Objektbeschreibung <span class="requiedcls">*</span></ion-item>
          }
          @else {
-           <ion-label style="color: black;font-size: 15px;font-weight: 700;">Allgemeine Objektbeschreibung:</ion-label>
+          <ion-label style="color: black;font-size: 15px;font-weight: 700;">Allgemeine Objektbeschreibung:</ion-label>
           <p style="white-space: break-spaces;" class="m0">{{description}}</p>
          }
       </div>

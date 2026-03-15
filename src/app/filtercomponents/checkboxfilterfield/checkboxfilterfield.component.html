@@ -1,0 +1,51 @@
+<ion-row>
+    <ion-col>
+      @if(!rentHausZimerData){
+        <div class="newdiv" (click)="openModal()">
+        <a>
+          <ion-item><ion-label>{{label}}</ion-label></ion-item>
+        </a>
+      </div>
+      }
+      @else{
+         <div class="newdiv" style="padding: 7px;" (click)="openModal()">
+          <a>
+            <ion-label style="color:black; font-size: 15px; font-weight: 700">{{label}}: </ion-label>
+            <p style="font-size:15px; font-weight:600; color:#ff4700;margin-top: 5px"></p>
+          </a>
+          <a><ion-icon name="close" class="closebtn"></ion-icon></a>
+        </div>
+      }
+    </ion-col>
+  </ion-row>
+
+<ion-modal #modal>
+  <ng-template>
+  <ion-header >
+  <ion-toolbar color="primary">
+    <a  style="float: left;" (click)="goback()">
+      <img src="assets/image/left-arrow2.png" style="padding-left: 10px;">
+    </a>
+    <ion-title style="text-align: center;">Zimmer</ion-title>
+    <ion-buttons slot="primary" >
+      <ion-icon name="checkmark-sharp" style="color: #ffffff; font-size: 25px; margin-right: 15px;"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let zimmer of ZimmerData" style="position: relative;">
+    <ion-checkbox color="primary" slot="end"  class="check"></ion-checkbox>
+    <ion-label>{{zimmer.name}}</ion-label> 
+    <span class="countdata">{{zimmer.count}}</span>
+  </ion-item>
+
+  <ion-row>
+    <ion-col style="text-align: center;">
+      <ion-button color="primary" type="button" >Weiter</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+ </ng-template>
+</ion-modal>

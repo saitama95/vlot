@@ -8,6 +8,7 @@ import { PropertyproductlistPageRoutingModule } from './propertyproductlist-rout
 
 import { PropertyproductlistPage } from './propertyproductlist.page';
 import { ListviewheaderModule } from 'src/app/components/listviewheader/listviewheader-module';
+import { ListViewloadingComponent } from 'src/app/components/list-viewloading/list-viewloading.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ListviewheaderModule } from 'src/app/components/listviewheader/listview
     PropertyproductlistPageRoutingModule,
     ListviewheaderModule
   ],
-  declarations: [PropertyproductlistPage]
+  declarations: [PropertyproductlistPage,ListViewloadingComponent]
 })
 export class PropertyproductlistPageModule {}

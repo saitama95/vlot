@@ -1,0 +1,115 @@
+.mycol {
+    border: 1px solid #33333342;
+    height: 50px;
+    // background: #ecf5f9;
+}
+.col-head{
+    font-size: 18px;
+    padding: 10px;
+}
+ion-toggle[aria-checked="false"]{
+    position: relative;
+    width: 70px;
+   &::before {
+     position: absolute;
+     content: "BACK";
+     font-size: 10px;
+     line-height: 31px;
+   }
+   &::after {
+     position: absolute;
+     content: "";
+   }
+  }
+  ion-toggle[aria-checked="true"]{
+   position: relative;
+   width: 70px;
+   &::before {
+     position: absolute;
+     content: "";
+   }
+  &::after {
+    position: absolute;
+    content: "FRONT";
+    font-size: 10px;
+    line-height: 31px;
+    top: 0;
+    left: 3px;
+    color: #fff;
+  }
+ }
+
+
+ .custom-toggle input[type="checkbox"] {
+  display: none;
+}
+
+/* Define the toggle container */
+.custom-toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 17px;
+  margin: 0;
+}
+
+/* Define the toggle slider */
+.custom-toggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: red; /* Default background color */
+  transition: 0.4s;
+  border-radius: 30px; /* Make it round */
+  border: 1px solid black;
+}
+
+/* Style the slider when the checkbox is checked */
+.custom-toggle input[type="checkbox"]:checked + .slider {
+  background-color: #3cb700;
+}
+
+/* Style the slider's knob */
+.custom-toggle .slider::before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Move the knob when the checkbox is checked */
+.custom-toggle input[type="checkbox"]:checked + .slider::before {
+  transform: translateX(22px);
+}
+.toggle_status{
+  margin: 0;
+  z-index: 12;
+  position: absolute;
+  font-size: 10px;
+  top: 3px;
+  right: 3px;
+  transition: all 0.5 ease-in;
+}	
+.changeTogglepostion{
+  left: 3px;
+  right: unset;
+}
+.toggle_cont{
+  display: flex;
+  justify-content: end;
+  div{
+    display: flex;
+    justify-content: space-between;
+    gap: 7px;
+    align-items: center;
+    margin-right: 12px;
+  }
+}

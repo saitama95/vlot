@@ -2,23 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ObjekttypComponent } from '../modal/objekttyp/objekttyp.component';
+import { ObjekttypfieldModule } from '../objekttypfield/objekttypfield-module'; 
 import { RadiofieldComponent } from './radiofield.component';
-
-
 
 @NgModule({
   declarations: [
-    ObjekttypComponent,
-    RadiofieldComponent
+    RadiofieldComponent   
   ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    ObjekttypfieldModule 
   ],
-  exports:[
+  exports: [
     RadiofieldComponent
   ]
 })
