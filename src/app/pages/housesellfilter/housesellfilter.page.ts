@@ -30,4 +30,8 @@ export class HousesellfilterPage implements OnInit {
   postFilterdata(){
 
   }
+
+  priceValues(event:any){
+    console.log(event)
+  }
 }

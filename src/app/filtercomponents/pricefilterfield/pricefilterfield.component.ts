@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 
 @Component({
@@ -12,12 +12,19 @@ export class PricefilterfieldComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   @Input() priceplaceholder:string="";
   @Input() tempPrice1placeholder:string="";
-  RentHausPriceData:any;
+
+  @Output() priceValues = new EventEmitter<any>;
   showtoggle=false;
   constructor() { }
-  Pries2:any="";
-  selectprice2:string="";
   
+  selectprice2:string="";
+  selectprice1:string=""
+  tempPrice1: string = '';
+  tempPrice2: string = '';
+  displayPriceMin: number = 0;
+  displayPriceMax: number = 0;
+  displayPriceRange: string = ''; 
+  toggleStatus=false;
   getpricerange1 = [
     {value : 0,range1: '0'},
     {value : 1,range1: '1'},
@@ -132,24 +139,71 @@ export class PricefilterfieldComponent  implements OnInit {
   ]
   ngOnInit() {}
 
-openModal() { this.modal.present(); }
-   goback()    { this.modal.dismiss(null, 'cancel'); }
-  cutprice(){}
+  openModal() { this.modal.present(); }
+  goback()    { this.modal.dismiss(null, 'cancel'); }
+  cutprice(){
+    this.selectprice2 = "";
+    this.selectprice1="";
+    this.tempPrice1='';
+    this.tempPrice2= '';
+    this.displayPriceMin = 0;
+    this.displayPriceMax = 0;
+    this.displayPriceRange = '';
+  }
 
-  postFilterData(){}
+  postFilterData(){
+    this.priceValues.emit({ 
+      'displayPriceMin':this.displayPriceMin,
+      'displayPriceMax':this.displayPriceMax,
+      'displayPriceRange':this.displayPriceRange
+    })
+    this.goback();
+  }
  
-  getPriceDataRange2(event:any){}
-  getPriceDataRange1(event:any){}
-  selectprice1:string=""
-  Pries1="";
-  tempPrice1="";
-  tempPrice2="";
-  getinput1(event:any,type:string){}
-  getinput2(event:any,type:string){}
-
   gobackPage(){}
   changeState(event:any){}
-  toggleStatus=false;
+ 
 
+getPriceDataRange1(value: string) {
+  this.selectprice1 = value;
+  this.tempPrice1 = value; 
+  this.updatePriceRange();
+}
+
+getPriceDataRange2(value: string) {
+  this.selectprice2 = value;
+  this.tempPrice2 = value;
+  this.updatePriceRange();
+}
+
+
+getinput1(event: any) {
+  this.tempPrice1 = event.detail.value;
+  this.updatePriceRange();
+}
+
+
+getinput2(event: any) {
+  this.tempPrice2 = event.detail.value;
+  this.updatePriceRange();
+}
+
+updatePriceRange() {
+  const val1 = parseFloat(this.tempPrice1) || parseFloat(this.selectprice1) || 0;
+  const val2 = parseFloat(this.tempPrice2) || parseFloat(this.selectprice2) || 0;
+
+  this.displayPriceMin = Math.min(val1, val2);
+  this.displayPriceMax = Math.max(val1, val2);
+
+  if (this.displayPriceMin > 0 || this.displayPriceMax > 0) {
+    const formattedMin = this.formatGerman(this.displayPriceMin);
+    const formattedMax = this.formatGerman(this.displayPriceMax);
+    this.displayPriceRange = `€ ${formattedMin} - ${formattedMax}`;
+  }
+}
+
+formatGerman(value: number): string {
+  return value.toLocaleString('de-DE');
+}
  
 } 

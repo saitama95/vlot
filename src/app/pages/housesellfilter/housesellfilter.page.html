@@ -11,7 +11,11 @@
     >
     </app-breadcrumbsfeild>
 
-    <app-pricefilterfield>
+    <app-pricefilterfield
+    [priceplaceholder]="'beliebig'"
+    [tempPrice1placeholder]="'0'"
+    (priceValues)="priceValues($event)"
+    >
     </app-pricefilterfield>
 
     <app-wohnflachefilterfield>

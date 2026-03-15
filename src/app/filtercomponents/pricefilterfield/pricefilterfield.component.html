@@ -1,22 +1,19 @@
  <ion-row>
     <ion-col>
-      <div class="newdiv" *ngIf="!this.RentHausPriceData; else pricediv">
-        <a (click)="openModal()">
+      @if(!displayPriceRange ){
+        <div class="newdiv" (click)="openModal()">
           <ion-item><ion-label>Preis</ion-label></ion-item>
-        </a>
       </div>
-      <ng-template #pricediv>
-        <div class="newdiv" style="padding: 7px;">
+      }@else{
+         <div class="newdiv" style="padding: 7px;">
           <a (click)="openModal()">
             <ion-label style="color: black;font-size: 15px; font-weight: 700;">Preis: </ion-label>
-            <p style="font-size: 15px;font-weight: 600;color: #ff4700;margin-top: 5px;">{{RentHausPriceData}}</p>
+            <p style="font-size: 15px;font-weight: 600;color: #ff4700;margin-top: 5px;">{{displayPriceRange }}</p>
           </a>
-          <a (click)="cutprice()">
-            <ion-icon name="close" class="closebtn">
+            <ion-icon name="close" class="closebtn" (click)="cutprice()">
             </ion-icon>
-          </a>
         </div>
-      </ng-template>
+      }
     </ion-col>
   </ion-row>
 
@@ -24,9 +21,10 @@
   <ng-template>
     <ion-header>
   <ion-toolbar color="primary">
-    <a (click)="goback();"  style="float: left;"> <img style="margin-left: 10px;" src="assets/image/left-arrow2.png"></a>
+    <a (click)="goback();"  style="float: left;"> 
+      <img style="margin-left: 10px;" src="assets/image/left-arrow2.png">
+    </a>
     <ion-title style="text-align: center;">Preis</ion-title>
-  
   </ion-toolbar>
 </ion-header>
 
@@ -63,16 +61,26 @@
     <ion-col size="6" class="mycol">
       <ion-item style="height: 39px;">
        
-        <ion-input type="text" (keyup)="getinput1($event,'vonPrice1');" inputmode="numeric" value="{{tempPrice1}}" placeholder="{{tempPrice1placeholder}}" id="vonPrice1" [(ngModel)]="Pries1"></ion-input>
+          <ion-input
+            type="text"
+            inputmode="numeric"
+            [(ngModel)]="tempPrice1"
+            [placeholder]="tempPrice1placeholder"
+            (ionChange)="getinput1($event)">
+          </ion-input>
         
       </ion-item>
     </ion-col>
 
     <ion-col size="6" class="mycol">
       <ion-item style="height: 39px;">
-        <ion-input type="text" (keyup)="getinput2($event,'bisPrice1');" inputmode="numeric" placeholder="{{priceplaceholder}}" value="{{tempPrice2}}" id="bisPrice1" [(ngModel)]="Pries2"></ion-input>
-
-       
+          <ion-input
+            type="text"
+            inputmode="numeric"
+            [(ngModel)]="tempPrice2"
+            [placeholder]="priceplaceholder"
+            (ionChange)="getinput2($event)">
+          </ion-input>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -80,17 +88,27 @@
   <ion-row style="padding-top: 5px;">
     <ion-col size="6" class="mycol">
       <ion-item style="height: 39px;">
-        <ion-select interface="popover" (ionChange)="getPriceDataRange1($event.detail.value);" value="{{selectprice1}}" [(ngModel)]="Pries1">
-          <ion-select-option value="{{pricerange1.value}}" *ngFor="let pricerange1 of getpricerange1">{{pricerange1.range1}}</ion-select-option>
-        </ion-select>
+       <ion-select
+          interface="popover"
+          [(ngModel)]="selectprice1"
+          (ionChange)="getPriceDataRange1($event.detail.value)">
+          @for (item of getpricerange1; track $index) {
+            <ion-select-option value="{{item.value}}">{{item.range1}}</ion-select-option>
+          }
+          </ion-select>
       </ion-item>
     </ion-col>
 
     <ion-col size="6" class="mycol">
       <ion-item style="height: 39px;">
-        <ion-select interface="popover" (ionChange) = "getPriceDataRange2($event.detail.value);" value="{{selectprice2}}"  [(ngModel)]="Pries2">
-          <ion-select-option value="{{pricerange2.value}}" *ngFor="let pricerange2 of getpricerange2"  >{{pricerange2.range2}}</ion-select-option>
-        </ion-select>
+        <ion-select
+            interface="popover"
+            [(ngModel)]="selectprice2"
+            (ionChange)="getPriceDataRange2($event.detail.value)">
+            @for (item of getpricerange2; track $index) {
+              <ion-select-option value="{{item.value}}">{{item.range2}}</ion-select-option>
+            }
+          </ion-select>
       </ion-item>
     </ion-col>
   </ion-row>
